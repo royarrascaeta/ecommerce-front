@@ -1,0 +1,35 @@
+.products-container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-items: stretch;
+  justify-content: space-between;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-neutro);
+  flex-basis: 30%;
+  text-align: center;
+  border-radius: 0.3rem;
+  margin: 1rem auto;
+  border: 0.05rem solid lightgray;
+  padding-bottom: 1rem;
+}
+
+.product-card img {
+  width: auto;
+  height: 220px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 0.3rem 0.3rem 0 0;
+}
+
+.product-card h3 {
+  padding: 1rem 0;
+}
+
+.product-card .precio {
+  color: green;
+}
