@@ -50,7 +50,11 @@ export const mostrarProductos = (productos) =>{
       </div>
       <h3>${producto.nombre}</h3>
       <div class="precio">$${producto.precio}</div>
-      <button class="boton-comprar">Comprar</button>`;
+      <div class="comprar">
+        <label for="cantidad">Cantidad:</label>
+        <input name="cantidad" type="number" value="1" min="1" max="10">
+        <button class="boton-comprar">Comprar</button>
+      </div>`;
     $productsContainer.appendChild($div);
   });
 }

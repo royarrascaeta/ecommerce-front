@@ -5,6 +5,7 @@ import { productos } from "./products.js";
 export class Carrito{
   constructor(){
     this.productos = [],
+    this.cantidad = this.productos.length;
     this.envio = 0,
     this.subTotal = 0,
     this.total = 0

@@ -133,6 +133,13 @@ body {
   transition: all ease-in 0.2s;
 }
 
+.carrito-span {
+  margin-left: 0.2rem;
+  padding: 0.1rem 0.4rem;
+  background-color: var(--color-secundario);
+  border-radius: 50%;
+}
+
 /* ///// MAIN ///// */
 .container {
   display: flex;
@@ -218,11 +225,23 @@ footer {
   opacity: 0.6;
 }
 
+.product-card .comprar {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  margin: 1rem 2rem 0 2rem;
+}
+
+.product-card .comprar input {
+  width: 2.5rem;
+  height: 2rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
 .product-card .boton-comprar {
   display: flex;
-  align-self: center;
   text-align: center;
-  margin-top: 1rem;
   padding: 0.8em 1.6rem;
   font-size: 1.4rem;
   font-weight: bold;
