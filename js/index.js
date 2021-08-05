@@ -1,9 +1,15 @@
 import {productos, mostrarProductos} from "./products.js";
-import {carrito1, agregarAlCarrito} from "./carrito.js";
+// import {carrito1, agregarAlCarrito} from "./carrito.js";
 import {mobileMenu} from "./mobilemenu.js";
+import {modal} from "./modal.js";
+
+document.addEventListener("DOMContentLoaded",mobileMenu());
 
 document.addEventListener("DOMContentLoadead",mostrarProductos(productos));
-document.addEventListener("DOMContentLoaded",mobileMenu());
+
+
+
+modal();
 
 // // Ejecución del programa
 // // Está dentro de un setTimeOut para que pueda cargar el contenido visual antes de que aparezca el primer alert

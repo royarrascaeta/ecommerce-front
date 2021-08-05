@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clase 09 - Arrascaeta Rodrigo</title>
+  <title>Mi Carrito</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
@@ -18,9 +18,9 @@
       <div class="logo">Tienda</div>
       <nav class="menu">
         <ul>
-          <li class="activo"><a class="activo" href="index.html">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="#">Shop</a></li>
-          <li><a href="#micarrito">Carrito<span class="carrito-span">0</span></a></li>
+          <li><a class="activo" href="carrito.html">Carrito<span class="carrito-span">0</span></a></li>
           <li><a href="#">Contacto</a></li>
         </ul>
       </nav>
@@ -45,14 +45,20 @@
   <!-- MAIN -->
   <main>
     <div class="container">
-      <h1>Productos Destacados</h1>
+      <h1>Mi Carrito</h1>
 
-      <div class="products-container">
-
+      <div class="carrito-container">
+        <div class="carrito-product">
+          <div class="img-container">
+            <img src="assets/products/buzo.jpeg" alt="">
+          </div>
+          <h3>Nombre producto</h3>
+          <div class="precio">$1250</div>
+          <div class="cantidad">x2</div>
+          <div class="subtotal">$2500</div>
+        </div>
       </div>
-
       
-
     </div>
   </main>
   <!-- /MAIN -->
@@ -64,52 +70,6 @@
     </div>
   </footer>
   <!-- /FOOTER -->
-
-  <div class="modal">
-    <div id="micarrito" class="carrito-container">
-      <span class="close"><i class="fas fa-times"></i></span>
-      <table>
-        <caption>Mi Carrito</caption>
-        <thead>
-          <tr>
-            <th>Imagen</th>
-            <th>Nombre Producto</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Total x producto</th>
-          </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-        <tfoot>
-          <tr>
-            <th colspan="3"></th>
-            <th>Subtotal</th>
-            <th class="subtotal"></th>
-          </tr>
-          <tr>
-            <th colspan="3"></th>
-            <th>IVA</th>
-            <th class="iva"></th>
-          </tr>
-          <tr>
-            <th colspan="3"></th>
-            <th>Subtotal + IVA</th>
-            <th class="subtotalIva"></th>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-  </div>
-
-
-
-
-
-
-
-
   <script src="js/index.js" type="module"></script>
   <!-- <script src="js/agregarCarrito.js"></script> -->
 </body>

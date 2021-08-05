@@ -5,10 +5,17 @@ import { productos } from "./products.js";
 export class Carrito{
   constructor(){
     this.productos = [],
-    this.cantidad = this.productos.length;
+    this.cantidad = 0;
     this.envio = 0,
     this.subTotal = 0,
     this.total = 0
+  }
+
+  calcularCantidad(){
+    this.cantidad = 0;
+    for(let producto of this.productos){
+      this.cantidad += producto.cantidad;
+    }
   }
 
   mostrarProductos(){
@@ -20,6 +27,7 @@ export class Carrito{
   }
 
   calcularSubtotal(){
+    this.subTotal = 0;
     for(let producto of this.productos){
       this.subTotal += producto.precio * producto.cantidad;
     }
@@ -52,45 +60,81 @@ export class Carrito{
 export const carrito1 = new Carrito();
 
 
-//Lista de productos string
-//Generamos una lista en string a partir del array de productos
-let listaProductos = "";
-
-productos.forEach(producto => listaProductos += `- ${producto.id}: ${producto.nombre} ($${producto.precio}) \n`); 
-
-
 
 //Creación de función que agregar productos al carrito
-export function agregarAlCarrito(){
-  let idProducto = 0,
-  cantidadProducto = 0;
-  
-  //Entrada de datos, id del producto a comprar
-  while(!idProducto || idProducto <= 0 || idProducto > 6){
-    idProducto = parseInt(prompt(
-      `¿Qué producto desea comprar? Introduzca el número junto al nombre del producto: \n${listaProductos}`))
-  }
-
-  //Seleccionamos el producto de la base de datos y lo guardamos en una variable
-  let productoElegido = productos.find(el=> el.id == idProducto);
-
-  //Entrada de datos, cantidad del producto a comprar
-  while(!cantidadProducto || cantidadProducto <= 0){
-    cantidadProducto = parseInt(prompt("Producto elegido: " + productoElegido.nombre + "\nIntroduzca la cantidad deseada. (Solo números)"));
-  }
+export function agregarAlCarrito(id, cantidad){
+  // //Seleccionamos el producto de la base de datos y lo guardamos en una variable
+  let productoElegido = productos.find(el=> el.id == id);
 
   //Agrego el nuevo producto al arreglo productos del carrito
   //Validamos si el producto ya existe, y en caso que así sea no "pusheamos" otra vez el mismo producto sino que le incrementamos la cantidad
   let indice = carrito1.productos.findIndex(el=>el.nombre == productoElegido.nombre);
 
   if(indice != -1){
-    carrito1.productos[indice].cantidad += cantidadProducto
+    carrito1.productos[indice].cantidad += cantidad
   }else{
-    carrito1.productos.push({"nombre": productoElegido.nombre, "precio": productoElegido.precio, "cantidad":cantidadProducto});
+    carrito1.productos.push({"id-producto": id, "nombre": productoElegido.nombre, "imagen": productoElegido.imagen, "precio": productoElegido.precio, "cantidad":cantidad});
   }
+
+  //Ejecutamos función para actualizar la cantidad total de productos en nuestro carrito, luego la mostramos en el indicador de carrito en el menú
+  carrito1.calcularCantidad();
+
+  const $carritoIndex = document.querySelectorAll(".carrito-span");
+  $carritoIndex.forEach(span => span.innerHTML = carrito1.cantidad);
+
+  mostrarCarrito();
+
+  // //Preguntamos si desea agregar otro producto al carrito, y si es así se vuelve a ejecutar la función
+  // if(confirm("¿Desea agregar otro producto?")){
+  //   agregarAlCarrito()
+  // }
+}
+
+export function mostrarCarrito(){
+  const $modal = document.querySelector(".modal");
+  const $carritoTable = document.querySelector(".carrito-container table tbody");
+  const $fragment = document.createDocumentFragment();
   
-  //Preguntamos si desea agregar otro producto al carrito, y si es así se vuelve a ejecutar la función
-  if(confirm("¿Desea agregar otro producto?")){
-    agregarAlCarrito()
-  }
+  //Muestro el modal
+  $modal.style.opacity = 100;
+
+  //Genero tabla del carrito
+  carrito1.productos.forEach(producto => {
+    
+    const $carritoProduct = document.createElement("tr");
+
+    $carritoProduct.innerHTML = `
+      <td class="img-container">
+        <img src="${producto.imagen}" alt="${producto.nombre}">
+      </td>
+      <td>${producto.nombre}</td>
+      <td>$${producto.precio}</td>
+      <td>x${producto.cantidad}</td>
+      <td>$${producto.cantidad * producto.precio}</td>
+    `;
+
+    $fragment.appendChild($carritoProduct)
+  
+  })
+
+  //Imprimo en pantalla el cuerpo de la tabla
+  $carritoTable.innerHTML = "";
+  $carritoTable.appendChild($fragment)
+
+  //Declaro variables del pie de la tabla
+  const $carritoSubtotal = document.querySelector(".carrito-container table tfoot .subtotal");
+  const $carritoIVA = document.querySelector(".carrito-container table tfoot .iva");
+  const $carritoSubtotalIVA = document.querySelector(".carrito-container table tfoot .subtotalIva");
+  
+  //Calculo subtotal de productos y lo muestro
+  carrito1.calcularSubtotal();
+  $carritoSubtotal.textContent = "$"+carrito1.subTotal;
+  
+  //Calculo y muestro el IVA
+  $carritoIVA.textContent = "$"+carrito1.calcularIVA();
+  
+  //Calculo subtotal + IVA
+  $carritoSubtotalIVA.textContent = "$"+(carrito1.subTotal + carrito1.calcularIVA());
+
+
 }
