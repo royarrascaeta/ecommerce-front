@@ -24,9 +24,6 @@ export function agregarAlCarrito(id, cantidad){
 
   const $carritoIndex = document.querySelectorAll(".carrito-span");
   $carritoIndex.forEach(span => span.innerHTML = carrito1.cantidadTotal);
-
-  //Ejecuto la función para pintar el carrito en el DOM (dentro de un modal)
-  mostrarCarrito();
 }
 
 //Creación de función para mostrar el carrito
@@ -36,13 +33,22 @@ export function mostrarCarrito(){
   const $carritoTable = document.querySelector(".carrito-container table");
   const $carritoTableBody = document.querySelector(".carrito-container table tbody");
   const $carritoMessage = document.querySelector(".carrito-container .message");
+  //Declaro variables del pie de la tabla
+  const $carritoSubtotal = document.querySelector(".carrito-container .subtotal");
+  const $thEnvio = document.querySelector(".carrito-container .envio");
+  const $carritoTotal = document.querySelector(".carrito-container .total");
+  let $btnEnvio = document.querySelector(".carrito-container .boton-principal");
+  //Creo fragmento
   const $fragment = document.createDocumentFragment();
 
   //Muestro el modal
   $modal.style.opacity = 100;
 
-  $carritoTable.style.display = "block";
-  $carritoMessage.style.display = "none";
+  if(carrito1.cantidadTotal !==0){
+    $carritoTable.style.display = "block";
+    $carritoMessage.style.display = "none";
+  }
+
 
   //Genero filas y celdas de la tabla, las inserto en el fragment
   carrito1.productos.forEach(producto => {
@@ -67,12 +73,6 @@ export function mostrarCarrito(){
   $carritoTableBody.innerHTML = "";
   $carritoTableBody.appendChild($fragment)
 
-  //Declaro variables del pie de la tabla
-  const $carritoSubtotal = document.querySelector(".carrito-container .subtotal");
-  const $thEnvio = document.querySelector(".carrito-container .envio");
-  const $carritoTotal = document.querySelector(".carrito-container .total");
-  let $btnEnvio = document.querySelector(".carrito-container .boton-principal");
-  
   //Calculo subtotal de productos y lo muestro
   carrito1.calcularSubtotal();
   $carritoSubtotal.textContent = "$"+carrito1.subTotal;
@@ -90,6 +90,8 @@ export function mostrarCarrito(){
     $thEnvio.appendChild($btnNuevo);
     $btnEnvio = document.querySelector(".carrito-container .envio .boton-principal");
   }
+
+  console.log($btnEnvio);
 
   $btnEnvio.addEventListener("click",e=>{
     carrito1.consultaEnvio();

@@ -1,3 +1,5 @@
+import { mostrarCarrito } from "./miCarrito.js";
+
 export function modal(){
   const $modal = document.querySelector(".modal");
   const $btnModal = document.querySelector("header a[href='#micarrito']");
@@ -11,6 +13,9 @@ export function modal(){
 
     if(e.target == $btnModal || e.target == $btnModalFloat){
       $modal.style.display = "flex";
+
+      //Ejecuto la función para pintar el carrito en el DOM (dentro de un modal)
+      mostrarCarrito();
     }
   })
 }
