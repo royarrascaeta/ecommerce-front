@@ -7,3 +7,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   mostrarProductos(productos);
   modal();
 });
+
+
+
+

@@ -1,4 +1,4 @@
-import { productos } from "./products.js";
+import { mostrarProductos, productos } from "./products.js";
 import { Carrito } from "./Carrito.js";
 
 //Creación de nueva instancia de la clase Carrito
@@ -24,37 +24,35 @@ export function agregarAlCarrito(id, cantidad){
 
   const $carritoIndex = document.querySelectorAll(".carrito-span");
   $carritoIndex.forEach(span => span.innerHTML = carrito1.cantidadTotal);
+
+  //Al finalizar ejecuto la función para que se muestre en el modal
+  mostrarCarrito();
 }
+
+
+//Variables del DOM
+const $carritoTable = document.querySelector(".carrito-container table");
+const $carritoTableBody = document.querySelector(".carrito-container table tbody");
+const $carritoMessage = document.querySelector(".carrito-container .message");
+const $carritoSubtotal = document.querySelector(".carrito-container .subtotal");
+const $btnEnvio = document.querySelector(".carrito-container .envio .boton-principal");
+const $totalEnvio = document.querySelector(".carrito-container .envio .totalEnvio");
+const $carritoTotal = document.querySelector(".carrito-container .total");
+const $fragment = document.createDocumentFragment();
+
 
 //Creación de función para mostrar el carrito
 export function mostrarCarrito(){
 
-  const $modal = document.querySelector(".modal");
-  const $carritoTable = document.querySelector(".carrito-container table");
-  const $carritoTableBody = document.querySelector(".carrito-container table tbody");
-  const $carritoMessage = document.querySelector(".carrito-container .message");
-  //Declaro variables del pie de la tabla
-  const $carritoSubtotal = document.querySelector(".carrito-container .subtotal");
-  const $thEnvio = document.querySelector(".carrito-container .envio");
-  const $carritoTotal = document.querySelector(".carrito-container .total");
-  let $btnEnvio = document.querySelector(".carrito-container .boton-principal");
-  //Creo fragmento
-  const $fragment = document.createDocumentFragment();
-
-  //Muestro el modal
-  $modal.style.opacity = 100;
-
+  //Si no hay productos en el carrito se muestra un mensaje que invita a añadir productos al carrito
   if(carrito1.cantidadTotal !==0){
     $carritoTable.style.display = "block";
     $carritoMessage.style.display = "none";
   }
 
-
   //Genero filas y celdas de la tabla, las inserto en el fragment
   carrito1.productos.forEach(producto => {
-    
     const $carritoProduct = document.createElement("tr");
-
     $carritoProduct.innerHTML = `
       <td class="img-container">
         <img src="${producto.imagen}" alt="${producto.nombre}">
@@ -64,9 +62,7 @@ export function mostrarCarrito(){
       <td>x${producto.cantidad}</td>
       <td>$${producto.cantidad * producto.precio}</td>
     `;
-
     $fragment.appendChild($carritoProduct)
-  
   })
 
   //Reinicio el cuerpo de la tabla por si hubiera agregado algún producto al carrito, y luego inserto el fragment en el cuerpo de la tabla
@@ -76,36 +72,27 @@ export function mostrarCarrito(){
   //Calculo subtotal de productos y lo muestro
   carrito1.calcularSubtotal();
   $carritoSubtotal.textContent = "$"+carrito1.subTotal;
-  
-  //Envío
-  //El boton Calcular Envío llama a la función del constructor "Carrito", dispara un prompt y según la respuesta asigna un valor a la propiedad envio del carrito. Luego se elimina el botón y en su lugar aparece el importe.
 
-  //La bandera "flagEnvio" se activa cuando la función calcularEnvio() fue ejecutada. Si fue ejecutada y el costo de envío es 0 (porque supera el monto establecido) volvemos a crear el boton de Calcular Envio
-  if(carrito1.flagEnvio && carrito1.envio != 0){
-    $thEnvio.innerHTML = "";
-    let $btnNuevo = document.createElement("button");
-    $btnNuevo.classList.add("boton-principal");
-    $btnNuevo.classList.add("hover");
-    $btnNuevo.innerText = "Calcular Envio";
-    $thEnvio.appendChild($btnNuevo);
-    $btnEnvio = document.querySelector(".carrito-container .envio .boton-principal");
+  if(carrito1.flagEnvio && carrito1.envio !== 0){
+    $btnEnvio.style.display = "block";
+    $totalEnvio.innerHTML = "";
   }
+}
 
-  console.log($btnEnvio);
+//Boton envio
+$btnEnvio.addEventListener("click",(e)=>{
+  calcularEnvio();
+})
 
-  $btnEnvio.addEventListener("click",e=>{
-    carrito1.consultaEnvio();
+export function calcularEnvio(){
 
-    $thEnvio.innerHTML = "$"+carrito1.envio;
-
-    //Muestro el total en pantalla
-    carrito1.calcularTotal();
-    $carritoTotal.innerHTML = "$"+carrito1.total;
-  })
+  carrito1.consultaEnvio();
+  $btnEnvio.style.display = "none";
+  $totalEnvio.innerHTML = "$"+carrito1.envio;
 
   //Muestro el total en pantalla
   carrito1.calcularTotal();
   $carritoTotal.innerHTML = "$"+carrito1.total;
 
-
+  
 }
