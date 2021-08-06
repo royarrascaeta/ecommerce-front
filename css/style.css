@@ -339,7 +339,7 @@ footer {
   max-height: 80%;
   margin-top: 2rem;
   padding: 2rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   border-radius: 0.3rem;
   border: 0.1rem solid lightgray;
   background-color: white;

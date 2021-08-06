@@ -17,7 +17,7 @@ agregarProducto(6,"Gorra",800,"/assets/products/gorra.jpeg")
 
 
 //Función para mostrar los productos en el DOM
-export const mostrarProductos = (productos) =>{
+export const mostrarProductos = () =>{
   const $productsContainer = document.querySelector(".products-container");
 
   productos.forEach(producto => {

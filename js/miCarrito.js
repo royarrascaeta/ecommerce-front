@@ -1,4 +1,4 @@
-import { mostrarProductos, productos } from "./products.js";
+import { productos } from "./products.js";
 import { Carrito } from "./Carrito.js";
 
 //Creación de nueva instancia de la clase Carrito
@@ -19,18 +19,18 @@ export function agregarAlCarrito(id, cantidad){
     carrito1.productos.push({"id-producto": id, "nombre": productoElegido.nombre, "imagen": productoElegido.imagen, "precio": productoElegido.precio, "cantidad":cantidad});
   }
 
-  //Ejecutamos función para actualizar la cantidad total de productos en nuestro carrito, luego la mostramos en el indicador de carrito en el menú
+  //Ejecutamos función para actualizar la cantidad total de productos en nuestro carrito, luego la mostramos en el indicador de carrito en el menú y carrito flotante
   carrito1.calcularCantidad();
 
   const $carritoIndex = document.querySelectorAll(".carrito-span");
   $carritoIndex.forEach(span => span.innerHTML = carrito1.cantidadTotal);
 
-  //Al finalizar ejecuto la función para que se muestre en el modal
+  //Al finalizar ejecuto la función para que se imprima el detalle en el modal
   mostrarCarrito();
 }
 
 
-//Variables del DOM
+//Variables del DOM para usar en las funciones de abajo
 const $carritoTable = document.querySelector(".carrito-container table");
 const $carritoTableBody = document.querySelector(".carrito-container table tbody");
 const $carritoMessage = document.querySelector(".carrito-container .message");
@@ -50,7 +50,7 @@ export function mostrarCarrito(){
     $carritoMessage.style.display = "none";
   }
 
-  //Genero filas y celdas de la tabla, las inserto en el fragment
+  //Recorro cada producto y genero filas y celdas de la tabla, las inserto en el fragment
   carrito1.productos.forEach(producto => {
     const $carritoProduct = document.createElement("tr");
     $carritoProduct.innerHTML = `
@@ -65,7 +65,7 @@ export function mostrarCarrito(){
     $fragment.appendChild($carritoProduct)
   })
 
-  //Reinicio el cuerpo de la tabla por si hubiera agregado algún producto al carrito, y luego inserto el fragment en el cuerpo de la tabla
+  //Reinicio el cuerpo de la tabla por si hubiera agregado algún producto al carrito, y luego inserto el fragment
   $carritoTableBody.innerHTML = "";
   $carritoTableBody.appendChild($fragment)
 
@@ -73,17 +73,19 @@ export function mostrarCarrito(){
   carrito1.calcularSubtotal();
   $carritoSubtotal.textContent = "$"+carrito1.subTotal;
 
+  //Verifico si se ha ejecutado anteriormente la función para calcular envío, y en caso que no se haya bonificado (costo 0) vuelvo a generar el botón para que el usuario pueda acceder al beneficio en caso que haya seguido agregando productos
   if(carrito1.flagEnvio && carrito1.envio !== 0){
     $btnEnvio.style.display = "block";
     $totalEnvio.innerHTML = "";
   }
 }
 
-//Boton envio
+//Añadimos el evento al botón de calcular envío
 $btnEnvio.addEventListener("click",(e)=>{
   calcularEnvio();
 })
 
+//Función para calcular el envío, ejecuta el método del constructor y luego oculta el botón. Finalmente muestra el total con la suma del subtotal + envío
 export function calcularEnvio(){
 
   carrito1.consultaEnvio();
