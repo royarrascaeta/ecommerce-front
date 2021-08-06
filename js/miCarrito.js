@@ -43,6 +43,7 @@ const $fragment = document.createDocumentFragment();
 
 //Creación de función para mostrar el carrito
 export function mostrarCarrito(){
+  console.log(carrito1);
 
   //Si no hay productos en el carrito se muestra un mensaje que invita a añadir productos al carrito
   if(carrito1.cantidadTotal !==0){
@@ -77,6 +78,9 @@ export function mostrarCarrito(){
   if(carrito1.flagEnvio && carrito1.envio !== 0){
     $btnEnvio.style.display = "block";
     $totalEnvio.innerHTML = "";
+  }else if(carrito1.flagEnvio && carrito1.envio === 0){
+    carrito1.calcularTotal();
+    $carritoTotal.textContent = "$"+carrito1.total;
   }
 }
 
@@ -95,6 +99,4 @@ export function calcularEnvio(){
   //Muestro el total en pantalla
   carrito1.calcularTotal();
   $carritoTotal.innerHTML = "$"+carrito1.total;
-
-  
 }
