@@ -3,7 +3,7 @@ import { mostrarCarrito } from "./miCarrito.js";
 const $modal = document.querySelector(".modal");
 
 export function modal(){
-  const $btnModal = document.querySelector("header a[href='#micarrito']");
+  const $btnModal = document.querySelectorAll("header a[href='#micarrito']");
   const $btnModalFloat = document.querySelector(".carrito-float *")
   const $btnCloseModal = document.querySelector(".modal .close > *");
 
@@ -12,18 +12,16 @@ export function modal(){
       cerrarModal();
     }
 
-    if(e.target == $btnModal || e.target == $btnModalFloat){
+    if(e.target == $btnModal[0] || e.target == $btnModal[1]  || e.target == $btnModalFloat){
       abrirModal();
     }
   })
 }
 
 function abrirModal(){
-  console.log("Ejecutando funcion abrirModal")
   $modal.style.display = "flex";
 }
 
 function cerrarModal(){
-  console.log("Ejecutando funcion cerrarModal")
   $modal.style.display = "none";
 }
