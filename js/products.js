@@ -1,4 +1,4 @@
-import { agregarAlCarrito } from "./miCarrito.js";
+import { mostrarCarrito, carrito1 } from "./miCarrito.js";
 import { Product } from "./Product.js";
 
 //Agrego los productos de la base de datos data.json al array productos
@@ -37,9 +37,16 @@ export const mostrarProductos = () =>{
     const $inputCantidad = $div.querySelector(".product-card input[name='cantidad']");
     const $message = $div.querySelector(".product-card .message");
 
+    //Asignación de evento en botón de producto
     $btnComprar.addEventListener("click",(e)=>{
 
-      agregarAlCarrito(producto.id, parseInt($inputCantidad.value));
+      carrito1.agregarProducto(producto, parseInt($inputCantidad.value));
+
+      mostrarCarrito();
+
+      //Mostramos la cantidad en el indicador de carrito en el menú y carrito flotante
+      const $carritoIndex = document.querySelectorAll(".carrito-span");
+      $carritoIndex.forEach(span => span.innerHTML = carrito1.cantidadTotal);
 
       //Removemos temporalmente el efecto hover del botón y lo deshabilitamos
       e.target.classList.remove("hover");

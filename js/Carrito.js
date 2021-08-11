@@ -9,6 +9,20 @@ export class Carrito{
     this.flagEnvio = false;
   }
 
+  agregarProducto(producto, cantidad){
+    let indice = this.productos.findIndex(el=>el.nombre == producto.nombre);
+
+    if(indice != -1){
+      this.productos[indice].cantidad += cantidad
+    }else{
+      this.productos.push({"id-producto": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "precio": producto.precio, "cantidad":cantidad});
+    }
+
+    this.calcularCantidad();
+
+    localStorage.setItem("carritoLocal",JSON.stringify(this))
+  }
+
   calcularCantidad(){
     this.cantidadTotal = 0;
     for(let producto of this.productos){

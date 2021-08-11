@@ -5,36 +5,6 @@ import { cerrarModal } from "./modal.js";
 //Creación de nueva instancia de la clase Carrito
 export const carrito1 = new Carrito();
 
-//Creación de función que agrega productos al carrito
-export function agregarAlCarrito(id, cantidad){
-  console.log(carrito1)
-  // //Seleccionamos el producto de la base de datos y lo guardamos en una variable
-  let productoElegido = productos.find(el=> el.id == id);
-
-  //Agrego el nuevo producto al arreglo productos del carrito
-  //Validamos si el producto ya existe, y en caso que así sea no "pusheamos" otra vez el mismo producto sino que le incrementamos la cantidad
-  let indice = carrito1.productos.findIndex(el=>el.nombre == productoElegido.nombre);
-
-  if(indice != -1){
-    carrito1.productos[indice].cantidad += cantidad
-  }else{
-    carrito1.productos.push({"id-producto": id, "nombre": productoElegido.nombre, "imagen": productoElegido.imagen, "precio": productoElegido.precio, "cantidad":cantidad});
-  }
-
-  //Ejecutamos función para actualizar la cantidad total de productos en nuestro carrito, luego la mostramos en el indicador de carrito en el menú y carrito flotante
-  carrito1.calcularCantidad();
-
-  const $carritoIndex = document.querySelectorAll(".carrito-span");
-  $carritoIndex.forEach(span => span.innerHTML = carrito1.cantidadTotal);
-
-  //Creamos y/o Actualizamos el localStorage
-  localStorage.setItem("carritoLocal",JSON.stringify(carrito1))
-
-  //Al finalizar ejecuto la función para que se imprima el detalle en el modal
-  mostrarCarrito();
-}
-
-
 //Variables del DOM para usar en las funciones de abajo
 const $carritoTable = document.querySelector(".carrito-container table");
 const $carritoTableBody = document.querySelector(".carrito-container table tbody");
