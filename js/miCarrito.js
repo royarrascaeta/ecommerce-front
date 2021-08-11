@@ -1,4 +1,3 @@
-import { productos } from "./products.js";
 import { Carrito } from "./Carrito.js";
 import { cerrarModal } from "./modal.js";
 
@@ -10,7 +9,7 @@ const $carritoTable = document.querySelector(".carrito-container table");
 const $carritoTableBody = document.querySelector(".carrito-container table tbody");
 const $carritoMessage = document.querySelector(".carrito-container .message");
 const $carritoSubtotal = document.querySelector(".carrito-container .subtotal");
-const $btnEnvio = document.querySelector(".carrito-container .envio .boton-principal");
+const $btnEnvio = document.querySelector("#btn-envio");
 const $btnVolver = document.querySelector("#btn-volver");
 const $btnBorrar = document.querySelector("#btn-borrar");
 const $btnComprar = document.querySelector("#btn-comprar");
@@ -20,14 +19,18 @@ const $fragment = document.createDocumentFragment();
 
 
 //Creación de función para mostrar el carrito
-export function mostrarCarrito(){
-  console.log("Ejecutando función mostrarCarrito")
-  console.log(carrito1)
-
+export function mostrarCarrito(target){
+  console.log(carrito1);
   //Si no hay productos en el carrito se muestra un mensaje que invita a añadir productos al carrito
-  if(carrito1.cantidadTotal !==0){
+  if(carrito1.cantidadTotal > 0){
     $carritoTable.style.display = "block";
     $carritoMessage.style.display = "none";
+    $btnBorrar.style.visibility = "visible";
+    $btnComprar.style.visibility = "visible";
+  }else{
+    console.log(carrito1.cantidadTotal)
+    $btnBorrar.style.visibility = "hidden";
+    $btnComprar.style.visibility = "hidden";
   }
 
   //Recorro cada producto y genero filas y celdas de la tabla, las inserto en el fragment
@@ -55,12 +58,23 @@ export function mostrarCarrito(){
 
   //Verifico si se ha ejecutado anteriormente la función para calcular envío, y en caso que no se haya bonificado (costo 0) vuelvo a generar el botón para que el usuario pueda acceder al beneficio en caso que haya seguido agregando productos
   if(carrito1.flagEnvio && carrito1.envio !== 0){
-    $btnEnvio.style.display = "block";
-    $totalEnvio.innerHTML = "";
+    //El parámetro target indica desde dónde se ejecutó la función, si es distinto de undefined significa que la ejecutó un botón de añadir producto
+    if(target === undefined){
+      $btnEnvio.style.display = "none";
+      $totalEnvio.innerHTML = "$"+carrito1.envio;
+      carrito1.calcularTotal();
+      $carritoTotal.textContent = "$"+carrito1.total;
+    }else{
+      $btnEnvio.style.display = "block";
+      $totalEnvio.innerHTML = "";
+      $carritoTotal.textContent = "";
+    }
   }else if(carrito1.flagEnvio && carrito1.envio === 0){
+    $btnEnvio.style.display = "none";
+    $totalEnvio.innerHTML = "$"+carrito1.envio;
     carrito1.calcularTotal();
     $carritoTotal.textContent = "$"+carrito1.total;
-  }
+  }  
 }
 
 //Añadimos el evento al botón de calcular envío
@@ -74,9 +88,6 @@ export function calcularEnvio(){
   carrito1.consultaEnvio();
   $btnEnvio.style.display = "none";
   $totalEnvio.innerHTML = "$"+carrito1.envio;
-
-  //Creamos y/o Actualizamos el localStorage
-  localStorage.setItem("carritoLocal",JSON.stringify(carrito1))
 
   //Muestro el total en pantalla
   carrito1.calcularTotal();

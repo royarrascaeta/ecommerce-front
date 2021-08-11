@@ -10,16 +10,20 @@ export class Carrito{
   }
 
   agregarProducto(producto, cantidad){
+    //Creo una variable y mediante findIndex determino la ubicación del producto elegido, para averiguar si ya existe en el arreglo productos o no
     let indice = this.productos.findIndex(el=>el.nombre == producto.nombre);
 
+    //Si el producto existe, aumento la propiedad 'cantidad', caso contrario añado el nuevo producto al arreglo
     if(indice != -1){
       this.productos[indice].cantidad += cantidad
     }else{
       this.productos.push({"id-producto": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "precio": producto.precio, "cantidad":cantidad});
     }
 
+    //Ejecuto la función calcularCantidad() para que se actualice el valor de cantidadTotal
     this.calcularCantidad();
 
+    //Creo o actualizo la variable carritoLocal en localStorage y le paso todo el objeto
     localStorage.setItem("carritoLocal",JSON.stringify(this))
   }
 
@@ -38,17 +42,24 @@ export class Carrito{
   };
   
   consultaEnvio(){
+    this.flagEnvio = true;
+
+    //Actualizo la variable carritoLocal en localStorage y le paso todo el objeto
+    localStorage.setItem("carritoLocal",JSON.stringify(this))
+    
     return confirm("¿Desea que le enviemos el producto a domicilio?") ? this.calcularEnvio() : this.envio = 0;
   };
   
   calcularEnvio(){
-    this.flagEnvio = true;
     if(this.subTotal >= 5000){
       alert("Felicitaciones!\nSu compra supera los $5000 y por ello tenes el envío bonificado!")
       this.envio = 0;
     }else{
       this.envio = 650;
     }
+
+    //Actualizo la variable carritoLocal en localStorage y le paso todo el objeto
+    localStorage.setItem("carritoLocal",JSON.stringify(this))
   };
 
   calcularTotal(){
@@ -63,7 +74,7 @@ export class Carrito{
     this.total = 0
     this.flagEnvio = false;
 
-    localStorage.clear();
+    localStorage.removeItem("carritoLocal");
     location.reload();
   }
 }

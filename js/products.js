@@ -42,11 +42,12 @@ export const mostrarProductos = () =>{
 
       carrito1.agregarProducto(producto, parseInt($inputCantidad.value));
 
-      mostrarCarrito();
-
       //Mostramos la cantidad en el indicador de carrito en el menú y carrito flotante
       const $carritoIndex = document.querySelectorAll(".carrito-span");
       $carritoIndex.forEach(span => span.innerHTML = carrito1.cantidadTotal);
+
+      //Actualizamos mostrar carrito
+      mostrarCarrito(e.target);
 
       //Removemos temporalmente el efecto hover del botón y lo deshabilitamos
       e.target.classList.remove("hover");

@@ -1,4 +1,4 @@
-import { carrito1 } from "./miCarrito.js";
+import { carrito1, mostrarCarrito } from "./miCarrito.js";
 
 const $modal = document.querySelector(".modal");
 
@@ -20,7 +20,6 @@ export function modal(){
 
 export function abrirModal(){
   $modal.style.display = "flex";
-  console.log(carrito1)
 }
 
 export function cerrarModal(){

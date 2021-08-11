@@ -401,11 +401,13 @@ footer {
 
 .carrito-container .botones {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
-.carrito-container .botones .boton-principal,
-.carrito-container .botones .boton-principal-alt {
+.carrito-container #btn-borrar,
+.carrito-container #btn-comprar,
+.carrito-container #btn-volver {
+  margin: 0 0.2rem;
   padding: 1rem;
 }
 
@@ -472,6 +474,16 @@ footer {
   .product-card .boton-principal {
     font-size: 1.2rem;
   }
+
+  .carrito-container .botones {
+    justify-content: space-between;
+  }
+
+  .carrito-container #btn-borrar,
+  .carrito-container #btn-comprar,
+  .carrito-container #btn-volver {
+    margin: 0;
+  }
 }
 
 @media screen and (min-width: 992px) {
@@ -481,5 +493,9 @@ footer {
 
   .carrito-container {
     width: 60%;
+  }
+
+  .container .carrito-container {
+    width: 100%;
   }
 }
