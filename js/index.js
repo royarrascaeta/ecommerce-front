@@ -1,4 +1,4 @@
-import {productos, mostrarProductos} from "./products.js";
+import {mostrarProductos} from "./products.js";
 import {mobileMenu} from "./mobilemenu.js";
 import {modal} from "./modal.js";
 import {carrito1, mostrarCarrito} from "./miCarrito.js";
@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded",()=>{
     mostrarProductos();
     modal();
   }
-
 
   //Creamos variable en localStorage y actualizamos nuestro carrito tomando los valores almacenados en localStorage
   if(!localStorage.carritoLocal){

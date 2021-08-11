@@ -77,10 +77,23 @@ export function mostrarCarrito(target){
   }  
 }
 
-//Añadimos el evento al botón de calcular envío
+//Añadiendo evento a los botones
 $btnEnvio.addEventListener("click",(e)=>{
   calcularEnvio();
 })
+
+$btnBorrar.addEventListener("click",(e)=>{
+  limpiarCarrito();
+})
+
+$btnVolver.addEventListener("click",(e)=>{
+  if(location.pathname === "/carrito.html"){
+    location.href = "index.html";
+  }else{
+    cerrarModal();
+  }
+})
+
 
 //Función para calcular el envío, ejecuta el método del constructor y luego oculta el botón. Finalmente muestra el total con la suma del subtotal + envío
 export function calcularEnvio(){
@@ -95,12 +108,6 @@ export function calcularEnvio(){
 }
 
 
-//Añadimos el evento al botón de borrar
-$btnBorrar.addEventListener("click",(e)=>{
-  limpiarCarrito();
-})
-
-
 //Función para eliminar los productos del carrito y del LocalStorage
 export function limpiarCarrito(){
   if(confirm("¿Desea quitar todos los productos del carrito?")){
@@ -108,12 +115,3 @@ export function limpiarCarrito(){
     mostrarCarrito();
   }
 }
-
-//Añadimos el evento al botón volver
-$btnVolver.addEventListener("click",(e)=>{
-  if(location.pathname === "/carrito.html"){
-    location.href = "index.html";
-  }else{
-    cerrarModal();
-  }
-})
