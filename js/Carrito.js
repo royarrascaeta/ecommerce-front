@@ -40,4 +40,16 @@ export class Carrito{
   calcularTotal(){
     this.total = this.subTotal + this.envio;
   };
+
+  limpiarCarrito(){
+    this.productos = [],
+    this.cantidadTotal = 0;
+    this.envio = 0,
+    this.subTotal = 0,
+    this.total = 0
+    this.flagEnvio = false;
+
+    localStorage.clear();
+    location.reload();
+  }
 }

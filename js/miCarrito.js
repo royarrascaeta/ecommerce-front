@@ -1,11 +1,13 @@
 import { productos } from "./products.js";
 import { Carrito } from "./Carrito.js";
+import { cerrarModal } from "./modal.js";
 
 //Creación de nueva instancia de la clase Carrito
 export const carrito1 = new Carrito();
 
 //Creación de función que agrega productos al carrito
 export function agregarAlCarrito(id, cantidad){
+  console.log(carrito1)
   // //Seleccionamos el producto de la base de datos y lo guardamos en una variable
   let productoElegido = productos.find(el=> el.id == id);
 
@@ -25,6 +27,9 @@ export function agregarAlCarrito(id, cantidad){
   const $carritoIndex = document.querySelectorAll(".carrito-span");
   $carritoIndex.forEach(span => span.innerHTML = carrito1.cantidadTotal);
 
+  //Creamos y/o Actualizamos el localStorage
+  localStorage.setItem("carritoLocal",JSON.stringify(carrito1))
+
   //Al finalizar ejecuto la función para que se imprima el detalle en el modal
   mostrarCarrito();
 }
@@ -36,6 +41,9 @@ const $carritoTableBody = document.querySelector(".carrito-container table tbody
 const $carritoMessage = document.querySelector(".carrito-container .message");
 const $carritoSubtotal = document.querySelector(".carrito-container .subtotal");
 const $btnEnvio = document.querySelector(".carrito-container .envio .boton-principal");
+const $btnVolver = document.querySelector("#btn-volver");
+const $btnBorrar = document.querySelector("#btn-borrar");
+const $btnComprar = document.querySelector("#btn-comprar");
 const $totalEnvio = document.querySelector(".carrito-container .envio .totalEnvio");
 const $carritoTotal = document.querySelector(".carrito-container .total");
 const $fragment = document.createDocumentFragment();
@@ -43,7 +51,8 @@ const $fragment = document.createDocumentFragment();
 
 //Creación de función para mostrar el carrito
 export function mostrarCarrito(){
-  console.log(carrito1);
+  console.log("Ejecutando función mostrarCarrito")
+  console.log(carrito1)
 
   //Si no hay productos en el carrito se muestra un mensaje que invita a añadir productos al carrito
   if(carrito1.cantidadTotal !==0){
@@ -96,7 +105,34 @@ export function calcularEnvio(){
   $btnEnvio.style.display = "none";
   $totalEnvio.innerHTML = "$"+carrito1.envio;
 
+  //Creamos y/o Actualizamos el localStorage
+  localStorage.setItem("carritoLocal",JSON.stringify(carrito1))
+
   //Muestro el total en pantalla
   carrito1.calcularTotal();
   $carritoTotal.innerHTML = "$"+carrito1.total;
 }
+
+
+//Añadimos el evento al botón de borrar
+$btnBorrar.addEventListener("click",(e)=>{
+  limpiarCarrito();
+})
+
+
+//Función para eliminar los productos del carrito y del LocalStorage
+export function limpiarCarrito(){
+  if(confirm("¿Desea quitar todos los productos del carrito?")){
+    carrito1.limpiarCarrito();
+    mostrarCarrito();
+  }
+}
+
+//Añadimos el evento al botón volver
+$btnVolver.addEventListener("click",(e)=>{
+  if(location.pathname === "/carrito.html"){
+    location.href = "index.html";
+  }else{
+    cerrarModal();
+  }
+})

@@ -2,9 +2,9 @@ import { agregarAlCarrito } from "./miCarrito.js";
 import { Product } from "./Product.js";
 
 //Agrego los productos de la base de datos data.json al array productos
-export const productos = [];
-
 const db = JSON.parse(data);
+
+export const productos = [];
 
 for(let product of db){
   productos.push(new Product(product.id, product.nombre, product.precio, product.imagen))

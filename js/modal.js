@@ -1,10 +1,10 @@
-import { mostrarCarrito } from "./miCarrito.js";
+import { carrito1 } from "./miCarrito.js";
 
 const $modal = document.querySelector(".modal");
 
 export function modal(){
   const $btnModal = document.querySelectorAll("header a[href='#micarrito']");
-  const $btnModalFloat = document.querySelector(".carrito-float *")
+  const $btnModalFloat = document.querySelector(".carrito-float > *")
   const $btnCloseModal = document.querySelector(".modal .close > *");
 
   document.addEventListener("click",e=>{
@@ -18,10 +18,11 @@ export function modal(){
   })
 }
 
-function abrirModal(){
+export function abrirModal(){
   $modal.style.display = "flex";
+  console.log(carrito1)
 }
 
-function cerrarModal(){
+export function cerrarModal(){
   $modal.style.display = "none";
 }
