@@ -1,20 +1,14 @@
 import { agregarAlCarrito } from "./miCarrito.js";
 import { Product } from "./Product.js";
 
-//Agrego los productos al array productos
+//Agrego los productos de la base de datos data.json al array productos
 export const productos = [];
 
-function agregarProducto(id,nombre,precio,imagen){
-  return productos.push(new Product(id,nombre,precio,imagen))
+const db = JSON.parse(data);
+
+for(let product of db){
+  productos.push(new Product(product.id, product.nombre, product.precio, product.imagen))
 }
-
-agregarProducto(1,"Buzo",1700,"/assets/products/buzo.jpeg")
-agregarProducto(2,"Camisa",1800,"/assets/products/camisa.jpeg")
-agregarProducto(3,"Pantalón",3500,"assets/products/pantalon.jpeg")
-agregarProducto(4,"Campera",7300,"/assets/products/campera.jpeg")
-agregarProducto(5,"Remera",1200,"/assets/products/remera.jpeg")
-agregarProducto(6,"Gorra",800,"/assets/products/gorra.jpeg")
-
 
 //Función para mostrar los productos en el DOM
 export const mostrarProductos = () =>{

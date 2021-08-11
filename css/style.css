@@ -241,7 +241,8 @@ footer {
 }
 
 .product-card .boton-principal,
-.boton-principal {
+.boton-principal,
+.boton-principal-alt {
   display: flex;
   text-align: center;
   align-self: center;
@@ -253,6 +254,12 @@ footer {
   border-radius: 0.3rem;
   background-color: var(--color-secundario);
   color: var(--color-neutro);
+}
+
+.boton-principal-alt {
+  background-color: var(--color-neutro);
+  color: var(--color-secundario);
+  border: 0.1rem solid var(--color-secundario);
 }
 
 .product-card .hover:hover,
@@ -359,7 +366,7 @@ footer {
 .carrito-container table {
   width: 100%;
   text-align: center;
-  border-spacing: 0;
+  border-spacing: 0.2rem;
   display: none;
 }
 
@@ -380,6 +387,10 @@ footer {
   padding: 1rem 0rem;
 }
 
+.carrito-container table tfoot tr:last-child th {
+  border-top: 0.1rem solid lightgray;
+}
+
 .carrito-container table .img-container {
   width: 2rem;
   height: 4rem;
@@ -392,7 +403,8 @@ footer {
   object-position: top;
 }
 
-.carrito-container .boton-principal {
+.carrito-container .boton-principal,
+.carrito-container .boton-principal-alt {
   width: 100%;
   justify-content: center;
   margin: 0 auto;
