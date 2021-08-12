@@ -20,7 +20,6 @@ const $fragment = document.createDocumentFragment();
 
 //Creación de función para mostrar el carrito
 export function mostrarCarrito(target){
-  console.log(carrito1);
   //Si no hay productos en el carrito se muestra un mensaje que invita a añadir productos al carrito
   if(carrito1.cantidadTotal > 0){
     $carritoTable.style.display = "block";
