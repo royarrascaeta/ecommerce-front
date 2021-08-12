@@ -27,7 +27,6 @@ export function mostrarCarrito(target){
     $btnBorrar.style.visibility = "visible";
     $btnComprar.style.visibility = "visible";
   }else{
-    console.log(carrito1.cantidadTotal)
     $btnBorrar.style.visibility = "hidden";
     $btnComprar.style.visibility = "hidden";
   }
