@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   mobileMenu();
 
   //Si estamos en el index, ejecute la función mostrarProductos() y modal()
-  if(location.pathname === "/index.html"){
+  if(document.body.dataset.section === "index"){
     mostrarProductos();
     modal();
   }
