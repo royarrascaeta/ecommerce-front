@@ -5,7 +5,7 @@ export class Carrito{
     this.cantidadTotal = 0;
     this.envio = 0,
     this.subTotal = 0,
-    this.total = 0
+    this.total = 0,
     this.flagEnvio = false;
   }
 
