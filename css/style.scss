@@ -1,5 +1,6 @@
 @import "./components/variables";
 @import "./components/global";
+@import "./components/media-queries";
 @import "./components/header";
 @import "./components/main";
 @import "./components/footer";
@@ -8,32 +9,6 @@
 
 /* ///// MEDIA QUERYS ///// */
 @media screen and (min-width: 768px) {
-  .header {
-    max-width: 100vw;
-    width: auto;
-    position: sticky;
-  }
-
-  .mobilemenu {
-    display: none;
-  }
-
-  .menu {
-    display: flex;
-    justify-content: flex-end;
-    flex-grow: 4;
-  }
-
-  .menu ul {
-    display: flex;
-    align-items: center;
-  }
-
-  .menu ul li a {
-    padding: 1rem 0.5rem;
-    margin: 0rem 0.5rem;
-  }
-
   .container {
     max-width: 1200px;
     padding: 2rem 4rem;
