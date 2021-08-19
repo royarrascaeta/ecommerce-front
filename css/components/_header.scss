@@ -1,0 +1,110 @@
+/*///// HEADER /////*/
+.header {
+  width: 100vw;
+  height: 5rem;
+  background-color: $color-principal;
+  color: $color-neutro;
+  display: flex;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+
+  .logo {
+    color: $color-secundario;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+}
+
+.menu {
+  display: none;
+}
+
+.mobilemenu {
+  position: relative;
+  min-height: 3rem;
+  flex-grow: 4;
+  font-size: 1.4rem;
+
+  .boton-menu {
+    position: absolute;
+    right: 0;
+
+    i {
+      margin: 0;
+      padding: 0;
+      font-size: 3rem;
+      transform: rotate(0deg);
+      transition: transform 0.8s ease;
+    }
+
+    i:hover {
+      color: $color-secundario;
+      cursor: pointer;
+    }
+  }
+
+  nav {
+    width: 100vw;
+    margin-top: 4rem;
+    padding-bottom: 1rem;
+    position: absolute;
+    right: -2rem;
+    background-color: #24273a;
+
+    ul {
+      text-align: right;
+      padding-right: 2rem;
+    }
+  }
+}
+
+.rotate {
+  transform: rotate(360deg) !important;
+  transition: transform 0.8s ease;
+}
+
+.default {
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.active {
+  transform: translateX(0);
+  transition: transform 0.5s ease-in-out;
+  display: block;
+  z-index: -1;
+}
+
+.carrito-span {
+  margin-left: 0.2rem;
+  padding: 0.1rem 0.4rem;
+  background-color: $color-secundario;
+  color: $color-neutro;
+  border-radius: 50%;
+}
+
+.mobilemenu ul li,
+.mobilemenu ul li a,
+.menu ul li,
+.menu ul li a {
+  font-weight: bold;
+  color: $color-neutro;
+  padding: 1rem 0rem;
+  border-bottom: 0.2rem solid $color-principal;
+  transition: all ease-in 0.2s;
+}
+
+.mobilemenu ul li,
+.mobilemenu ul li a {
+  border-bottom: none;
+}
+
+.mobilemenu .activo,
+.mobilemenu ul li a:hover,
+.menu .activo,
+.menu ul li a:hover {
+  color: $color-secundario;
+  border-bottom: 0.2rem solid $color-secundario;
+  transition: all ease-in 0.2s;
+}

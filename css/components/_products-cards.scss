@@ -1,0 +1,123 @@
+/* ///// PRODUCTS CARDS ///// */
+.products-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-items: stretch;
+  justify-content: space-between;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  flex-basis: 100%;
+  text-align: center;
+  border-radius: 0.3rem;
+  margin: 1rem auto;
+  border: 0.05rem solid lightgray;
+  padding-bottom: 1rem;
+  box-shadow: 0.05rem 0.05rem 0.4rem 0.05rem lightgray;
+  transform: translate(0%);
+  -webkit-transform: translate(0%);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  overflow: hidden;
+}
+
+.product-card:hover {
+  cursor: pointer;
+  transform: translate(1%, -1%);
+  -webkit-transform: translate(1%, -1%);
+  box-shadow: -0.3rem 0.3rem 0.4rem 0.1rem lightgray;
+  transition: all 0.2s ease-in-out;
+}
+
+.product-card .img-container {
+  height: 80vw;
+  width: 100%;
+}
+
+.product-card .img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 0.3rem 0.3rem 0 0;
+}
+
+.product-card h3 {
+  padding: 1rem 0;
+  font-size: 1.6rem;
+}
+
+.product-card .precio {
+  font-size: 1.7rem;
+  font-weight: bold;
+  opacity: 0.6;
+}
+
+.product-card .comprar {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.product-card .comprar input {
+  width: 2.5rem;
+  height: 2rem;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  text-align: center;
+}
+
+.product-card .boton-principal,
+.boton-principal,
+.boton-principal-alt {
+  display: flex;
+  text-align: center;
+  align-self: center;
+  margin-top: 1rem;
+  padding: 0.8em 1.6rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.3rem;
+  background-color: $color-secundario;
+  color: $color-neutro;
+}
+
+.boton-principal-alt {
+  background-color: $color-neutro;
+  color: $color-secundario;
+  border: 0.1rem solid $color-secundario;
+}
+
+.product-card .hover:hover,
+.hover:hover {
+  cursor: pointer;
+  animation: scale 0.3s ease-out 0s infinite alternate;
+}
+
+.product-card .message,
+.message {
+  align-self: center;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+.product-card .message {
+  display: none;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.05);
+  }
+}
