@@ -1,7 +1,7 @@
 /*///// HEADER /////*/
 .header {
   width: 100vw;
-  height: 5rem;
+  height: 4rem;
   background-color: $color-principal;
   color: $color-neutro;
   display: flex;
@@ -11,6 +11,7 @@
 
   @include media-up(md) {
     max-width: 100vw;
+    height: 5rem;
     width: auto;
     position: sticky;
   }
@@ -49,7 +50,7 @@
 
   .menu {
     position: absolute;
-    top: 5rem;
+    top: 4rem;
     left: 0;
     right: 0;
     padding-bottom: 1rem;

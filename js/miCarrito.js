@@ -9,6 +9,7 @@ const $carritoTable = document.querySelector(".carrito-container table");
 const $carritoTableBody = document.querySelector(".carrito-container table tbody");
 const $carritoMessage = document.querySelector(".carrito-container .message");
 const $carritoSubtotal = document.querySelector(".carrito-container .subtotal");
+const $btns = document.querySelector(".carrito-container .botones");
 const $btnEnvio = document.querySelector("#btn-envio");
 const $btnVolver = document.querySelector("#btn-volver");
 const $btnBorrar = document.querySelector("#btn-borrar");
@@ -24,11 +25,13 @@ export function mostrarCarrito(target){
   if(carrito1.cantidadTotal > 0){
     $carritoTable.style.display = "block";
     $carritoMessage.style.display = "none";
-    $btnBorrar.style.visibility = "visible";
-    $btnComprar.style.visibility = "visible";
+    $btnBorrar.style.display = "block";
+    $btnComprar.style.display = "block";
+    $btns.style.justifyContent = "space-between";
   }else{
-    $btnBorrar.style.visibility = "hidden";
-    $btnComprar.style.visibility = "hidden";
+    $btnBorrar.style.display = "none";
+    $btnComprar.style.display = "none";
+    $btns.style.justifyContent = "center";
   }
 
   //Recorro cada producto y genero filas y celdas de la tabla, las inserto en el fragment

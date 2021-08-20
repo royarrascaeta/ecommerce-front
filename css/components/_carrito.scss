@@ -13,13 +13,17 @@
   border-radius: 50%;
   font-size: 1.6rem;
 
+  & > * {
+    pointer-events: none;
+  }
+
   i {
-    margin-left: -1rem;
+    margin-left: -1.5rem;
   }
 
   .carrito-span {
     position: absolute;
-    right: 0;
+    right: 0.5rem;
     bottom: 1rem;
     background-color: rgba(0, 0, 0, 0);
   }
@@ -36,6 +40,34 @@
   background-color: white;
   position: relative;
   text-align: center;
+
+  @include media-up(md) {
+    width: 100%;
+  }
+
+  .message {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .botones {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #btn-borrar,
+  #btn-comprar,
+  #btn-volver {
+    margin: 0 0.2rem;
+    padding: 1rem;
+  }
+
+  .boton-principal,
+  .boton-principal-alt {
+    justify-content: center;
+    padding: 0.4rem 0.2rem;
+    font-size: 1rem;
+  }
 
   table {
     width: 100%;
@@ -82,25 +114,6 @@
         object-position: top;
       }
     }
-
-    .botones {
-      display: flex;
-      justify-content: space-evenly;
-    }
-
-    #btn-borrar,
-    #btn-comprar,
-    #btn-volver {
-      margin: 0 0.2rem;
-      padding: 1rem;
-    }
-
-    .boton-principal,
-    .boton-principal-alt {
-      justify-content: center;
-      padding: 0.4rem 0.2rem;
-      font-size: 1.2rem;
-    }
   }
 }
 
@@ -115,6 +128,12 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
+
+  .carrito-container {
+    @include media-up(md) {
+      width: 60%;
+    }
+  }
 
   .close {
     position: absolute;
