@@ -16,6 +16,19 @@
     position: sticky;
   }
 
+  .container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+
+    @include media-up(md) {
+      max-width: 1200px;
+      padding: 2rem 4rem;
+    }
+  }
+
   .logo {
     color: $color-secundario;
     font-size: 1.8rem;

@@ -18,14 +18,13 @@
   }
 
   i {
-    margin-left: -1.5rem;
+    font-size: 1.4rem;
   }
 
   .carrito-span {
-    position: absolute;
-    right: 0.5rem;
-    bottom: 1rem;
-    background-color: rgba(0, 0, 0, 0);
+    font-family: $font-principal;
+    font-size: 1.6rem;
+    text-align: center;
   }
 }
 
@@ -130,6 +129,8 @@
   background-color: rgba(0, 0, 0, 0.6);
 
   .carrito-container {
+    padding: 0.5rem;
+
     @include media-up(md) {
       width: 60%;
     }

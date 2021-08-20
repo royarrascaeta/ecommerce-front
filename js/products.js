@@ -20,11 +20,12 @@ export function mostrarProductos(){
           <img src="${producto.imagen}" alt="${producto.nombre}">
         </div>
         <h3>${producto.nombre}</h3>
+        <div class="precio">$${producto.precio}</div>
         <div class="comprar">
           <label for="cantidad">Cantidad:</label>
           <input name="cantidad" type="number" value=1 min="1" max="10">
         </div>
-        <button data-id="${producto.id}" class="boton-principal hover">Agregar al Carrito</button>
+        <button data-id="${producto.id}" class="boton-principal hover"><i class="fas fa-shopping-cart"></i>Agregar al Carrito</button>
         <div class="message">Producto añadido al carrito</div>
       </div>
     `)

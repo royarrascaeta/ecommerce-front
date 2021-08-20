@@ -15,11 +15,16 @@ html {
   font-size: 16px;
   font-family: $font-principal;
   scroll-behavior: smooth;
+  min-height: -webkit-fill-available;
 }
 
 body {
   background-color: #fff;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  // min-height: -webkit-fill-available;
 }
 
 /* //// BOTONES Y MENSAJES /////*/
@@ -38,6 +43,10 @@ body {
   border-radius: 0.3rem;
   background-color: $color-secundario;
   color: $color-neutro;
+
+  i {
+    margin-right: 0.5rem;
+  }
 
   @include media-up(md) {
     font-size: 1rem;
