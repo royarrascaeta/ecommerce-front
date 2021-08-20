@@ -5,6 +5,11 @@
   width: 100%;
   margin: 0 auto;
   padding: 2rem;
+
+  @include media-up(md) {
+    max-width: 1200px;
+    padding: 2rem 4rem;
+  }
 }
 
 main .container {
@@ -12,6 +17,10 @@ main .container {
   align-items: center;
   flex-direction: column;
   margin-top: 4rem;
+
+  @include media-up(md) {
+    margin-top: 0;
+  }
 }
 
 main h1 {

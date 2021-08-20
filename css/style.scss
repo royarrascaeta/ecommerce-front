@@ -1,6 +1,7 @@
 @import "./components/variables";
 @import "./components/global";
 @import "./components/media-queries";
+@import "./components/animations";
 @import "./components/header";
 @import "./components/main";
 @import "./components/footer";
@@ -9,15 +10,6 @@
 
 /* ///// MEDIA QUERYS ///// */
 @media screen and (min-width: 768px) {
-  .container {
-    max-width: 1200px;
-    padding: 2rem 4rem;
-  }
-
-  main .container {
-    margin-top: 0;
-  }
-
   .product-card {
     flex-basis: 45%;
   }
@@ -50,10 +42,6 @@
 }
 
 @media screen and (min-width: 992px) {
-  .product-card {
-    flex-basis: 30%;
-  }
-
   .carrito-container {
     width: 60%;
   }
