@@ -67,6 +67,36 @@ body {
   opacity: 0.6;
 }
 
+.message-float {
+  position: fixed;
+  right: 0.5rem;
+  bottom: 6rem;
+  opacity: 1;
+  display: none;
+
+  span {
+    position: relative;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-weight: normal;
+    font-size: 1.2rem;
+    opacity: 0.8;
+    background-color: rgb(255, 228, 74);
+  }
+
+  span::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -0.5rem;
+    right: 2.5rem;
+    width: 0;
+    border-top: 15px solid rgb(255, 228, 74);
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+  }
+}
+
 .hover:hover {
   cursor: pointer;
   animation: scale 0.3s ease-out 0s infinite alternate;

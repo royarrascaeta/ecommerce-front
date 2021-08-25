@@ -1,13 +1,30 @@
 import { mostrarCarrito, carrito1 } from "./miCarrito.js";
 import { Product } from "./Product.js";
 
-//Agrego los productos de la base de datos data.json al array productos
-const db = JSON.parse(data);
-
+//Creo array vacío para cargar productos
 export const productos = [];
 
-for(let product of db){
-  productos.push(new Product(product.id, product.nombre, product.precio, product.imagen))
+//Función que mediante ajax recoge los productos del archivo data.json y los guarda en la variable productos declarada arriba. Finalmente ejecuta la función mostrarProductos()
+const URLJSON = "../data/data.json";
+
+
+export function cargarProductos(){
+  $.getJSON(URLJSON, function(respuesta, estado){
+    if(estado === "success"){
+      const db = respuesta;
+
+      for(let product of db){
+        productos.push(new Product(product.id, product.nombre, product.precio, product.imagen))
+      }
+    }
+  })
+  .done(function(){
+    mostrarProductos();
+  })
+  .fail(function(){
+    $(".products-container").append(`
+    <p style="width: 100%; text-align: center;">Error al cargar los productos</p>`)
+  })
 }
 
 
@@ -26,7 +43,6 @@ export function mostrarProductos(){
           <input name="cantidad" type="number" value=1 min="1" max="10">
         </div>
         <button data-id="${producto.id}" class="boton-principal hover"><i class="fas fa-shopping-cart"></i>Agregar al Carrito</button>
-        <div class="message">Producto añadido al carrito</div>
       </div>
     `)
     
@@ -37,7 +53,7 @@ export function mostrarProductos(){
     let producto = productos.find(producto => producto.id === parseInt(this.dataset.id));
 
     let $cantidad = $(this).parent().children(".comprar").children("input");
-    let $message = $(this).parent().children(".message");
+    let $message = $(".message-float");
 
     //Agregamos el producto al carrito con la cantidad indicada en el input
     carrito1.agregarProducto(producto, parseInt($cantidad.val()));
@@ -56,14 +72,16 @@ export function mostrarProductos(){
 
     //Reseteamos el input
     $cantidad.val("1");
-    $message.css("display","block");
+
+
+    //Mostramos el msj de confirmación de añadir producto al carrito. Luego de 1 segundo habilitamos el efecto hover del boton y lo habilitamos
+    $message.slideToggle("fast");
     
-    //Mostramos el msj de confirmación de añadir producto al carrito y luego de 2 segundos lo ocultamos
     setTimeout(() => {
-      $message.css("display","none");
+      $message.slideToggle("fast");
       $(this).addClass("hover");
       $(this).prop("disabled", false);
-    }, 2000);
+    }, 1500);
 
   })
   

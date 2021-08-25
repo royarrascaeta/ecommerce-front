@@ -1,4 +1,4 @@
-import {mostrarProductos} from "./products.js";
+import {cargarProductos, mostrarProductos} from "./products.js";
 import {mobileMenu} from "./mobilemenu.js";
 import {modal} from "./modal.js";
 import {carrito1, mostrarCarrito} from "./miCarrito.js";
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   //Si estamos en el index, ejecute la función mostrarProductos() y modal()
   if(document.body.dataset.section === "index"){
-    mostrarProductos();
+    cargarProductos();
     modal();
   }
 
