@@ -113,6 +113,10 @@ body {
           animation: scale 0.3s ease-out 0s infinite alternate;
 }
 
+.loader {
+  width: 4rem;
+}
+
 /*///// Animations /////*/
 @-webkit-keyframes scale {
   0% {
