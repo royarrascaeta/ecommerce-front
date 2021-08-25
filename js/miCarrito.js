@@ -97,9 +97,10 @@ $btnVolver.addEventListener("click",(e)=>{
 
 
 //Función para calcular el envío, ejecuta el método del constructor y luego oculta el botón. Finalmente muestra el total con la suma del subtotal + envío
-export function calcularEnvio(){
+export async function calcularEnvio(){
 
-  carrito1.consultaEnvio();
+  await carrito1.consultaEnvio();
+
   $btnEnvio.style.display = "none";
   $totalEnvio.innerHTML = "$"+carrito1.envio;
 

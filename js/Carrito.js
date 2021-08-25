@@ -44,15 +44,44 @@ export class Carrito{
   consultaEnvio(){
     this.flagEnvio = true;
 
+    console.log(this)
+
     //Actualizo la variable carritoLocal en localStorage y le paso todo el objeto
     localStorage.setItem("carritoLocal",JSON.stringify(this))
     
-    return confirm("¿Desea que le enviemos el producto a domicilio?") ? this.calcularEnvio() : this.envio = 0;
+    // return confirm("¿Desea que le enviemos el producto a domicilio?") ? this.calcularEnvio() : this.envio = 0;
+
+    return Swal.fire({
+      title: 'Envío',
+      text: "¿Desea que le enviemos el producto a domicilio?",
+      icon: undefined,
+      showCancelButton: true,
+      confirmButtonColor: '#c04abc',
+      cancelButtonColor: '#444',
+      confirmButtonText: 'Si!',
+      cancelButtonText: "No, gracias."
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.calcularEnvio()
+        console.log(this)
+      }else{
+        this.envio = 0;
+      }
+    })
   };
   
   calcularEnvio(){
     if(this.subTotal >= 5000){
-      alert("Felicitaciones!\nSu compra supera los $5000 y por ello tenes el envío bonificado!")
+
+      Swal.fire({
+        title: 'Envío',
+        text: "Si! Superaste los $5000 y tu envío ahora es GRATIS!",
+        icon: undefined,
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#c04abc'
+      })
+
+      // alert("Felicitaciones!\nSu compra supera los $5000 y por ello tenes el envío bonificado!")
       this.envio = 0;
     }else{
       this.envio = 650;
