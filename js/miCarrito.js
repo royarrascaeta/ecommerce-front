@@ -112,8 +112,19 @@ export async function calcularEnvio(){
 
 //Función para eliminar los productos del carrito y del LocalStorage
 export function limpiarCarrito(){
-  if(confirm("¿Desea quitar todos los productos del carrito?")){
-    carrito1.limpiarCarrito();
-    mostrarCarrito();
-  }
+  Swal.fire({
+      title: 'Carrito',
+      text: "¿Desea quitar todos los productos del carrito?",
+      icon: undefined,
+      showCancelButton: true,
+      confirmButtonColor: '#c04abc',
+      cancelButtonColor: '#444',
+      confirmButtonText: 'Si',
+      cancelButtonText: "No"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      carrito1.limpiarCarrito();
+      mostrarCarrito();
+    }
+  })
 }
