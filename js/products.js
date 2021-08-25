@@ -20,7 +20,7 @@ export function cargarProductos(){
   })
   .done(function(){
     mostrarProductos();
-    $(".loader").hide();
+    $(".loader-container").hide();
   })
   .fail(function(){
     $(".products-container").append(`

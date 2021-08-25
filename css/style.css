@@ -113,7 +113,23 @@ body {
           animation: scale 0.3s ease-out 0s infinite alternate;
 }
 
-.loader {
+.loader-container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 5rem;
+  background-color: #fff;
+  opacity: 0.5;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.loader-container img {
   width: 4rem;
 }
 
@@ -353,9 +369,9 @@ main .container {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   width: 100%;
   min-height: calc(100vh - 5rem);
   margin-top: 3rem;

@@ -102,6 +102,18 @@ body {
   animation: scale 0.3s ease-out 0s infinite alternate;
 }
 
-.loader {
-  width: 4rem;
+.loader-container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 5rem;
+  background-color: #fff;
+  opacity: 0.5;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  img {
+    width: 4rem;
+  }
 }
