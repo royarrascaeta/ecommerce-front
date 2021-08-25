@@ -118,7 +118,7 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  top: 5rem;
+  top: 0;
   background-color: #fff;
   opacity: 0.5;
   z-index: 1;
@@ -359,6 +359,7 @@ main {
           align-items: center;
 }
 main .container {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
