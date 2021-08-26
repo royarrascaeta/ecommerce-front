@@ -37,17 +37,35 @@
 
   <!-- MAIN -->
   <main>
-    <div class="container">
+    <div class="container container-shop">
       <h1>Productos Destacados</h1>
+      <div class="filters">
+        <h3>Ordenar</h3>
+        <select name="order" id="order">
+          <option value="default">Ordenar por:</option>
+          <option value="pr-mintomax">Precio: Menor a Mayor</option>
+          <option value="pr-maxtomin">Precio: Mayor a Menor</option>
+        </select>
+        
+        <h3>Categorias</h3>
+        <ul>
+          <li>Remeras</li>
+          <li>Camisas</li>
+          <li>Pantalones</li>
+          <li>Camperas</li>
+          <li>Buzos</li>
+          <li>Accesorios</li>
+        </ul>
+      </div>
+      
+      <div class="products-container">
+        
+      </div>
       
       <div class="loader-container">
         <img src="assets/loader.svg" alt="">
       </div>
 
-      <div class="products-container">
-
-
-      </div>
 
     </div>
 

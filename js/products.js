@@ -46,7 +46,6 @@ export function mostrarProductos(){
         <button data-id="${producto.id}" class="boton-principal hover"><i class="fas fa-shopping-cart"></i>Agregar al Carrito</button>
       </div>
     `)
-    
   })
 
   //Añado el evento al boton. Cada boton tiene un data-id con el id del producto, lo capturo y con el método find encuentro el producto elegido y lo guardo en la variable producto. La cantidad la recojo del input type number, a través del padre del boton $(this).parent() y con .children() llego a sus hijos
@@ -87,6 +86,29 @@ export function mostrarProductos(){
   })
   
 }
+
+//Funcion para ordenar productos
+export function ordenarProductos(order){
+  let orderBy = "";
+  const $productos = document.querySelectorAll(".product-card");
+
+  if(order === "pr-mintomax"){
+    orderBy = productos.sort((a,b) => a.precio - b.precio);
+  }else if(order === "pr-maxtomin"){
+    orderBy = productos.sort((a,b) => b.precio - a.precio);
+  }
+
+  for(let producto of $productos){
+    let nombre = producto.querySelector("h3").innerHTML;
+    let indice = orderBy.findIndex(producto => producto.nombre == nombre);
+
+    $(producto).fadeOut("fast", function(){
+      producto.style.order = indice;
+    }).delay(100).fadeIn("fast")
+  }
+}
+
+
 
 // //Función para mostrar los productos en el DOM
 // export const mostrarProductos = () =>{

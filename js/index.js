@@ -1,4 +1,4 @@
-import {cargarProductos, mostrarProductos} from "./products.js";
+import {cargarProductos, mostrarProductos, ordenarProductos} from "./products.js";
 import {mobileMenu} from "./mobilemenu.js";
 import {modal} from "./modal.js";
 import {carrito1, mostrarCarrito} from "./miCarrito.js";
@@ -11,6 +11,19 @@ document.addEventListener("DOMContentLoaded",()=>{
   if(document.body.dataset.section === "index"){
     cargarProductos();
     modal();
+
+
+    const $orderSelect = document.querySelector("#order");
+
+    $orderSelect.addEventListener("change",(e)=>{
+      let index = e.target.selectedIndex;
+      let value = e.target.options[index].value;
+
+      if(value !== "default"){
+        ordenarProductos(value);
+      }
+    })
+
   }
 
   //Creamos variable en localStorage y actualizamos nuestro carrito tomando los valores almacenados en localStorage

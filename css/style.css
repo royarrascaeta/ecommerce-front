@@ -385,6 +385,55 @@ main .container {
     margin-top: 0;
   }
 }
+main .container-shop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+@media screen and (min-width: 768px) {
+  main .container-shop {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+main .container-shop h1 {
+  width: 100%;
+}
+main .container-shop .filters {
+  padding: 0 1rem;
+  -ms-flex-preferred-size: 15%;
+      flex-basis: 15%;
+  border-right: 0.1rem solid lightgray;
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
+}
+main .container-shop .filters h3 {
+  margin-top: 1rem;
+  text-align: center;
+}
+main .container-shop .products-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-preferred-size: 75%;
+      flex-basis: 75%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  justify-items: stretch;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
 
 main h1 {
   font-size: 1.8rem;
@@ -415,20 +464,6 @@ footer .container {
 }
 
 /* ///// PRODUCTS CARDS ///// */
-.products-container {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  justify-items: stretch;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
 .product-card {
   display: -webkit-box;
   display: -ms-flexbox;

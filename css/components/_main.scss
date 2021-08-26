@@ -23,6 +23,42 @@ main {
       margin-top: 0;
     }
   }
+
+  .container-shop {
+    display: flex;
+    flex-direction: column;
+
+    @include media-up(md) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      width: 100%;
+    }
+
+    .filters {
+      padding: 0 1rem;
+      flex-basis: 15%;
+      border-right: 0.1rem solid lightgray;
+      align-self: stretch;
+
+      h3 {
+        margin-top: 1rem;
+        text-align: center;
+        // border-bottom: solid 0.1rem lightgray;
+      }
+    }
+
+    .products-container {
+      position: relative;
+      display: flex;
+      flex-basis: 75%;
+      flex-wrap: wrap;
+      justify-items: stretch;
+      justify-content: space-between;
+    }
+  }
 }
 
 main h1 {
