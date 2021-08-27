@@ -63,7 +63,6 @@ export class Carrito{
     }).then((result) => {
       if (result.isConfirmed) {
         this.calcularEnvio()
-        console.log(this)
       }else{
         this.envio = 0;
       }

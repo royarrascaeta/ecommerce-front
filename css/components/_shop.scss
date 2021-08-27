@@ -100,4 +100,15 @@
       }
     }
   }
+
+  .pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    button {
+      margin: 0 0.5rem;
+      cursor: pointer;
+    }
+  }
 }

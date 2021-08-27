@@ -45,7 +45,7 @@ body {
       -ms-grid-row-align: center;
       align-self: center;
   margin-top: 0.5rem;
-  padding: 0.6rem 1.2rem;
+  padding: 0.2rem 1rem;
   font-size: 1.2rem;
   font-weight: bold;
   border: none;
@@ -519,6 +519,19 @@ footer .container {
 .container-shop .products-container .loader-container img {
   width: 4rem;
 }
+.container-shop .pagination {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.container-shop .pagination button {
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
 
 /* ///// PRODUCTS CARDS ///// */
 .product-card {
@@ -550,8 +563,8 @@ footer .container {
 }
 @media screen and (min-width: 768px) {
   .product-card {
-    -ms-flex-preferred-size: 24% !important;
-        flex-basis: 24% !important;
+    -ms-flex-preferred-size: 22% !important;
+        flex-basis: 22% !important;
   }
 }
 .product-card:hover {

@@ -1,5 +1,7 @@
 import { mostrarCarrito, carrito1 } from "./miCarrito.js";
 import { Product } from "./Product.js";
+import { mostrarCategorias, ordenarProductos } from "./ordenaryFiltrar.js";
+import { paginacion } from "./paginacion.js";
 
 //Creo array vacío para cargar productos
 export const productos = [];
@@ -21,6 +23,8 @@ export function cargarProductos(){
   .done(function(){
     mostrarProductos();
     mostrarCategorias();
+    paginacion();
+    ordenarProductos(productos);
     $(".loader-container").hide();
   })
   .fail(function(){
@@ -31,9 +35,12 @@ export function cargarProductos(){
 
 
 //Funcion para mostrar los productos en el DOM con jQuery
-export function mostrarProductos(productosSel = productos){
+export function mostrarProductos(productosSel = productos, start = 0){
+  //Convierto a número el valor start
+  start = parseInt(start);
+
   $(".products-container").empty();
-  productosSel.forEach(producto => {
+  productosSel.slice(start, start + 8).forEach(producto => {
     $(".products-container").append(`
       <div class="product-card">
         <div class="img-container">
@@ -77,7 +84,6 @@ export function mostrarProductos(productosSel = productos){
     //Reseteamos el input
     $cantidad.val("1");
 
-
     //Mostramos el msj de confirmación de añadir producto al carrito. Luego de 1 segundo habilitamos el efecto hover del boton y lo habilitamos
     $message.slideToggle("fast");
     
@@ -91,98 +97,7 @@ export function mostrarProductos(productosSel = productos){
   
 }
 
-//Categorias
-function mostrarCategorias(){
-const $btnCategorias = document.querySelector(".filters h3 i");
-const $ulCategorias = document.querySelectorAll(".filters ul")
-
-$btnCategorias.addEventListener("click",(e)=>{
-  $($ulCategorias).slideToggle();
-  $btnCategorias.classList.toggle("fa-chevron-up")
-})
-
-const todos = productos;
-const remeras = productos.filter(producto => producto.categoria == "Remeras");
-const camisas = productos.filter(producto => producto.categoria == "Camisas");
-const jeans = productos.filter(producto => producto.categoria == "Jeans");
-const camperas = productos.filter(producto => producto.categoria == "Camperas");
-const buzos = productos.filter(producto => producto.categoria == "Buzos");
-const accesorios = productos.filter(producto => producto.categoria == "Accesorios");
-
-const $todos = document.querySelector(".filters ul li:nth-child(1)");
-const $remeras = document.querySelector(".filters ul li:nth-child(2)")
-const $camisas = document.querySelector(".filters ul li:nth-child(3)")
-const $jeans = document.querySelector(".filters ul li:nth-child(4)")
-const $camperas = document.querySelector(".filters ul li:nth-child(5)")
-const $buzos = document.querySelector(".filters ul li:nth-child(6)")
-const $accesorios = document.querySelector(".filters ul li:nth-child(7)")
-
-$todos.innerHTML += `<span>(${todos.length})</span>`;
-$remeras.innerHTML += `<span>(${remeras.length})</span>`;
-$camisas.innerHTML += `<span>(${camisas.length})</span>`;
-$jeans.innerHTML += `<span>(${jeans.length})</span>`;
-$camperas.innerHTML += `<span>(${camperas.length})</span>`;
-$buzos.innerHTML += `<span>(${buzos.length})</span>`;
-$accesorios.innerHTML += `<span>(${accesorios.length})</span>`;
-
-document.addEventListener("click",(e)=>{
-  if(e.target == $todos){
-    mostrarProductos()
-  }
-
-  if(e.target == $remeras){
-    mostrarProductos(remeras)
-  }
-
-  if(e.target == $camisas){
-    mostrarProductos(camisas)
-  }
-
-  if(e.target == $jeans){
-    mostrarProductos(jeans)
-  }
-
-  if(e.target == $camperas){
-    mostrarProductos(camperas)
-  }
-  
-  if(e.target == $buzos){
-    mostrarProductos(buzos)
-  }
-  
-  if(e.target == $accesorios){
-    mostrarProductos(accesorios)
-  }
-})
-
-}
-
-
-
-
-export function ordenarProductos(order){
-  let orderBy = "";
-  const $productos = document.querySelectorAll(".product-card");
-
-  if(order === "pr-mintomax"){
-    orderBy = productos.sort((a,b) => a.precio - b.precio);
-  }else if(order === "pr-maxtomin"){
-    orderBy = productos.sort((a,b) => b.precio - a.precio);
-  }
-
-  for(let producto of $productos){
-    let nombre = producto.querySelector("h3").innerHTML;
-    let indice = orderBy.findIndex(producto => producto.nombre == nombre);
-
-    $(producto).fadeOut("fast", function(){
-      producto.style.order = indice;
-    }).delay(100).fadeIn("fast")
-  }
-}
-
-
-
-// //Función para mostrar los productos en el DOM
+// //Función para mostrar los productos en el DOM con Vanilla JS
 // export const mostrarProductos = () =>{
 //   const $productsContainer = document.querySelector(".products-container");
 
