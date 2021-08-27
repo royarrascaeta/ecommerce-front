@@ -138,7 +138,7 @@ body {
 /*///// HEADER /////*/
 .header {
   width: 100vw;
-  height: 4rem;
+  height: 3rem;
   background-color: #2d3047;
   color: #f4ebe8;
   display: -webkit-box;
@@ -151,7 +151,7 @@ body {
 @media screen and (min-width: 768px) {
   .header {
     max-width: 100vw;
-    height: 5rem;
+    height: 4rem;
     width: auto;
     position: sticky;
   }
@@ -165,7 +165,7 @@ body {
           align-items: center;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 2rem;
 }
 @media screen and (min-width: 768px) {
   .header .container {
@@ -209,7 +209,7 @@ body {
 }
 .header .menu {
   position: absolute;
-  top: 4rem;
+  top: 3rem;
   left: 0;
   right: 0;
   padding-bottom: 1rem;
@@ -277,7 +277,7 @@ body {
 }
 @media screen and (min-width: 768px) {
   .header .menu ul a {
-    padding: 1rem 0.5rem;
+    padding: 0.8rem 0.5rem;
     margin: 0rem 0.5rem;
     border-bottom: 0.2rem solid #2d3047;
   }
@@ -365,7 +365,6 @@ main .container {
 }
 
 main h1 {
-  margin-top: 1rem;
   font-size: 1.4rem;
   text-align: center;
 }
@@ -551,8 +550,8 @@ footer .container {
 }
 @media screen and (min-width: 768px) {
   .product-card {
-    -ms-flex-preferred-size: 30% !important;
-        flex-basis: 30% !important;
+    -ms-flex-preferred-size: 24% !important;
+        flex-basis: 24% !important;
   }
 }
 .product-card:hover {
@@ -581,8 +580,6 @@ footer .container {
      object-fit: cover;
   -o-object-position: top;
      object-position: top;
-  -webkit-box-shadow: inset 0 0 5rem blue;
-          box-shadow: inset 0 0 5rem blue;
 }
 .product-card h3 {
   margin-top: 0.5rem;
@@ -590,12 +587,12 @@ footer .container {
 }
 @media screen and (min-width: 768px) {
   .product-card h3 {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
 .product-card .precio {
   margin: 0.5rem 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   opacity: 0.7;
 }
@@ -609,6 +606,7 @@ footer .container {
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
+  font-size: 1rem;
 }
 .product-card .comprar input {
   width: 2rem;
@@ -620,10 +618,13 @@ footer .container {
 .product-card button.boton-principal {
   margin: 0.5rem 0.5rem 0rem 0.5rem;
   padding: 0.2rem;
-  font-size: 1rem;
+  font-size: 0.8rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .product-card button.boton-principal i {
   font-size: 1.5rem;
@@ -637,7 +638,7 @@ footer .container {
 }
 @media screen and (min-width: 768px) {
   .product-card button.boton-principal {
-    padding: 0.6rem 1.2rem;
+    padding: 0.4rem;
   }
 }
 

@@ -104,7 +104,7 @@ $btnCategorias.addEventListener("click",(e)=>{
 const todos = productos;
 const remeras = productos.filter(producto => producto.categoria == "Remeras");
 const camisas = productos.filter(producto => producto.categoria == "Camisas");
-const pantalones = productos.filter(producto => producto.categoria == "Pantalones");
+const jeans = productos.filter(producto => producto.categoria == "Jeans");
 const camperas = productos.filter(producto => producto.categoria == "Camperas");
 const buzos = productos.filter(producto => producto.categoria == "Buzos");
 const accesorios = productos.filter(producto => producto.categoria == "Accesorios");
@@ -112,7 +112,7 @@ const accesorios = productos.filter(producto => producto.categoria == "Accesorio
 const $todos = document.querySelector(".filters ul li:nth-child(1)");
 const $remeras = document.querySelector(".filters ul li:nth-child(2)")
 const $camisas = document.querySelector(".filters ul li:nth-child(3)")
-const $pantalones = document.querySelector(".filters ul li:nth-child(4)")
+const $jeans = document.querySelector(".filters ul li:nth-child(4)")
 const $camperas = document.querySelector(".filters ul li:nth-child(5)")
 const $buzos = document.querySelector(".filters ul li:nth-child(6)")
 const $accesorios = document.querySelector(".filters ul li:nth-child(7)")
@@ -120,7 +120,7 @@ const $accesorios = document.querySelector(".filters ul li:nth-child(7)")
 $todos.innerHTML += `<span>(${todos.length})</span>`;
 $remeras.innerHTML += `<span>(${remeras.length})</span>`;
 $camisas.innerHTML += `<span>(${camisas.length})</span>`;
-$pantalones.innerHTML += `<span>(${pantalones.length})</span>`;
+$jeans.innerHTML += `<span>(${jeans.length})</span>`;
 $camperas.innerHTML += `<span>(${camperas.length})</span>`;
 $buzos.innerHTML += `<span>(${buzos.length})</span>`;
 $accesorios.innerHTML += `<span>(${accesorios.length})</span>`;
@@ -138,8 +138,8 @@ document.addEventListener("click",(e)=>{
     mostrarProductos(camisas)
   }
 
-  if(e.target == $pantalones){
-    mostrarProductos(pantalones)
+  if(e.target == $jeans){
+    mostrarProductos(jeans)
   }
 
   if(e.target == $camperas){

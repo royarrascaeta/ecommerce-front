@@ -5,7 +5,7 @@ export class Product{
     this.nombre = nombre;
     this.categoria = categoria;
     this.iva = 0.21;
-    this.precio = precio + precio * this.iva;
+    this.precio = (precio + precio * this.iva).toFixed(0);
     this.imagen = imagen;
   }
 }
