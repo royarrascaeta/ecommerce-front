@@ -41,7 +41,7 @@
   text-align: center;
 
   @include media-up(md) {
-    width: 100%;
+    max-width: 1200px;
   }
 
   .message {

@@ -14,12 +14,13 @@ export function cargarProductos(){
       const db = respuesta;
 
       for(let product of db){
-        productos.push(new Product(product.id, product.nombre, product.precio, product.imagen))
+        productos.push(new Product(product.id, product.nombre, product.categoria, product.precio, product.imagen))
       }
     }
   })
   .done(function(){
     mostrarProductos();
+    mostrarCategorias();
     $(".loader-container").hide();
   })
   .fail(function(){
@@ -30,8 +31,9 @@ export function cargarProductos(){
 
 
 //Funcion para mostrar los productos en el DOM con jQuery
-export function mostrarProductos(){
-  productos.forEach(producto => {
+export function mostrarProductos(productosSel = productos){
+  $(".products-container").empty();
+  productosSel.forEach(producto => {
     $(".products-container").append(`
       <div class="product-card">
         <div class="img-container">
@@ -45,12 +47,14 @@ export function mostrarProductos(){
         </div>
         <button data-id="${producto.id}" class="boton-principal hover"><i class="fas fa-shopping-cart"></i>Agregar al Carrito</button>
       </div>
-    `)
+    `).children().hide();
   })
+
+  $(".products-container").children().fadeIn("fast");
 
   //Añado el evento al boton. Cada boton tiene un data-id con el id del producto, lo capturo y con el método find encuentro el producto elegido y lo guardo en la variable producto. La cantidad la recojo del input type number, a través del padre del boton $(this).parent() y con .children() llego a sus hijos
   $(".product-card .boton-principal").on("click",function(e){
-    let producto = productos.find(producto => producto.id === parseInt(this.dataset.id));
+    let producto = productosSel.find(producto => producto.id === parseInt(this.dataset.id));
 
     let $cantidad = $(this).parent().children(".comprar").children("input");
     let $message = $(".message-float");
@@ -87,7 +91,75 @@ export function mostrarProductos(){
   
 }
 
-//Funcion para ordenar productos
+//Categorias
+function mostrarCategorias(){
+const $btnCategorias = document.querySelector(".filters h3 i");
+const $ulCategorias = document.querySelectorAll(".filters ul")
+
+$btnCategorias.addEventListener("click",(e)=>{
+  $($ulCategorias).slideToggle();
+  $btnCategorias.classList.toggle("fa-chevron-up")
+})
+
+const todos = productos;
+const remeras = productos.filter(producto => producto.categoria == "Remeras");
+const camisas = productos.filter(producto => producto.categoria == "Camisas");
+const pantalones = productos.filter(producto => producto.categoria == "Pantalones");
+const camperas = productos.filter(producto => producto.categoria == "Camperas");
+const buzos = productos.filter(producto => producto.categoria == "Buzos");
+const accesorios = productos.filter(producto => producto.categoria == "Accesorios");
+
+const $todos = document.querySelector(".filters ul li:nth-child(1)");
+const $remeras = document.querySelector(".filters ul li:nth-child(2)")
+const $camisas = document.querySelector(".filters ul li:nth-child(3)")
+const $pantalones = document.querySelector(".filters ul li:nth-child(4)")
+const $camperas = document.querySelector(".filters ul li:nth-child(5)")
+const $buzos = document.querySelector(".filters ul li:nth-child(6)")
+const $accesorios = document.querySelector(".filters ul li:nth-child(7)")
+
+$todos.innerHTML += `<span>(${todos.length})</span>`;
+$remeras.innerHTML += `<span>(${remeras.length})</span>`;
+$camisas.innerHTML += `<span>(${camisas.length})</span>`;
+$pantalones.innerHTML += `<span>(${pantalones.length})</span>`;
+$camperas.innerHTML += `<span>(${camperas.length})</span>`;
+$buzos.innerHTML += `<span>(${buzos.length})</span>`;
+$accesorios.innerHTML += `<span>(${accesorios.length})</span>`;
+
+document.addEventListener("click",(e)=>{
+  if(e.target == $todos){
+    mostrarProductos()
+  }
+
+  if(e.target == $remeras){
+    mostrarProductos(remeras)
+  }
+
+  if(e.target == $camisas){
+    mostrarProductos(camisas)
+  }
+
+  if(e.target == $pantalones){
+    mostrarProductos(pantalones)
+  }
+
+  if(e.target == $camperas){
+    mostrarProductos(camperas)
+  }
+  
+  if(e.target == $buzos){
+    mostrarProductos(buzos)
+  }
+  
+  if(e.target == $accesorios){
+    mostrarProductos(accesorios)
+  }
+})
+
+}
+
+
+
+
 export function ordenarProductos(order){
   let orderBy = "";
   const $productos = document.querySelectorAll(".product-card");

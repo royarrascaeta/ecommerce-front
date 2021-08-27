@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clase 09 - Arrascaeta Rodrigo</title>
+  <title>Tienda</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
@@ -39,7 +39,7 @@
   <main>
     <div class="container container-shop">
       <h1>Productos Destacados</h1>
-      <div class="filters">
+      <aside class="filters">
         <h3>Ordenar</h3>
         <select name="order" id="order">
           <option value="default">Ordenar por:</option>
@@ -47,24 +47,24 @@
           <option value="pr-maxtomin">Precio: Mayor a Menor</option>
         </select>
         
-        <h3>Categorias</h3>
+        <h3 id="categorias">Categorias <i class="fas fa-chevron-down"></i></h3>
         <ul>
-          <li>Remeras</li>
-          <li>Camisas</li>
-          <li>Pantalones</li>
-          <li>Camperas</li>
-          <li>Buzos</li>
-          <li>Accesorios</li>
+          <li>Todos </li>
+          <li>Remeras </li>
+          <li>Camisas </li>
+          <li>Pantalones </li>
+          <li>Camperas </li>
+          <li>Buzos </li>
+          <li>Accesorios </li>
         </ul>
-      </div>
+      </aside>
       
       <div class="products-container">
-        
+        <div class="loader-container">
+          <img src="assets/loader.svg" alt="">
+        </div>
       </div>
       
-      <div class="loader-container">
-        <img src="assets/loader.svg" alt="">
-      </div>
 
 
     </div>

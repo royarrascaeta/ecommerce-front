@@ -19,11 +19,12 @@ html {
 }
 
 body {
-  background-color: #fff;
-  overflow-x: hidden;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #fff;
+  color: #444;
   // min-height: -webkit-fill-available;
 }
 
@@ -100,20 +101,4 @@ body {
 .hover:hover {
   cursor: pointer;
   animation: scale 0.3s ease-out 0s infinite alternate;
-}
-
-.loader-container {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  top: 0;
-  background-color: #fff;
-  opacity: 0.5;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  img {
-    width: 4rem;
-  }
 }

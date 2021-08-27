@@ -2,35 +2,42 @@
   {
     "id": 1,
     "nombre": "Buzo",
-    "precio": 1700,"imagen": "/assets/products/buzo.jpeg"
+    "categoria": "Buzos",
+    "precio": 1700,
+    "imagen": "/assets/products/buzo.jpeg"
   },
   {
     "id": 2,
     "nombre": "Camisa",
+    "categoria": "Camisas",
     "precio": 1800,
     "imagen": "/assets/products/camisa.jpeg"
   },
   {
     "id": 3,
     "nombre": "Pantalón",
+    "categoria": "Pantalones",
     "precio": 3500,
     "imagen":"assets/products/pantalon.jpeg"
   },
   {
     "id": 4,
     "nombre": "Campera",
+    "categoria": "Camperas",
     "precio": 7300,
     "imagen": "/assets/products/campera.jpeg"
   },
   {
     "id": 5,
     "nombre": "Remera",
+    "categoria": "Remeras",
     "precio": 1200,
     "imagen": "/assets/products/remera.jpeg"
   },
   {
     "id": 6,
     "nombre": "Gorra",
+    "categoria": "Accesorios",
     "precio": 800,
     "imagen": "/assets/products/gorra.jpeg"
   }
