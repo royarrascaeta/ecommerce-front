@@ -91,7 +91,7 @@ export function mostrarProductos(productosSel = productos, start = 0){
       $message.slideToggle("fast");
       $(this).addClass("hover");
       $(this).prop("disabled", false);
-    }, 1500);
+    }, 3000);
 
   })
   

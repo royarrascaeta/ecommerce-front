@@ -26,80 +26,36 @@ export function ordenarProductos(products){
 //Categorias
 export function mostrarCategorias(){
   //Boton para desplegar categorias
-  const $btnCategorias = document.querySelector(".filters h3 i");
-  const $ulCategorias = document.querySelectorAll(".filters ul")
+  const $btnCategorias = document.getElementById("btn-categorias");
+  const $ulCategorias = document.querySelector(".filters ul")
+
+  const categorias = ["Todos"];
+
+  productos.forEach(producto => {
+    let categoria = producto.categoria;
+
+    if(!categorias.includes(categoria)){
+      categorias.push(categoria)
+    }
+  })
+
+  categorias.forEach((categoria) =>{
+    console.log(categoria)
+    let $li = document.createElement("li");
+    let filter = categoria == "Todos" ? productos : productos.filter(producto => producto.categoria == categoria);
+    $li.innerHTML = `<li>${categoria} <span>(${filter.length})</span></li>`;
+
+    $li.addEventListener("click",(e)=>{
+      mostrarProductos(filter);
+      paginacion(filter);
+      ordenarProductos(filter)
+    })
+
+    $ulCategorias.appendChild($li);
+  })
 
   $btnCategorias.addEventListener("click",(e)=>{
     $($ulCategorias).slideToggle();
-    $btnCategorias.classList.toggle("fa-chevron-up")
-  })
-
-  //Asignación de cantidad y evento click
-  const todos = productos;
-  const remeras = productos.filter(producto => producto.categoria == "Remeras");
-  const camisas = productos.filter(producto => producto.categoria == "Camisas");
-  const jeans = productos.filter(producto => producto.categoria == "Jeans");
-  const camperas = productos.filter(producto => producto.categoria == "Camperas");
-  const buzos = productos.filter(producto => producto.categoria == "Buzos");
-  const accesorios = productos.filter(producto => producto.categoria == "Accesorios");
-
-  const $todos = document.querySelector(".filters ul li:nth-child(1)");
-  const $remeras = document.querySelector(".filters ul li:nth-child(2)")
-  const $camisas = document.querySelector(".filters ul li:nth-child(3)")
-  const $jeans = document.querySelector(".filters ul li:nth-child(4)")
-  const $camperas = document.querySelector(".filters ul li:nth-child(5)")
-  const $buzos = document.querySelector(".filters ul li:nth-child(6)")
-  const $accesorios = document.querySelector(".filters ul li:nth-child(7)")
-
-  $todos.innerHTML += `<span>(${todos.length})</span>`;
-  $remeras.innerHTML += `<span>(${remeras.length})</span>`;
-  $camisas.innerHTML += `<span>(${camisas.length})</span>`;
-  $jeans.innerHTML += `<span>(${jeans.length})</span>`;
-  $camperas.innerHTML += `<span>(${camperas.length})</span>`;
-  $buzos.innerHTML += `<span>(${buzos.length})</span>`;
-  $accesorios.innerHTML += `<span>(${accesorios.length})</span>`;
-
-  document.addEventListener("click",(e)=>{
-    if(e.target == $todos){
-      mostrarProductos()
-      paginacion(todos);
-      ordenarProductos(todos)
-    }
-
-    if(e.target == $remeras){
-      mostrarProductos(remeras)
-      paginacion(remeras)
-      ordenarProductos(remeras)
-    }
-    
-    if(e.target == $camisas){
-      mostrarProductos(camisas)
-      paginacion(camisas)
-      ordenarProductos(camisas)
-    }
-    
-    if(e.target == $jeans){
-      mostrarProductos(jeans)
-      paginacion(jeans)
-      ordenarProductos(jeans)
-    }
-    
-    if(e.target == $camperas){
-      mostrarProductos(camperas)
-      paginacion(camperas)
-      ordenarProductos(camperas)
-    }
-    
-    if(e.target == $buzos){
-      mostrarProductos(buzos)
-      paginacion(buzos)
-      ordenarProductos(buzos)
-    }
-    
-    if(e.target == $accesorios){
-      mostrarProductos(accesorios)
-      paginacion(accesorios)
-      ordenarProductos(accesorios)
-    }
+    $btnCategorias.querySelector("i").classList.toggle("fa-chevron-up")
   })
 }

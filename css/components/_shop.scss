@@ -1,17 +1,26 @@
 .container-shop {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  display: grid !important;
+  grid-template-columns: 1fr;
+  align-items: start !important;
+  gap: 1rem;
   padding: 1rem !important;
 
   @include media-up(md) {
-    flex-direction: row !important;
-    flex-wrap: wrap;
+    grid-template-columns: 1fr 5fr;
+    // flex-direction: row !important;
+    // flex-wrap: wrap;
   }
 
   h1 {
     width: 100%;
+
+    @include media-up(md) {
+      grid-column: 1/3;
+    }
   }
 
   .filters {
@@ -41,6 +50,10 @@
     h3 {
       margin-top: 1rem;
       text-align: center;
+
+      @include media-up(md) {
+        pointer-events: none;
+      }
 
       i {
         @include media-up(md) {
@@ -77,12 +90,19 @@
   .products-container {
     position: relative;
     width: 100%;
-    display: flex;
-    flex-basis: 80%;
-    flex-wrap: wrap;
-    justify-items: stretch;
-    justify-content: space-between;
-    align-self: flex-start;
+    // display: flex;
+    // flex-basis: 80%;
+    // flex-wrap: wrap;
+    // justify-items: stretch;
+    // justify-content: space-between;
+    // align-self: flex-start;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    @include media-up(md) {
+      grid-template-columns: repeat(4, 1fr);
+    }
 
     .loader-container {
       position: absolute;
@@ -103,8 +123,13 @@
 
   .pagination {
     width: 100%;
+    margin: 1rem auto;
     display: flex;
     justify-content: center;
+
+    @include media-up(md) {
+      grid-column: 2/3;
+    }
 
     button {
       margin: 0 0.5rem;
