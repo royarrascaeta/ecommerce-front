@@ -61,9 +61,10 @@ export function mostrarProductos(productosSel = productos, start = 0){
     `).children().hide();
   })
 
-  $(".products-container").children().fadeIn("fast");
+  $(".products-container").children().fadeIn("fast",function(){
+    $(".loader-container").hide();
+  });
 
-      $(".loader-container").hide();
 
   //Añado el evento al boton. Cada boton tiene un data-id con el id del producto, lo capturo y con el método find encuentro el producto elegido y lo guardo en la variable producto. La cantidad la recojo del input type number, a través del padre del boton $(this).parent() y con .children() llego a sus hijos
   $(".product-card .boton-principal").on("click",function(e){
