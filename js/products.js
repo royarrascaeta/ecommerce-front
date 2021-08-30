@@ -7,7 +7,7 @@ import { paginacion } from "./paginacion.js";
 export const productos = [];
 
 //Función que mediante ajax recoge los productos del archivo data.json y los guarda en la variable productos declarada arriba. Finalmente ejecuta la función mostrarProductos()
-const URLJSON = "../data/data.json";
+const URLJSON = "./data/data.json";
 
 
 export function cargarProductos(){

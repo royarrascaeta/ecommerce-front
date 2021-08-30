@@ -4,14 +4,14 @@
     "nombre": "Buzo Brave",
     "categoria": "Buzos",
     "precio": 1700,
-    "imagen": "/assets/products/buzo-brave.jpeg"
+    "imagen": "assets/products/buzo-brave.jpeg"
   },
   {
     "id": 2,
     "nombre": "Camisa Mao",
     "categoria": "Camisas",
     "precio": 1800,
-    "imagen": "/assets/products/camisa-mao.jpeg"
+    "imagen": "assets/products/camisa-mao.jpeg"
   },
   {
     "id": 3,
@@ -25,125 +25,125 @@
     "nombre": "Campera Jackson",
     "categoria": "Camperas",
     "precio": 5000,
-    "imagen": "/assets/products/campera-jackson.jpeg"
+    "imagen": "assets/products/campera-jackson.jpeg"
   },
   {
     "id": 5,
     "nombre": "Remera Rody",
     "categoria": "Remeras",
     "precio": 1785,
-    "imagen": "/assets/products/remera-rody.jpeg"
+    "imagen": "assets/products/remera-rody.jpeg"
   },
   {
     "id": 6,
     "nombre": "Gorra BT",
     "categoria": "Accesorios",
     "precio": 1800,
-    "imagen": "/assets/products/accesorios-gorra-bt.jpeg"
+    "imagen": "assets/products/accesorios-gorra-bt.jpeg"
   },
   {
     "id": 7,
     "nombre": "Remera Derek",
     "categoria": "Remeras",
     "precio": 1615,
-    "imagen": "/assets/products/remera-derek.jpeg"
+    "imagen": "assets/products/remera-derek.jpeg"
   },
   {
     "id": 8,
     "nombre": "Chomba Flame",
     "categoria": "Remeras",
     "precio": 1600,
-    "imagen": "/assets/products/remera-flame.jpeg"
+    "imagen": "assets/products/remera-flame.jpeg"
   },
   {
     "id": 9,
     "nombre": "Camisa Rally",
     "categoria": "Camisas",
     "precio": 3000,
-    "imagen": "/assets/products/camisa-rally.jpeg"
+    "imagen": "assets/products/camisa-rally.jpeg"
   },
   {
     "id": 10,
     "nombre": "Camisa Lobo",
     "categoria": "Camisas",
     "precio": 3800,
-    "imagen": "/assets/products/camisa-lobo.jpeg"
+    "imagen": "assets/products/camisa-lobo.jpeg"
   },
   {
     "id": 11,
     "nombre": "Camisa Jeans Mill",
     "categoria": "Camisas",
     "precio": 3200,
-    "imagen": "/assets/products/camisa-jeans-mill.jpeg"
+    "imagen": "assets/products/camisa-jeans-mill.jpeg"
   },
   {
     "id": 12,
     "nombre": "Jeans Taylor",
     "categoria": "Jeans",
     "precio": 3000,
-    "imagen": "/assets/products/jeans-taylor.jpeg"
+    "imagen": "assets/products/jeans-taylor.jpeg"
   },
   {
     "id": 13,
     "nombre": "Jeans Mark",
     "categoria": "Jeans",
     "precio": 3100,
-    "imagen": "/assets/products/jeans-mark.jpeg"
+    "imagen": "assets/products/jeans-mark.jpeg"
   },
   {
     "id": 14,
     "nombre": "Campera Still",
     "categoria": "Camperas",
     "precio": 4000,
-    "imagen": "/assets/products/campera-still.jpeg"
+    "imagen": "assets/products/campera-still.jpeg"
   },
   {
     "id": 15,
     "nombre": "Campera Pride",
     "categoria": "Camperas",
     "precio": 5000,
-    "imagen": "/assets/products/campera-pride.jpeg"
+    "imagen": "assets/products/campera-pride.jpeg"
   },
   {
     "id": 16,
     "nombre": "Campera Soul",
     "categoria": "Camperas",
     "precio": 3000,
-    "imagen": "/assets/products/campera-soul.jpeg"
+    "imagen": "assets/products/campera-soul.jpeg"
   },
   {
     "id": 17,
     "nombre": "Campera Gamu",
     "categoria": "Camperas",
     "precio": 3800,
-    "imagen": "/assets/products/campera-gamu.jpeg"
+    "imagen": "assets/products/campera-gamu.jpeg"
   },
   {
     "id": 17,
     "nombre": "Buzo Maui",
     "categoria": "Buzos",
     "precio": 1500,
-    "imagen": "/assets/products/buzo-maui.jpeg"
+    "imagen": "assets/products/buzo-maui.jpeg"
   },
   {
     "id": 17,
     "nombre": "Buzo Fundation",
     "categoria": "Buzos",
     "precio": 2500,
-    "imagen": "/assets/products/buzo-fundation.jpeg"
+    "imagen": "assets/products/buzo-fundation.jpeg"
   },
   {
     "id": 17,
     "nombre": "Gorro IDR",
     "categoria": "Accesorios",
     "precio": 500,
-    "imagen": "/assets/products/accesorios-gorro-idr.jpeg"
+    "imagen": "assets/products/accesorios-gorro-idr.jpeg"
   },
   {
     "id": 18,
     "nombre": "Llavero Rocker",
     "categoria": "Accesorios",
     "precio": 200,
-    "imagen": "/assets/products/accesorios-llavero-rocker.jpeg"
+    "imagen": "assets/products/accesorios-llavero-rocker.jpeg"
   }
 ]
