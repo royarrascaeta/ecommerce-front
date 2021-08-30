@@ -44,8 +44,6 @@ export class Carrito{
   consultaEnvio(){
     this.flagEnvio = true;
 
-    console.log(this)
-
     //Actualizo la variable carritoLocal en localStorage y le paso todo el objeto
     localStorage.setItem("carritoLocal",JSON.stringify(this))
     

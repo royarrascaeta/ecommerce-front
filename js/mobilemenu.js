@@ -5,8 +5,6 @@ export function mobileMenu(){
 
   document.addEventListener("click",(e)=>{
     if(e.target == $mobileMenuBtn){
-      console.log("CLick en boton")
-
       $menu.classList.toggle("active");
       $mobileMenuBtn.classList.toggle("rotate");
       $mobileMenuBtn.classList.toggle("fa-times");

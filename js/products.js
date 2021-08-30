@@ -43,7 +43,6 @@ export function mostrarProductos(productosSel = productos, start = 0){
       <img src="assets/loader.svg" alt="">
     </div>`);
 
-
   productosSel.slice(start, start + 8).forEach(producto => {
     $(".products-container").append(`
       <div class="product-card">
@@ -76,6 +75,9 @@ export function mostrarProductos(productosSel = productos, start = 0){
     //Agregamos el producto al carrito con la cantidad indicada en el input
     carrito1.agregarProducto(producto, parseInt($cantidad.val()));
 
+    //Reseteamos el input
+    $cantidad.val("1");
+
     //Actualizamos indicador de cantidad en boton flotante del carrito e indicador de cantidad en menú
     $(".carrito-span").each((i, span) => {
       span.innerHTML = carrito1.cantidadTotal;
@@ -87,9 +89,6 @@ export function mostrarProductos(productosSel = productos, start = 0){
     //Removemos temporalmente el efecto hover del botón y lo deshabilitamos
     $(this).removeClass("hover");
     $(this).prop("disabled", true);
-
-    //Reseteamos el input
-    $cantidad.val("1");
 
     //Mostramos el msj de confirmación de añadir producto al carrito. Luego de 1 segundo habilitamos el efecto hover del boton y lo habilitamos
     $message.slideToggle("fast");
