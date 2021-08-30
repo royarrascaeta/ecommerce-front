@@ -25,7 +25,6 @@ export function cargarProductos(){
     mostrarCategorias();
     paginacion();
     ordenarProductos(productos);
-    $(".loader-container").hide();
   })
   .fail(function(){
     $(".products-container").append(`
@@ -39,7 +38,12 @@ export function mostrarProductos(productosSel = productos, start = 0){
   //Convierto a número el valor start
   start = parseInt(start);
 
-  $(".products-container").empty();
+  $(".products-container").empty().append(`
+    <div class="loader-container">
+      <img src="assets/loader.svg" alt="">
+    </div>`);
+
+
   productosSel.slice(start, start + 8).forEach(producto => {
     $(".products-container").append(`
       <div class="product-card">
@@ -58,6 +62,8 @@ export function mostrarProductos(productosSel = productos, start = 0){
   })
 
   $(".products-container").children().fadeIn("fast");
+
+      $(".loader-container").hide();
 
   //Añado el evento al boton. Cada boton tiene un data-id con el id del producto, lo capturo y con el método find encuentro el producto elegido y lo guardo en la variable producto. La cantidad la recojo del input type number, a través del padre del boton $(this).parent() y con .children() llego a sus hijos
   $(".product-card .boton-principal").on("click",function(e){
