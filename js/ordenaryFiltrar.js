@@ -1,9 +1,10 @@
 import { productos, mostrarProductos } from "./products.js";
 import { paginacion } from "./paginacion.js";
 
+const $orderSelect = document.querySelector("#order");
+
 //Función para ordenar productos
 export function ordenarProductos(products){
-  const $orderSelect = document.querySelector("#order");
 
   $orderSelect.addEventListener("change",(e)=>{
     let index = e.target.selectedIndex;
@@ -40,15 +41,30 @@ export function mostrarCategorias(){
   })
 
   categorias.forEach((categoria) =>{
-    console.log(categoria)
     let $li = document.createElement("li");
     let filter = categoria == "Todos" ? productos : productos.filter(producto => producto.categoria == categoria);
-    $li.innerHTML = `<li>${categoria} <span>(${filter.length})</span></li>`;
+    $li.innerHTML = `${categoria} <span>(${filter.length})</span>`;
 
     $li.addEventListener("click",(e)=>{
       mostrarProductos(filter);
       paginacion(filter);
       ordenarProductos(filter)
+
+      //Reseteo el select
+      $orderSelect.options[0].selected = true;
+
+      //Selecciono los otros botones para aplicarle estilos
+      let $otherLi = e.target.parentNode.querySelectorAll("li");
+
+      //Modifico los botones
+      $otherLi.forEach(li => {
+        li.style.opacity = 0.8;
+        li.style.fontWeight = 500;
+      });
+
+      //Aplico estilos al boton seleccionado
+      e.target.style.opacity = 1;
+      e.target.style.fontWeight = "bold";
     })
 
     $ulCategorias.appendChild($li);

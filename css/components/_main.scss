@@ -15,7 +15,7 @@ main {
     width: 100%;
     min-height: calc(100vh - 5rem);
     margin-top: 3rem;
-    padding: 2rem;
+    padding: 0.5rem;
 
     @include media-up(md) {
       max-width: 1366px;

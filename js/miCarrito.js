@@ -5,17 +5,17 @@ import { cerrarModal } from "./modal.js";
 export const carrito1 = new Carrito();
 
 //Variables del DOM para usar en las funciones de abajo
-const $carritoTable = document.querySelector(".carrito-container table");
-const $carritoTableBody = document.querySelector(".carrito-container table tbody");
+const $carritoTabla = document.querySelector(".carrito-container .carrito-tabla");
 const $carritoMessage = document.querySelector(".carrito-container .message");
-const $carritoSubtotal = document.querySelector(".carrito-container .subtotal");
-const $btns = document.querySelector(".carrito-container .botones");
+const $carritoProductos = document.querySelector(".carrito-container .carrito-productos");
+const $carritoSubtotal = document.querySelector("#subtotal");
 const $btnEnvio = document.querySelector("#btn-envio");
+const $totalEnvio = document.querySelector(".carrito-container .envio .totalEnvio");
+const $carritoTotal = document.querySelector("#total");
+const $btns = document.querySelector(".carrito-container .botones");
 const $btnVolver = document.querySelector("#btn-volver");
 const $btnBorrar = document.querySelector("#btn-borrar");
 const $btnComprar = document.querySelector("#btn-comprar");
-const $totalEnvio = document.querySelector(".carrito-container .envio .totalEnvio");
-const $carritoTotal = document.querySelector(".carrito-container .total");
 const $fragment = document.createDocumentFragment();
 
 
@@ -23,35 +23,34 @@ const $fragment = document.createDocumentFragment();
 export function mostrarCarrito(target){
   //Si no hay productos en el carrito se muestra un mensaje que invita a añadir productos al carrito
   if(carrito1.cantidadTotal > 0){
-    $carritoTable.style.display = "block";
+    $carritoTabla.style.display = "block";
     $carritoMessage.style.display = "none";
     $btnBorrar.style.display = "block";
     $btnComprar.style.display = "block";
     $btns.style.justifyContent = "space-between";
   }else{
+    $carritoTabla.style.display = "none";
     $btnBorrar.style.display = "none";
     $btnComprar.style.display = "none";
     $btns.style.justifyContent = "center";
   }
 
-  //Recorro cada producto y genero filas y celdas de la tabla, las inserto en el fragment
   carrito1.productos.forEach(producto => {
-    const $carritoProduct = document.createElement("tr");
+    const $carritoProduct = document.createElement("div");
+    $carritoProduct.classList.add("producto");
     $carritoProduct.innerHTML = `
-      <td class="img-container">
-        <img src="${producto.imagen}" alt="${producto.nombre}">
-      </td>
-      <td>${producto.nombre}</td>
-      <td>$${producto.precio}</td>
-      <td>x${producto.cantidad}</td>
-      <td>$${producto.cantidad * producto.precio}</td>
+          <div><img src="${producto.imagen}" alt="${producto.imagen}"></div>
+          <div>${producto.nombre}</div>
+          <div>$${producto.precio}</div>
+          <div>x${producto.cantidad}</div>
+          <div>$${producto.cantidad * producto.precio}</div>
     `;
     $fragment.appendChild($carritoProduct)
   })
 
-  //Reinicio el cuerpo de la tabla por si hubiera agregado algún producto al carrito, y luego inserto el fragment
-  $carritoTableBody.innerHTML = "";
-  $carritoTableBody.appendChild($fragment)
+  //Reinicio el cuerpo del div contenedor de productos por si hubiera agregado algún producto al carrito, y luego inserto el fragment
+  $carritoProductos.innerHTML = "";
+  $carritoProductos.appendChild($fragment)
 
   //Calculo subtotal de productos y lo muestro
   carrito1.calcularSubtotal();

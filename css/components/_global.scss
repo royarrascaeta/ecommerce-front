@@ -38,10 +38,11 @@ body {
   padding: 0.2rem 1rem;
   font-size: 1.2rem;
   font-weight: bold;
-  border: none;
+  border: 0.1rem solid $color-secundario;
   border-radius: 0.3rem;
   background-color: $color-secundario;
   color: $color-neutro;
+  cursor: pointer;
 
   i {
     margin-right: 0.5rem;

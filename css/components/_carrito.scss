@@ -29,19 +29,22 @@
 }
 
 .carrito-container {
-  width: 95%;
+  width: 100%;
   max-height: 80%;
   margin-top: 2rem;
-  padding: 2rem;
+  padding: 1rem 0rem;
   overflow-y: auto;
   border-radius: 0.3rem;
   border: 0.1rem solid lightgray;
   background-color: white;
   position: relative;
   text-align: center;
+  align-self: center;
 
   @include media-up(md) {
     max-width: 1200px;
+    width: 80%;
+    padding: 2rem;
   }
 
   .message {
@@ -49,69 +52,130 @@
     margin-bottom: 1rem;
   }
 
+  .producto {
+    display: grid;
+    grid-template-columns: minmax(5px, 50px) 2fr 2fr 6rem;
+    grid-template-rows: repeat(2, minmax(5px, 25px));
+    text-align: left;
+    gap: 0rem, 0.5rem;
+    margin: 0.5rem 0;
+    padding: 0.2rem;
+    border-bottom: 0.1rem solid lightgray;
+
+    @include media-up(md) {
+      grid-template-columns: minmax(5px, 50px) 3fr 1fr 1fr 6rem;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    div {
+      padding: 0rem 0.5rem;
+
+      @include media-up(md) {
+        display: flex;
+        justify-self: center;
+        align-self: center;
+      }
+    }
+
+    div:nth-child(1) {
+      //Imagen
+      grid-row: 1/3;
+      padding: 0;
+      align-self: unset;
+      justify-self: unset;
+    }
+
+    div:nth-child(2) {
+      //Nombre
+      grid-column: 2/4;
+      text-align: center;
+      font-weight: bold;
+
+      @include media-up(md) {
+        grid-column: 2/3;
+        grid-row: 1/3;
+      }
+    }
+
+    div:nth-child(3) {
+      //Precio
+      text-align: right;
+      grid-column: 2/3;
+
+      @include media-up(md) {
+        grid-column: 3/4;
+        grid-row: 1/3;
+      }
+    }
+
+    div:nth-child(4) {
+      //Cantidad
+      grid-column: 3/4;
+
+      @include media-up(md) {
+        grid-column: 4/5;
+        grid-row: 1/3;
+        text-align: center;
+      }
+    }
+
+    div:nth-child(5) {
+      //Subtotal
+      grid-column: 4/ 5;
+      grid-row: 2/3;
+      text-align: center;
+
+      @include media-up(md) {
+        grid-column: 5/6;
+        grid-row: 1/3;
+      }
+    }
+  }
+
+  .totales {
+    display: grid;
+    grid-template-columns: 2fr 1fr 6rem;
+    align-items: center;
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+
+  .subtotal,
+  .total {
+    div:nth-child(1) {
+      grid-column: 1/3;
+      text-align: right;
+    }
+  }
+
+  .envio {
+    div:nth-child(2) {
+      text-align: right;
+    }
+  }
+
   .botones {
+    margin-top: 1rem;
     display: flex;
     justify-content: space-between;
   }
 
   #btn-borrar,
   #btn-comprar,
-  #btn-volver {
+  #btn-volver,
+  #btn-envio {
     margin: 0 0.2rem;
-    padding: 1rem;
-  }
-
-  .boton-principal,
-  .boton-principal-alt {
-    justify-content: center;
-    padding: 0.4rem 0.2rem;
+    padding: 0.2rem 0.5rem;
     font-size: 1rem;
-  }
 
-  table {
-    width: 100%;
-    text-align: center;
-    border-spacing: 0.2rem;
-    display: none;
-
-    td {
-      border-bottom: 0.1rem solid lightgray;
-      padding: 0.5rem 0rem;
-    }
-
-    .carrito-product {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      justify-items: stretch;
-      padding: 0.5rem;
-      border-bottom: 0.05rem solid lightgray;
-    }
-
-    tbody td {
-      &:nth-child(2) {
-        width: 50%;
-      }
-
-      &:nth-child(5) {
-        width: 10%;
-      }
-    }
-
-    tfoot th {
-      padding: 1rem 0rem;
-    }
-
-    .img-container {
-      width: 2rem;
-      height: 4rem;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: top;
-      }
+    @include media-up(md) {
+      padding: 0.5rem 1rem;
     }
   }
 }

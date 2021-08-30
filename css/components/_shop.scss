@@ -7,7 +7,6 @@
   grid-template-columns: 1fr;
   align-items: start !important;
   gap: 1rem;
-  padding: 1rem !important;
 
   @include media-up(md) {
     grid-template-columns: 1fr 5fr;
@@ -72,11 +71,17 @@
       li {
         padding: 0.25rem 0;
         cursor: pointer;
-        font-weight: bold;
+        font-weight: 500;
         opacity: 0.8;
 
         &:hover {
+          opacity: 1 !important;
+          font-weight: bold !important;
+        }
+
+        &:first-child {
           opacity: 1;
+          font-weight: bold;
         }
       }
 

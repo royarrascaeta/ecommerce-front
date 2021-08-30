@@ -49,13 +49,7 @@
         
         <h3 id="btn-categorias">Categorias <i class="fas fa-chevron-down"></i></h3>
         <ul>
-          <!-- <li>Todos </li> -->
-          <!-- <li>Remeras </li>
-          <li>Camisas </li>
-          <li>Jeans </li>
-          <li>Camperas </li>
-          <li>Buzos </li>
-          <li>Accesorios </li> -->
+          <!-- Acá se insertan dinámicamente las categorías -->
         </ul>
       </aside>
       
@@ -98,47 +92,43 @@
     <div id="micarrito" class="carrito-container">
       <span class="close"><i class="fas fa-times"></i></span>
       <h2>Mi Carrito</h2>
-      <div class="message">Aún no tienes productos en tu carrito. <br>Añade productos haciendo click en el botón
-        "Agregar al carrito" junto a cada producto.</div>
-      <table>
-        <thead>
-          <tr>
-            <th>Imagen</th>
-            <th>Nombre Producto</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Total x producto</th>
-          </tr>
-        </thead>
-        <tbody>
+        <div class="message">
+          Aún no tienes productos en tu carrito. <br>Añade productos haciendo click en el botón
+          "Agregar al carrito" junto a cada producto.
+        </div>
 
-        </tbody>
-        <tfoot>
-          <tr>
-            <th colspan="3"></th>
-            <th>Subtotal</th>
-            <th class="subtotal"></th>
-          </tr>
-          <tr>
-            <th colspan="1"></th>
-            <th colspan="2">Las compras mayores a $5000 tienen envío gratis!</th>
-            <th>Envío <br></th>
-            <th class="envio"><button class="boton-principal hover" id="btn-envio">Calcular Envío</button><span
-                class="totalEnvio"></span></th>
-          </tr>
-          <tr>
-            <th colspan="3"></th>
-            <th>Total</th>
-            <th class="total"></th>
-          </tr>
-        </tfoot>
-      </table>
-      <div class="botones">
-        <button class="boton-principal-alt hover" id="btn-borrar"><i class="fas fa-trash-alt"></i>Limpiar
-          Carrito</button>
-        <button class="boton-principal hover" id="btn-volver">Seguir Comprando</button>
-        <button class="boton-principal hover" id="btn-comprar">Comprar Carrito</button>
-      </div>
+        <div class="carrito-tabla">
+          <div class="carrito-productos">
+            <!-- Acá se insertan dinámicamente los productos del carrito -->
+          </div>
+
+          <div class="totales subtotal">
+            <div>Subtotal:</div>
+            <div id="subtotal"></div>
+          </div>
+
+        
+          <div class="totales envio">
+            <div>Las compras mayores a $5000 tienen envio gratis!</div>
+            <div>Envio:</div>
+            <div>
+              <button class="boton-principal hover" id="btn-envio">Calcular Envío</button><span class="totalEnvio"></span>
+            </div>
+          </div>
+
+          <div class="totales total">
+            <div>Total:</div>
+            <div id="total"></div>
+          </div>
+        </div>
+        
+
+        <div class="botones">
+          <button class="boton-principal-alt hover" id="btn-borrar"><i class="fas fa-trash-alt"></i>Limpiar
+            Carrito</button>
+          <button class="boton-principal hover" id="btn-volver">Seguir Comprando</button>
+          <button class="boton-principal hover" id="btn-comprar">Comprar Carrito</button>
+        </div>
     </div>
   </div>
   <!-- /MODAL -->
