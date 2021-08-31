@@ -1,6 +1,6 @@
 import { productos, mostrarProductos } from "./products.js";
 
-export function paginacion(products = productos){
+export function mostrarPaginacion(products = productos){
   const $pagination = document.querySelector(".pagination");
   let totalPages = Math.ceil(products.length / 8);
   let start = 0;

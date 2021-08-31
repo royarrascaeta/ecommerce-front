@@ -1,5 +1,5 @@
 import { productos, mostrarProductos } from "./products.js";
-import { paginacion } from "./paginacion.js";
+import { mostrarPaginacion } from "./paginacion.js";
 
 const $orderSelect = document.querySelector("#order");
 
@@ -47,7 +47,7 @@ export function mostrarCategorias(){
 
     $li.addEventListener("click",(e)=>{
       mostrarProductos(filter);
-      paginacion(filter);
+      mostrarPaginacion(filter);
       ordenarProductos(filter)
 
       //Reseteo el select

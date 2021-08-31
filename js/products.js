@@ -1,7 +1,7 @@
 import { mostrarCarrito, carrito1 } from "./miCarrito.js";
 import { Product } from "./Product.js";
 import { mostrarCategorias, ordenarProductos } from "./ordenaryFiltrar.js";
-import { paginacion } from "./paginacion.js";
+import { mostrarPaginacion } from "./paginacion.js";
 
 //Creo array vacío para cargar productos
 export const productos = [];
@@ -23,7 +23,7 @@ export function cargarProductos(){
   .done(function(){
     mostrarProductos();
     mostrarCategorias();
-    paginacion();
+    mostrarPaginacion();
     ordenarProductos(productos);
   })
   .fail(function(){
