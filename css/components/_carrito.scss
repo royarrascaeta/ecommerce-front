@@ -31,25 +31,97 @@
 .carrito-container {
   width: 100%;
   max-height: 80%;
-  margin-top: 2rem;
   padding: 1rem 0rem;
   overflow-y: auto;
   border-radius: 0.3rem;
-  border: 0.1rem solid lightgray;
   background-color: white;
   position: relative;
   text-align: center;
   align-self: center;
 
   @include media-up(md) {
-    max-width: 1200px;
-    width: 80%;
     padding: 2rem;
+  }
+
+  h2 {
+    margin-bottom: 1rem;
   }
 
   .message {
     font-size: 1rem;
+    font-weight: 400;
     margin-bottom: 1rem;
+    opacity: 1;
+  }
+
+  .boton-principal,
+  .boton-principal-alt {
+    width: 100%;
+    display: block;
+    padding: 0.5rem 1rem;
+    margin: 1rem auto;
+
+    @include media-up(md) {
+      width: 50%;
+    }
+  }
+
+  .carrito-tabla {
+    display: none;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    @include media-up(md) {
+      grid-template-columns: 3fr 2fr;
+    }
+
+    h3 {
+      margin-bottom: 1rem;
+    }
+
+    & > div {
+      padding: 2rem 1rem;
+      border: 0.1rem solid lightgray;
+    }
+
+    .carrito-detalle {
+      .carrito-productos {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .carrito-totales > div {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      justify-items: center;
+      margin: 1rem 0rem;
+      text-align: right;
+      gap: 1rem;
+
+      & div:nth-child(1) {
+        font-size: 1.2rem;
+        justify-self: end;
+      }
+
+      & div:nth-child(2) {
+        font-size: 1.4rem;
+        font-weight: bold;
+        justify-self: start;
+      }
+
+      .boton-principal,
+      .boton-principal-alt {
+        width: 100%;
+      }
+    }
+
+    .carrito-totales > div:nth-child(3),
+    .carrito-totales > div:nth-child(6),
+    .carrito-totales > div:nth-child(7) {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
   }
 
   .producto {
@@ -75,6 +147,8 @@
 
     div {
       padding: 0rem 0.5rem;
+      align-items: center;
+      display: flex;
 
       @include media-up(md) {
         display: flex;
@@ -94,7 +168,6 @@
     div:nth-child(2) {
       //Nombre
       grid-column: 2/4;
-      text-align: center;
       font-weight: bold;
 
       @include media-up(md) {
@@ -117,11 +190,19 @@
     div:nth-child(4) {
       //Cantidad
       grid-column: 3/4;
+      display: flex;
+      justify-content: center;
 
       @include media-up(md) {
         grid-column: 4/5;
         grid-row: 1/3;
         text-align: center;
+      }
+
+      .boton-cantidad {
+        margin: 0;
+        padding: 0rem 0.5rem;
+        width: min-content;
       }
     }
 
@@ -129,53 +210,13 @@
       //Subtotal
       grid-column: 4/ 5;
       grid-row: 2/3;
-      text-align: center;
+      font-weight: bold;
+      justify-content: center;
 
       @include media-up(md) {
         grid-column: 5/6;
         grid-row: 1/3;
       }
-    }
-  }
-
-  .totales {
-    display: grid;
-    grid-template-columns: 2fr 1fr 6rem;
-    align-items: center;
-    margin-top: 1rem;
-    font-weight: bold;
-  }
-
-  .subtotal,
-  .total {
-    div:nth-child(1) {
-      grid-column: 1/3;
-      text-align: right;
-    }
-  }
-
-  .envio {
-    div:nth-child(2) {
-      text-align: right;
-    }
-  }
-
-  .botones {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  #btn-borrar,
-  #btn-comprar,
-  #btn-volver,
-  #btn-envio {
-    margin: 0 0.2rem;
-    padding: 0.2rem 0.5rem;
-    font-size: 1rem;
-
-    @include media-up(md) {
-      padding: 0.5rem 1rem;
     }
   }
 }

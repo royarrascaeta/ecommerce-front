@@ -8,53 +8,51 @@ export const carrito1 = new Carrito();
 const $carritoTabla = document.querySelector(".carrito-container .carrito-tabla");
 const $carritoMessage = document.querySelector(".carrito-container .message");
 const $carritoProductos = document.querySelector(".carrito-container .carrito-productos");
-const $carritoSubtotal = document.querySelector("#subtotal");
-const $btnEnvio = document.querySelector("#btn-envio");
-const $totalEnvio = document.querySelector(".carrito-container .envio .totalEnvio");
-const $carritoTotal = document.querySelector("#total");
-const $btns = document.querySelector(".carrito-container .botones");
+const $carritoSubtotal = document.getElementById("subtotal");
+const $btnEnvio = document.getElementById("btn-envio");
+const $totalEnvio = document.getElementById("totalEnvio");
+const $carritoTotal = document.getElementById("total");
 const $btnVolver = document.querySelector("#btn-volver");
 const $btnBorrar = document.querySelector("#btn-borrar");
 const $btnComprar = document.querySelector("#btn-comprar");
 const $fragment = document.createDocumentFragment();
+const $templateCarrito = document.getElementById("template-carrito").content;
 
 
 //Creación de función para mostrar el carrito
 export function mostrarCarrito(target){
   //Si no hay productos en el carrito se muestra un mensaje que invita a añadir productos al carrito
   if(carrito1.cantidadTotal > 0){
-    $carritoTabla.style.display = "block";
+    $carritoTabla.style.display = "grid";
     $carritoMessage.style.display = "none";
-    $btnBorrar.style.display = "block";
-    $btnComprar.style.display = "block";
-    $btns.style.justifyContent = "space-between";
   }else{
     $carritoTabla.style.display = "none";
-    $btnBorrar.style.display = "none";
-    $btnComprar.style.display = "none";
-    $btns.style.justifyContent = "center";
   }
 
   carrito1.productos.forEach(producto => {
-    const $carritoProduct = document.createElement("div");
-    $carritoProduct.classList.add("producto");
-    $carritoProduct.innerHTML = `
-          <div><img src="${producto.imagen}" alt="${producto.imagen}"></div>
-          <div>${producto.nombre}</div>
-          <div>$${producto.precio}</div>
-          <div>x${producto.cantidad}</div>
-          <div>$${producto.cantidad * producto.precio}</div>
-    `;
-    $fragment.appendChild($carritoProduct)
+    $templateCarrito.querySelector("img").src = producto.imagen;
+    $templateCarrito.querySelector("img").alt = producto.nombre;
+    $templateCarrito.querySelectorAll(".producto div")[1].textContent = producto.nombre;
+    $templateCarrito.querySelectorAll(".producto div")[2].textContent = `$${producto.precio}`;
+    $templateCarrito.querySelector("span").textContent = producto.cantidad;
+    $templateCarrito.querySelectorAll(".producto div")[4].textContent = `$${producto.cantidad * producto.precio}`;
+    $templateCarrito.querySelectorAll(".boton-cantidad")[0].dataset.id = producto.id;
+    $templateCarrito.querySelectorAll(".boton-cantidad")[1].dataset.id = producto.id;
+
+    const clone = $templateCarrito.cloneNode(true);
+
+    $fragment.appendChild(clone)
   })
 
   //Reinicio el cuerpo del div contenedor de productos por si hubiera agregado algún producto al carrito, y luego inserto el fragment
   $carritoProductos.innerHTML = "";
   $carritoProductos.appendChild($fragment)
 
-  //Calculo subtotal de productos y lo muestro
+  //Calculo subtotal y total de productos y lo muestro
   carrito1.calcularSubtotal();
+  carrito1.calcularTotal();
   $carritoSubtotal.textContent = "$"+carrito1.subTotal;
+  $carritoTotal.textContent = "$"+carrito1.total;
 
   //Verifico si se ha ejecutado anteriormente la función para calcular envío, y en caso que no se haya bonificado (costo 0) vuelvo a generar el botón para que el usuario pueda acceder al beneficio en caso que haya seguido agregando productos
   if(carrito1.flagEnvio && carrito1.envio !== 0){
@@ -77,16 +75,40 @@ export function mostrarCarrito(target){
   }  
 }
 
+//Botones cantidad
+  $carritoProductos.addEventListener("click", (e)=>{
+    if(e.target.textContent === "-"){
+      let id = e.target.dataset.id;
+      let producto = carrito1.productos.find(producto => producto.id === parseInt(id))
+
+      if(producto.cantidad != 1){
+        producto.cantidad--
+        mostrarCarrito();
+      }else{
+        
+      }
+
+    }
+
+    if(e.target.textContent === "+"){
+      let id = e.target.dataset.id;
+      let producto = carrito1.productos.find(producto => producto.id === parseInt(id))
+      producto.cantidad++
+
+      mostrarCarrito();
+    }
+  })
+
 //Añadiendo evento a los botones
-$btnEnvio.addEventListener("click",(e)=>{
+$btnEnvio.addEventListener("click",()=>{
   calcularEnvio();
 })
 
-$btnBorrar.addEventListener("click",(e)=>{
+$btnBorrar.addEventListener("click",()=>{
   limpiarCarrito();
 })
 
-$btnVolver.addEventListener("click",(e)=>{
+$btnVolver.addEventListener("click",()=>{
   if(location.pathname === "/carrito.html"){
     location.href = "index.html";
   }else{

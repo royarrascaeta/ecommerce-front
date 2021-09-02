@@ -1,8 +1,5 @@
 .container-shop {
   position: relative;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
   display: grid !important;
   grid-template-columns: 1fr;
   align-items: start !important;
@@ -10,8 +7,6 @@
 
   @include media-up(md) {
     grid-template-columns: 1fr 5fr;
-    // flex-direction: row !important;
-    // flex-wrap: wrap;
   }
 
   h1 {
@@ -95,12 +90,6 @@
   .products-container {
     position: relative;
     width: 100%;
-    // display: flex;
-    // flex-basis: 80%;
-    // flex-wrap: wrap;
-    // justify-items: stretch;
-    // justify-content: space-between;
-    // align-self: flex-start;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;

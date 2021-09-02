@@ -17,7 +17,7 @@ export class Carrito{
     if(indice != -1){
       this.productos[indice].cantidad += cantidad
     }else{
-      this.productos.push({"id-producto": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "precio": producto.precio, "cantidad":cantidad});
+      this.productos.push({"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "precio": producto.precio, "cantidad":cantidad});
     }
 
     //Ejecuto la función calcularCantidad() para que se actualice el valor de cantidadTotal

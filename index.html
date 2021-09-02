@@ -92,40 +92,52 @@
         <div class="message">
           Aún no tienes productos en tu carrito. <br>Añade productos haciendo click en el botón
           "Agregar al carrito" junto a cada producto.
+          <div>
+            <button class="boton-principal hover" id="btn-volver">Seguir comprando</button>
+          </div>
         </div>
 
         <div class="carrito-tabla">
-          <div class="carrito-productos">
+          <div class="carrito-detalle">
+            <h3>Detalle de la compra:</h3>
+            <div class="carrito-productos">
             <!-- Acá se insertan dinámicamente los productos del carrito -->
-          </div>
-
-          <div class="totales subtotal">
-            <div>Subtotal:</div>
-            <div id="subtotal"></div>
-          </div>
-
-        
-          <div class="totales envio">
-            <div>Las compras mayores a $5000 tienen envio gratis!</div>
-            <div>Envio:</div>
+            </div>
             <div>
-              <button class="boton-principal hover" id="btn-envio">Calcular Envío</button><span class="totalEnvio"></span>
+              <button class="boton-principal-alt hover" id="btn-borrar"><i class="fas fa-trash-alt"></i>Vaciar Carrito</button>
             </div>
           </div>
+          
+          <div class="carrito-totales">
+            <h3>Detalle del Pago:</h3>
+            <div>
+              <div>Subtotal:</div>
+              <div id="subtotal"></div>
+            </div>
 
-          <div class="totales total">
-            <div>Total:</div>
-            <div id="total"></div>
+            <div>Las compras mayores a $5000 tienen envio gratis!</div>
+
+            <div>
+              <div>Envio:</div>
+              <div>
+                <button class="boton-principal hover" id="btn-envio">Calcular</button><span id="totalEnvio"></span>
+              </div>
+            </div>
+
+            <div>
+              <div>Total:</div>
+              <div id="total"></div>
+            </div>
+            
+            <div>
+              <button class="boton-principal hover" id="btn-comprar">Finalizar Compra</button>
+            </div>
+
+            <div>
+              <button class="boton-principal-alt hover" id="btn-volver">Seguir Comprando</button>
+            </div>
+
           </div>
-        </div>
-        
-
-        <div class="botones">
-          <button class="boton-principal-alt hover" id="btn-borrar"><i class="fas fa-trash-alt"></i>Limpiar
-            Carrito</button>
-          <button class="boton-principal hover" id="btn-volver">Seguir Comprando</button>
-          <button class="boton-principal hover" id="btn-comprar">Comprar Carrito</button>
-        </div>
     </div>
   </div>
   <!-- /MODAL -->
@@ -144,6 +156,18 @@
       </div>
       <button class="boton-principal hover"><i class="fas fa-shopping-cart"></i>Agregar al Carrito</button>
     </div>
+  </template>
+
+  <template id="template-carrito">
+      <div class="producto">
+        <div>
+          <img src="" alt="">
+        </div>
+        <div>Nombre producto</div>
+        <div>$Precio</div>
+        <div>Cantidad</div>
+        <div>Subtotal</div>
+      </div>
   </template>
   <!-- /TEMPLATES -->
 
