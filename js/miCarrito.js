@@ -83,9 +83,12 @@ export function mostrarCarrito(target){
 
       if(producto.cantidad != 1){
         producto.cantidad--
+        carrito1.calcularCantidad();
         mostrarCarrito();
       }else{
-        
+        carrito1.productos = carrito1.productos.filter(product => product.id != id)
+        carrito1.calcularCantidad();
+        mostrarCarrito();
       }
 
     }

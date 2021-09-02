@@ -32,6 +32,7 @@ export class Carrito{
     for(let producto of this.productos){
       this.cantidadTotal += producto.cantidad;
     }
+    localStorage.setItem("carritoLocal",JSON.stringify(this))
   };
 
   calcularSubtotal(){
@@ -39,6 +40,7 @@ export class Carrito{
     for(let producto of this.productos){
       this.subTotal += producto.precio * producto.cantidad;
     }
+    localStorage.setItem("carritoLocal",JSON.stringify(this))
   };
   
   consultaEnvio(){
@@ -90,6 +92,8 @@ export class Carrito{
 
   calcularTotal(){
     this.total = this.subTotal + this.envio;
+
+    localStorage.setItem("carritoLocal",JSON.stringify(this))
   };
 
   limpiarCarrito(){
