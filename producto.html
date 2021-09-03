@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi carrito</title>
+  <title>Producto</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body data-section="carrito">
+<body data-section="producto">
   <!-- HEADER -->
   <header class="header">
     <div class="container">
@@ -25,9 +25,9 @@
       </div>
       <nav class="menu">
         <ul>
-          <li><a href="index.html">Home</a></li>
+          <li><a class="activo" href="index.html">Home</a></li>
           <li><a href="#">Shop</a></li>
-          <li><a class="activo" href="carrito.html">Carrito<span class="carrito-span"></span></a></li>
+          <li><a href="carrito.html">Carrito<span class="carrito-span"></span></a></li>
           <li><a href="#">Contacto</a></li>
         </ul>
       </nav>
@@ -37,9 +37,81 @@
 
   <!-- MAIN -->
   <main>
+    <div class="container container-producto">
+      <aside class="product-gallery">
+        <div class="carrousel-container">
+          <!-- Acá se insertan las imagenes dinámicamente -->
+        </div>
+        <div class="flecha-der"><button class="boton-principal hover"><i class="fas fa-chevron-right"></i></button></i></div>
+        <div class="flecha-izq"><button class="boton-principal hover"><i class="fas fa-chevron-left"></i></button></div>
+      </aside>
+
+      <div class="product-carrito">
+        <h2>Nombre Producto</h2>
+        <h3>$Precio</h3>
+        <h4>Detalles del Producto:</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?</p>
+        <hr>
+        <div class="opciones">
+          <div>
+            <label for="cantidad">Cantidad:</label>
+            <select name="cantidad" type="number" id="select-cantidad">
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </div>
+          <div>
+            <label for="talle">Talle</label>
+            <select name="talle" id="select-talles">
+              <option value="S">S</option>
+            </select>
+          </div>
+          <div>
+            <label for="color">Color</label>
+            <select name="color" id="select-colores">
+              <option value="S">Rojo</option>
+            </select>
+          </div>
+        </div>
+        <div class="botones">
+          <button class="boton-principal hover"><i class="fas fa-shopping-cart"></i>Agregar al Carrito</button>
+          <a href="index.html"><button class="boton-principal-alt hover">Seguir Comprando</button></a>
+        </div>
+      </div>
+      
+      <div class="product-others">
+        <h3>Productos Relacionados</h3>
+        <div class="products-container"></div>
+      </div>
+
+    </div>
+
+    <!-- BOTON FLOTANTE CARRITO-->
+    <div class="carrito-float hover"><i class="fas fa-shopping-cart"></i><span class="carrito-span"></span></div>
+    <!-- /BOTON FLOTANTE CARRITO-->
+
+    <!-- MENSAJE ALERTA PERSONALIZADO-->
+    <div class="message-float">
+      <span>Producto añadido al carrito</span>
+    </div>
+    <!-- /MENSAJE ALERTA PERSONALIZADO-->
+
+  </main>
+  <!-- /MAIN -->
+
+  <!-- FOOTER -->
+  <footer>
     <div class="container">
-      <div class="carrito-container">
-        <h2>Mi Carrito</h2>
+      <h5>Desarrollado por Roy Arrascaeta</h5>
+    </div>
+  </footer>
+  <!-- /FOOTER -->
+
+  <!-- MODAL -->
+  <div class="modal">
+    <div id="micarrito" class="carrito-container">
+      <span class="close"><i class="fas fa-times"></i></span>
+      <h2>Mi Carrito</h2>
         <div class="message">
           Aún no tienes productos en tu carrito. <br>Añade productos haciendo click en el botón
           "Agregar al carrito" junto a cada producto.
@@ -89,22 +161,21 @@
             </div>
 
           </div>
-        </div>
-      </div>
     </div>
-
-  </main>
-  <!-- /MAIN -->
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <h5>Desarrollado por Roy Arrascaeta</h5>
-    </div>
-  </footer>
-  <!-- /FOOTER -->
+  </div>
+  <!-- /MODAL -->
 
   <!-- TEMPLATES -->
+  <template id="template-card">
+    <div class="product-card">
+      <div class="img-container">
+        <img src="" alt="">
+      </div>
+      <h3>Nombre producto</h3>
+      <div class="precio">$ Precio</div>
+    </div>
+  </template>
+
   <template id="template-carrito">
       <div class="producto">
         <div>

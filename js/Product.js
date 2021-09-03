@@ -1,4 +1,4 @@
-import { carrito1, mostrarCarrito } from "./miCarrito.js";
+import { carrito1, mostrarCarrito, indicadorCarrito } from "./miCarrito.js";
 
 //Clase constructora de productos
 export class Product{
@@ -14,21 +14,15 @@ export class Product{
   //Funcion para mostrar card de producto en el DOM
   mostrarProducto(){
     const $templateCard = document.getElementById("template-card").content;
-    $templateCard.querySelector("img").src = this.imagen;
+    $templateCard.querySelector("img").src = this.imagen[0];
     $templateCard.querySelector("img").alt = this.nombre;
     $templateCard.querySelector("h3").innerText = this.nombre;
     $templateCard.querySelector(".precio").innerText = `$${this.precio}`;
         
     const clone = $templateCard.cloneNode(true)
 
-    const $btn = clone.querySelector(".boton-principal");
-    const $input = clone.querySelector(".comprar input");
-    
-    //Añado el evento del boton, y le envio el producto y la cantidad del input
-    $btn.addEventListener("click",(e)=>{
-      let producto = this;
-
-      this.agregarAlCarrito(e, producto, $input);
+    clone.querySelector(".product-card").addEventListener("click", (e)=>{
+      location.href = `producto.html?id=${this.id}`;
     })
 
     return clone
@@ -43,9 +37,7 @@ export class Product{
     input.value = 1;
 
     //Actualizamos indicador de cantidad en boton flotante del carrito e indicador de cantidad en menú
-    $(".carrito-span").each((i, span) => {
-      span.innerHTML = carrito1.cantidadTotal;
-    });
+    indicadorCarrito();
 
     //Actualizamos mostrar carrito, le pasamos como parámetro el botón
     mostrarCarrito(e.target);
@@ -56,8 +48,7 @@ export class Product{
 
     //Mostramos el msj de confirmación de añadir producto al carrito. Luego de 1 segundo habilitamos el efecto hover del boton y lo habilitamos
     $message.slideToggle("fast");
-    
-    setTimeout(() => {
+     setTimeout(() => {
       $message.slideToggle("fast");
       $(e.target).addClass("hover");
       $(e.target).prop("disabled", false);

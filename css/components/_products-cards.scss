@@ -28,11 +28,29 @@
     transition: all 0.2s ease-in-out;
   }
 
+  &:hover > .img-container::after {
+    opacity: 0.5;
+  }
+
   .img-container {
     position: relative;
     width: 100%;
     padding-top: 100%;
     overflow: hidden;
+
+    &::after {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      content: "";
+      background: no-repeat center/20% url("../../assets/lupa.svg");
+      color: red;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity ease-in 0.3s;
+    }
 
     img {
       position: absolute;
@@ -49,6 +67,7 @@
   h3 {
     margin-top: 0.5rem;
     font-size: 1rem;
+    opacity: 0.8;
 
     @include media-up(md) {
       font-size: 1rem;
@@ -57,46 +76,7 @@
 
   .precio {
     margin: 0.5rem 0;
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: bold;
-    opacity: 0.7;
-  }
-
-  .comprar {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    font-size: 1rem;
-
-    input {
-      width: 2rem;
-      height: 1.5rem;
-      margin-top: 0;
-      margin-left: 0.5rem;
-      text-align: center;
-    }
-  }
-
-  button.boton-principal {
-    margin: 0.5rem 0.5rem 0rem 0.5rem;
-    padding: 0.2rem;
-    font-size: 0.8rem;
-    align-items: center;
-    width: fit-content;
-
-    i {
-      font-size: 1.2rem;
-      margin-right: 0;
-      margin-bottom: 0.2rem;
-
-      @include media-up(md) {
-        font-size: 1.5rem;
-        margin-right: 0.5rem;
-      }
-    }
-
-    @include media-up(md) {
-      padding: 0.4rem;
-    }
   }
 }

@@ -10,7 +10,7 @@ export const productos = [];
 const URLJSON = "./data/data.json";
 
 
-export function cargarProductos() {
+export function cargarProductos(callback) {
   $.getJSON(URLJSON, function (respuesta, estado) {
     if (estado === "success") {
       const db = respuesta;
@@ -19,13 +19,7 @@ export function cargarProductos() {
         productos.push(new Product(product.id, product.nombre, product.categoria, product.precio, product.imagen))
       }
     }
-  })
-    .done(function () {
-      mostrarProductos();
-      mostrarCategorias();
-      mostrarPaginacion();
-      ordenarProductos(productos);
-    })
+  }).done(callback)
     .fail(function () {
       $(".products-container").append(`
     <p style="width: 100%; text-align: center;">Error al cargar los productos</p>`)
@@ -34,11 +28,11 @@ export function cargarProductos() {
 
 
 //Funcion para mostrar los productos en el DOM con jQuery
-export function mostrarProductos(productosSel = productos, start = 0) {
+export function mostrarProductos(productosSel = productos, start = 0, container = ".products-container") {
   //Convierto a número el valor start
   start = parseInt(start);
 
-  $(".products-container").empty().append(`
+  $(container).empty().append(`
     <div class="loader-container">
       <img src="assets/loader.svg" alt="">
     </div>`);
@@ -49,13 +43,14 @@ export function mostrarProductos(productosSel = productos, start = 0) {
     fragment.appendChild(producto.mostrarProducto())
   })
 
-  $(".products-container")
+  $(container)
     .append(fragment).children().hide();
 
-  $(".products-container").children().fadeIn("fast", function () {
+  $(container).children().fadeIn("fast", function () {
     $(".loader-container").hide();
   });
 }
+
 
 // //Función para mostrar los productos en el DOM con Vanilla JS
 // export const mostrarProductos = () =>{

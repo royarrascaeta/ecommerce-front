@@ -28,7 +28,7 @@
     @include media-up(md) {
       border-right: 0.1rem solid lightgray;
       border-bottom: unset;
-      min-height: 100vh;
+      min-height: fill;
     }
 
     select {

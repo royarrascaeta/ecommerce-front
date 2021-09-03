@@ -12,7 +12,7 @@ const $carritoSubtotal = document.getElementById("subtotal");
 const $btnEnvio = document.getElementById("btn-envio");
 const $totalEnvio = document.getElementById("totalEnvio");
 const $carritoTotal = document.getElementById("total");
-const $btnVolver = document.querySelector("#btn-volver");
+const $btnVolver = document.querySelectorAll("#btn-volver");
 const $btnBorrar = document.querySelector("#btn-borrar");
 const $btnComprar = document.querySelector("#btn-comprar");
 const $fragment = document.createDocumentFragment();
@@ -27,12 +27,13 @@ export function mostrarCarrito(target){
     $carritoMessage.style.display = "none";
   }else{
     $carritoTabla.style.display = "none";
+    $carritoMessage.style.display = "block";
   }
 
   carrito1.productos.forEach(producto => {
-    $templateCarrito.querySelector("img").src = producto.imagen;
+    $templateCarrito.querySelector("img").src = producto.imagen[0];
     $templateCarrito.querySelector("img").alt = producto.nombre;
-    $templateCarrito.querySelectorAll(".producto div")[1].textContent = producto.nombre;
+    $templateCarrito.querySelectorAll(".producto div")[1].innerHTML = `<a href="producto.html?id=${producto.id}">${producto.nombre}</a>`;
     $templateCarrito.querySelectorAll(".producto div")[2].textContent = `$${producto.precio}`;
     $templateCarrito.querySelector("span").textContent = producto.cantidad;
     $templateCarrito.querySelectorAll(".producto div")[4].textContent = `$${producto.cantidad * producto.precio}`;
@@ -75,51 +76,6 @@ export function mostrarCarrito(target){
   }  
 }
 
-//Botones cantidad
-  $carritoProductos.addEventListener("click", (e)=>{
-    if(e.target.textContent === "-"){
-      let id = e.target.dataset.id;
-      let producto = carrito1.productos.find(producto => producto.id === parseInt(id))
-
-      if(producto.cantidad != 1){
-        producto.cantidad--
-        carrito1.calcularCantidad();
-        mostrarCarrito();
-      }else{
-        carrito1.productos = carrito1.productos.filter(product => product.id != id)
-        carrito1.calcularCantidad();
-        mostrarCarrito();
-      }
-
-    }
-
-    if(e.target.textContent === "+"){
-      let id = e.target.dataset.id;
-      let producto = carrito1.productos.find(producto => producto.id === parseInt(id))
-      producto.cantidad++
-
-      mostrarCarrito();
-    }
-  })
-
-//Añadiendo evento a los botones
-$btnEnvio.addEventListener("click",()=>{
-  calcularEnvio();
-})
-
-$btnBorrar.addEventListener("click",()=>{
-  limpiarCarrito();
-})
-
-$btnVolver.addEventListener("click",()=>{
-  if(location.pathname === "/carrito.html"){
-    location.href = "index.html";
-  }else{
-    cerrarModal();
-  }
-})
-
-
 //Función para calcular el envío, ejecuta el método del constructor y luego oculta el botón. Finalmente muestra el total con la suma del subtotal + envío
 export async function calcularEnvio(){
 
@@ -152,3 +108,60 @@ export function limpiarCarrito(){
     }
   })
 }
+
+//Funcion para actualizar indicador de cantidad en carrito flotante y menu
+export function indicadorCarrito(){
+  $(".carrito-span").each((i, span) => {
+      span.innerHTML = carrito1.cantidadTotal;
+  });
+}
+
+//Eventos de botones de aumentar y reducir cantidad
+$carritoProductos.addEventListener("click", (e)=>{
+  if(e.target.textContent === "-"){
+    let id = e.target.dataset.id;
+    let producto = carrito1.productos.find(producto => producto.id === parseInt(id))
+    
+    
+    if(producto.cantidad > 1){
+      producto.cantidad--
+      carrito1.calcularCantidad();
+      mostrarCarrito();
+      indicadorCarrito();
+    }else{
+      carrito1.productos = carrito1.productos.filter(product => product.id != id)
+      carrito1.calcularCantidad();
+      mostrarCarrito();
+      indicadorCarrito();
+    }
+
+  }
+
+  if(e.target.textContent === "+"){
+    let id = e.target.dataset.id;
+    let producto = carrito1.productos.find(producto => producto.id === parseInt(id))
+    producto.cantidad++
+
+    carrito1.calcularCantidad();
+    mostrarCarrito();
+  }
+})
+
+//Eventos de botones envio, limpiar y volver
+$btnEnvio.addEventListener("click",()=>{
+  calcularEnvio();
+})
+
+$btnBorrar.addEventListener("click",()=>{
+  limpiarCarrito();
+})
+
+$btnVolver.forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    if(document.body.dataset.section === "carrito" || document.body.dataset.section === "producto"){
+      location.href = "index.html";
+    }else{
+      cerrarModal();
+    }
+  })
+})
