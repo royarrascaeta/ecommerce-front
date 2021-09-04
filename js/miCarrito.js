@@ -5,6 +5,7 @@ import { cerrarModal } from "./modal.js";
 export const carrito1 = new Carrito();
 
 //Variables del DOM para usar en las funciones de abajo
+const $containerCarrito = document.querySelector(".container-carrito");
 const $carritoTabla = document.querySelector(".carrito-container .carrito-tabla");
 const $carritoMessage = document.querySelector(".carrito-container .message");
 const $carritoProductos = document.querySelector(".carrito-container .carrito-productos");
@@ -23,22 +24,30 @@ const $templateCarrito = document.getElementById("template-carrito").content;
 export function mostrarCarrito(target){
   //Si no hay productos en el carrito se muestra un mensaje que invita a añadir productos al carrito
   if(carrito1.cantidadTotal > 0){
+    if($containerCarrito){
+      $containerCarrito.style.justifyContent = "start";
+    }
     $carritoTabla.style.display = "grid";
     $carritoMessage.style.display = "none";
   }else{
+    if($containerCarrito){
+      $containerCarrito.style.justifyContent = "center";
+    }
     $carritoTabla.style.display = "none";
     $carritoMessage.style.display = "block";
   }
 
   carrito1.productos.forEach(producto => {
     $templateCarrito.querySelector("img").src = producto.imagen[0];
-    $templateCarrito.querySelector("img").alt = producto.nombre;
-    $templateCarrito.querySelectorAll(".producto div")[1].innerHTML = `<a href="producto.html?id=${producto.id}">${producto.nombre}</a>`;
+    $templateCarrito.querySelector("img").alt = `${producto.nombre}`;
+    $templateCarrito.querySelectorAll(".producto div")[1].innerHTML = `<a href="producto.html?id=${producto.id}">${producto.nombre} ${producto.color}</a>&nbsp; - Talle ${producto.talle}`;
     $templateCarrito.querySelectorAll(".producto div")[2].textContent = `$${producto.precio}`;
     $templateCarrito.querySelector("span").textContent = producto.cantidad;
     $templateCarrito.querySelectorAll(".producto div")[4].textContent = `$${producto.cantidad * producto.precio}`;
     $templateCarrito.querySelectorAll(".boton-cantidad")[0].dataset.id = producto.id;
+    $templateCarrito.querySelectorAll(".boton-cantidad")[0].dataset.talle = producto.talle;
     $templateCarrito.querySelectorAll(".boton-cantidad")[1].dataset.id = producto.id;
+    $templateCarrito.querySelectorAll(".boton-cantidad")[1].dataset.talle = producto.talle;
 
     const clone = $templateCarrito.cloneNode(true);
 
@@ -118,30 +127,30 @@ export function indicadorCarrito(){
 
 //Eventos de botones de aumentar y reducir cantidad
 $carritoProductos.addEventListener("click", (e)=>{
+  let id = e.target.dataset.id;
+  let talle = e.target.dataset.talle;
+  let producto = carrito1.productos.find(producto => producto.id === parseInt(id) && producto.talle === talle);
+
+   //Boton restar cantidad
   if(e.target.textContent === "-"){
-    let id = e.target.dataset.id;
-    let producto = carrito1.productos.find(producto => producto.id === parseInt(id))
-    
-    
+   
     if(producto.cantidad > 1){
       producto.cantidad--
       carrito1.calcularCantidad();
       mostrarCarrito();
       indicadorCarrito();
     }else{
-      carrito1.productos = carrito1.productos.filter(product => product.id != id)
+      carrito1.productos = carrito1.productos.filter(product => product.id != id || product.talle != talle);
       carrito1.calcularCantidad();
       mostrarCarrito();
       indicadorCarrito();
     }
-
+    
   }
-
+  
+  //Boton sumar cantidad
   if(e.target.textContent === "+"){
-    let id = e.target.dataset.id;
-    let producto = carrito1.productos.find(producto => producto.id === parseInt(id))
     producto.cantidad++
-
     carrito1.calcularCantidad();
     mostrarCarrito();
   }

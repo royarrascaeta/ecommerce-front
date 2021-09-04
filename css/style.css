@@ -333,16 +333,16 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 main .container {
   width: 100%;
-  min-height: calc(100vh - 5rem);
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -357,7 +357,8 @@ main .container {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 3rem;
+  margin: 3rem auto;
+  margin-bottom: 0;
   padding: 0.5rem;
 }
 @media screen and (min-width: 768px) {
@@ -599,6 +600,12 @@ footer .container {
 .product-card:hover > .img-container::after {
   opacity: 0.5;
 }
+.product-card:hover > .img-container img {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: all ease-in-out 0.4s;
+  transition: all ease-in-out 0.4s;
+}
 .product-card .img-container {
   position: relative;
   width: 100%;
@@ -630,6 +637,12 @@ footer .container {
      object-fit: cover;
   -o-object-position: top;
      object-position: top;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: -webkit-transform ease-in-out 0.4s;
+  transition: -webkit-transform ease-in-out 0.4s;
+  transition: transform ease-in-out 0.4s;
+  transition: transform ease-in-out 0.4s, -webkit-transform ease-in-out 0.4s;
 }
 .product-card h3 {
   margin-top: 0.5rem;
@@ -678,6 +691,14 @@ footer .container {
   font-family: "Lato", sans-serif;
   font-size: 1.6rem;
   text-align: center;
+}
+
+.container-carrito {
+  position: absolute !important;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .carrito-container {

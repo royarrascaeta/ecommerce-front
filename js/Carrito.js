@@ -9,15 +9,16 @@ export class Carrito{
     this.flagEnvio = false;
   }
 
-  agregarProducto(producto, cantidad){
+  agregarProducto(producto){
     //Creo una variable y mediante findIndex determino la ubicación del producto elegido, para averiguar si ya existe en el arreglo productos o no
-    let indice = this.productos.findIndex(el=>el.nombre == producto.nombre);
+    let talle = Object.keys(producto.stock)[0];
+    let indice = this.productos.findIndex(el=>el.nombre == producto.nombre && el.talle == talle);
 
     //Si el producto existe, aumento la propiedad 'cantidad', caso contrario añado el nuevo producto al arreglo
     if(indice != -1){
-      this.productos[indice].cantidad += cantidad
+      this.productos[indice].cantidad += producto.stock[talle];
     }else{
-      this.productos.push({"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "precio": producto.precio, "cantidad":cantidad});
+      this.productos.push({"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "color": producto.color, "precio": producto.precio, "talle": talle, "cantidad":producto.stock[talle]});
     }
 
     //Ejecuto la función calcularCantidad() para que se actualice el valor de cantidadTotal

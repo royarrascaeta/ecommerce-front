@@ -2,13 +2,16 @@ import { carrito1, mostrarCarrito, indicadorCarrito } from "./miCarrito.js";
 
 //Clase constructora de productos
 export class Product{
-  constructor(id, nombre, categoria, precio, imagen){
+  constructor(id, nombre, categoria, precio, imagen, color, descripcion, stock){
     this.id = id;
     this.nombre = nombre;
     this.categoria = categoria;
     this.iva = 0.21;
     this.precio = (precio + precio * this.iva).toFixed(0);
     this.imagen = imagen;
+    this.color = color;
+    this.descripcion = descripcion;
+    this.stock = stock;
   }
 
   //Funcion para mostrar card de producto en el DOM
@@ -16,7 +19,7 @@ export class Product{
     const $templateCard = document.getElementById("template-card").content;
     $templateCard.querySelector("img").src = this.imagen[0];
     $templateCard.querySelector("img").alt = this.nombre;
-    $templateCard.querySelector("h3").innerText = this.nombre;
+    $templateCard.querySelector("h3").innerText = `${this.nombre} ${this.color}`;
     $templateCard.querySelector(".precio").innerText = `$${this.precio}`;
         
     const clone = $templateCard.cloneNode(true)
@@ -29,12 +32,11 @@ export class Product{
   }
 
   //Funcion al hacer click en boton Agregar al carrito
-  agregarAlCarrito(e, producto, input){
+  agregarAlCarrito(e, producto){
     let $message = $(".message-float");
 
     //Agregamos el producto al carrito con la cantidad indicada en el input, luego reseteamos el input
-    carrito1.agregarProducto(producto, parseInt(input.value));
-    input.value = 1;
+    carrito1.agregarProducto(producto);
 
     //Actualizamos indicador de cantidad en boton flotante del carrito e indicador de cantidad en menú
     indicadorCarrito();

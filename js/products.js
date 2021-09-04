@@ -16,7 +16,7 @@ export function cargarProductos(callback) {
       const db = respuesta;
 
       for (let product of db) {
-        productos.push(new Product(product.id, product.nombre, product.categoria, product.precio, product.imagen))
+        productos.push(new Product(product.id, product.nombre, product.categoria, product.precio, product.imagen, product.color, product.descripcion, product.stock))
       }
     }
   }).done(callback)

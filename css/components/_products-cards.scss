@@ -32,6 +32,11 @@
     opacity: 0.5;
   }
 
+  &:hover > .img-container img {
+    transform: scale(1.1);
+    transition: all ease-in-out 0.4s;
+  }
+
   .img-container {
     position: relative;
     width: 100%;
@@ -61,6 +66,8 @@
       width: 100%;
       object-fit: cover;
       object-position: top;
+      transform: scale(1);
+      transition: transform ease-in-out 0.4s;
     }
   }
 

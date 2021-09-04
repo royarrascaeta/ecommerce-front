@@ -23,14 +23,48 @@ document.addEventListener("DOMContentLoaded", ()=>{
     if(document.body.dataset.section === "producto"){
       const id = parseInt(location.search.split("=")[1]);
       const producto = productos.find(producto=> producto.id === id)
+      const talles = Object.keys(producto.stock);
       const $productCarrito = document.querySelector(".product-carrito");
       const $carrouselContainer = document.querySelector(".carrousel-container");
       const $btnComprar = document.querySelector(".botones .boton-principal");
+      const $inputTalles = document.getElementById("select-talles");
       const $inputCantidad = document.getElementById("select-cantidad");
 
       $productCarrito.querySelector("h2").textContent = producto.nombre;
       $productCarrito.querySelector("h3").textContent = "$"+ producto.precio;
+      $productCarrito.querySelector("p").textContent = producto.descripcion;
 
+      //Talle
+      //Mostrar dinamicamente los talles con stock disponible
+      for(let talle of talles){
+        if(producto.stock[talle] != 0){
+          $inputTalles.innerHTML += `<option value="${talle}">${talle}</option>`
+        }
+      }
+
+      //Añadiendo evento
+      $inputTalles.addEventListener("change", (e)=>{
+        let talleElegido = e.target.value;
+        
+        if(talleElegido != ""){
+          //Cantidad
+          //Mostrando dinamicamente la cantidad disponible
+          $inputTalles.options[0].style.display = "none";
+          $inputCantidad.disabled = false;
+          $inputCantidad.innerHTML = "";
+
+          let cantidad = producto.stock[talleElegido];
+
+          for(let i = 1; i <= cantidad; i++){
+            $inputCantidad.innerHTML += `<option value="${i}">${i}</option>`
+          }
+        }else{
+          $inputCantidad.disabled = true;
+          $inputCantidad.innerHTML = `<option value="">Elige primero el talle</option>`;
+        }
+      })
+
+      //Imagen
       for(let imagen of producto.imagen){
         $carrouselContainer.innerHTML += `<div><img src="${imagen}" alt="" ></div>`
       }
@@ -39,7 +73,17 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
       //Click agregar al carrito
       $btnComprar.addEventListener("click",(e)=>{
-        producto.agregarAlCarrito(e, producto, $inputCantidad);
+        let talle = $inputTalles.value;
+        let cantidad = $inputCantidad.value;
+        let productoElegido = {...producto}
+        productoElegido.stock = {};
+        productoElegido.stock[talle] = parseInt(cantidad);
+
+        producto.agregarAlCarrito(e, productoElegido);
+        $inputTalles.options[0].style.display = "block";
+        $inputTalles.options[0].selected = true;
+        $inputCantidad.disabled = true;
+        $inputCantidad.innerHTML = `<option value="">Elige primero el talle</option>`;
       })
 
       //Productos relacionados

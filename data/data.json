@@ -1,149 +1,370 @@
 [
   {
     "id": 1,
-    "nombre": "Buzo Brave",
+    "nombre": "Buzo B",
     "categoria": "Buzos",
     "precio": 1700,
-    "imagen": ["assets/products/buzo-brave.jpeg","assets/products/buzo-brave-2.jpeg"]
+    "imagen": ["assets/products/buzo-b-blanco.jpeg","assets/products/buzo-b-blanco-2.jpeg"],
+    "color": "Blanco",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 0,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 2,
-    "nombre": "Camisa Mao",
-    "categoria": "Camisas",
-    "precio": 1800,
-    "imagen": ["assets/products/camisa-mao.jpeg"]
+    "nombre": "Buzo B",
+    "categoria": "Buzos",
+    "precio": 1700,
+    "imagen": ["assets/products/buzo-b-negro.jpeg","assets/products/buzo-b-negro-2.jpeg"],
+    "color": "Negro",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 3,
-    "nombre": "Jeans Pirlo",
-    "categoria": "Jeans",
-    "precio": 3500,
-    "imagen":["assets/products/jeans-pirlo.jpeg"]
+    "nombre": "Camisa Mao",
+    "categoria": "Camisas",
+    "precio": 1800,
+    "imagen": ["assets/products/camisa-mao-azul.jpeg","assets/products/camisa-mao-azul-2.jpeg"],
+    "color": "Azul",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 4,
-    "nombre": "Campera Jackson",
-    "categoria": "Camperas",
-    "precio": 5000,
-    "imagen": ["assets/products/campera-jackson.jpeg"]
+    "nombre": "Camisa Mao",
+    "categoria": "Camisas",
+    "precio": 1800,
+    "imagen": ["assets/products/camisa-mao-verde.jpeg","assets/products/camisa-mao-verde-2.jpeg"],
+    "color": "Verde",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 5,
-    "nombre": "Remera Rody",
-    "categoria": "Remeras",
-    "precio": 1785,
-    "imagen": ["assets/products/remera-rody.jpeg"]
+    "nombre": "Jeans Pirlo",
+    "categoria": "Jeans",
+    "precio": 3500,
+    "imagen":["assets/products/jeans-pirlo.jpeg"],
+    "color": "Azul",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 6,
-    "nombre": "Gorra BT",
-    "categoria": "Accesorios",
-    "precio": 1800,
-    "imagen": ["assets/products/accesorios-gorra-bt.jpeg"]
+    "nombre": "Campera Jackson",
+    "categoria": "Camperas",
+    "precio": 5000,
+    "imagen": ["assets/products/campera-jackson.jpeg"],
+    "color": "Azul",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 7,
-    "nombre": "Remera Derek",
+    "nombre": "Remera Rody",
     "categoria": "Remeras",
-    "precio": 1615,
-    "imagen": ["assets/products/remera-derek.jpeg"]
+    "precio": 1785,
+    "imagen": ["assets/products/remera-rody.jpeg"],
+    "color": "Gris",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 8,
-    "nombre": "Chomba Flame",
-    "categoria": "Remeras",
-    "precio": 1600,
-    "imagen": ["assets/products/remera-flame.jpeg"]
+    "nombre": "Gorra BT",
+    "categoria": "Accesorios",
+    "precio": 1800,
+    "imagen": ["assets/products/accesorios-gorra-bt.jpeg"],
+    "color": "Verde",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 9,
-    "nombre": "Camisa Rally",
-    "categoria": "Camisas",
-    "precio": 3000,
-    "imagen": ["assets/products/camisa-rally.jpeg"]
+    "nombre": "Remera Derek",
+    "categoria": "Remeras",
+    "precio": 1615,
+    "imagen": ["assets/products/remera-derek.jpeg"],
+    "color": "Combinada",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 10,
-    "nombre": "Camisa Lobo",
-    "categoria": "Camisas",
-    "precio": 3800,
-    "imagen": ["assets/products/camisa-lobo.jpeg"]
+    "nombre": "Chomba Flame",
+    "categoria": "Remeras",
+    "precio": 1600,
+    "imagen": ["assets/products/remera-flame.jpeg"],
+    "color": "Bordó",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 11,
-    "nombre": "Camisa Jeans Mill",
+    "nombre": "Camisa Rally",
     "categoria": "Camisas",
-    "precio": 3200,
-    "imagen": ["assets/products/camisa-jeans-mill.jpeg"]
+    "precio": 3000,
+    "imagen": ["assets/products/camisa-rally.jpeg"],
+    "color": "Combinada",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 12,
-    "nombre": "Jeans Taylor",
-    "categoria": "Jeans",
-    "precio": 3000,
-    "imagen": ["assets/products/jeans-taylor.jpeg"]
+    "nombre": "Camisa Lobo",
+    "categoria": "Camisas",
+    "precio": 3800,
+    "imagen": ["assets/products/camisa-lobo.jpeg"],
+    "color": "Jeans",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 13,
-    "nombre": "Jeans Mark",
-    "categoria": "Jeans",
-    "precio": 3100,
-    "imagen": ["assets/products/jeans-mark.jpeg"]
+    "nombre": "Camisa Mill",
+    "categoria": "Camisas",
+    "precio": 3200,
+    "imagen": ["assets/products/camisa-mill.jpeg"],
+    "color": "Jeans",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 14,
-    "nombre": "Campera Still",
-    "categoria": "Camperas",
-    "precio": 4000,
-    "imagen": ["assets/products/campera-still.jpeg"]
+    "nombre": "Jeans Taylor",
+    "categoria": "Jeans",
+    "precio": 3000,
+    "imagen": ["assets/products/jeans-taylor.jpeg"],
+    "color": "Gris",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 15,
-    "nombre": "Campera Pride",
-    "categoria": "Camperas",
-    "precio": 5000,
-    "imagen": ["assets/products/campera-pride.jpeg"]
+    "nombre": "Jeans Mark",
+    "categoria": "Jeans",
+    "precio": 3100,
+    "imagen": ["assets/products/jeans-mark.jpeg"],
+    "color": "Azul",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 16,
-    "nombre": "Campera Soul",
+    "nombre": "Campera Still",
     "categoria": "Camperas",
-    "precio": 3000,
-    "imagen": ["assets/products/campera-soul.jpeg"]
+    "precio": 4000,
+    "imagen": ["assets/products/campera-still.jpeg"],
+    "color": "Negra",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 17,
-    "nombre": "Campera Gamu",
+    "nombre": "Campera Pride",
     "categoria": "Camperas",
-    "precio": 3800,
-    "imagen": ["assets/products/campera-gamu.jpeg"]
-  },
-  {
-    "id": 17,
-    "nombre": "Buzo Maui",
-    "categoria": "Buzos",
-    "precio": 1500,
-    "imagen": ["assets/products/buzo-maui.jpeg"]
-  },
-  {
-    "id": 17,
-    "nombre": "Buzo Fundation",
-    "categoria": "Buzos",
-    "precio": 2500,
-    "imagen": ["assets/products/buzo-fundation.jpeg"]
-  },
-  {
-    "id": 17,
-    "nombre": "Gorro IDR",
-    "categoria": "Accesorios",
-    "precio": 500,
-    "imagen": ["assets/products/accesorios-gorro-idr.jpeg"]
+    "precio": 5000,
+    "imagen": ["assets/products/campera-pride.jpeg"],
+    "color": "Verde",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   },
   {
     "id": 18,
+    "nombre": "Campera Soul",
+    "categoria": "Camperas",
+    "precio": 3000,
+    "imagen": ["assets/products/campera-soul.jpeg"],
+    "color": "Combinada",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
+  },
+  {
+    "id": 19,
+    "nombre": "Campera Gamu",
+    "categoria": "Camperas",
+    "precio": 3800,
+    "imagen": ["assets/products/campera-gamu.jpeg"],
+    "color": "Marrón",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
+  },
+  {
+    "id": 20,
+    "nombre": "Buzo Maui",
+    "categoria": "Buzos",
+    "precio": 1500,
+    "imagen": ["assets/products/buzo-maui.jpeg"],
+    "color": "Amarillo",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
+  },
+  {
+    "id": 21,
+    "nombre": "Buzo Fundation",
+    "categoria": "Buzos",
+    "precio": 2500,
+    "imagen": ["assets/products/buzo-fundation.jpeg"],
+    "color": "Combinada",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
+  },
+  {
+    "id": 22,
+    "nombre": "Gorro IDR",
+    "categoria": "Accesorios",
+    "precio": 500,
+    "imagen": ["assets/products/accesorios-gorro-idr.jpeg"],
+    "color": "Marrón",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
+  },
+  {
+    "id": 23,
     "nombre": "Llavero Rocker",
     "categoria": "Accesorios",
     "precio": 200,
-    "imagen": ["assets/products/accesorios-llavero-rocker.jpeg"]
+    "imagen": ["assets/products/accesorios-llavero-rocker.jpeg"],
+    "color": "Gris",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
+    "stock": {
+      "XS": 3,
+      "S": 2,
+      "M": 5,
+      "XL": 2,
+      "XXL": 1
+    }
   }
 ]
