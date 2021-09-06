@@ -98,32 +98,80 @@
 
   .product-carrito {
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
 
+    //Nombre
     h2 {
       margin-bottom: 1rem;
+      font-size: 1.2rem;
     }
 
+    //Precio
     h3 {
       opacity: 0.8;
+      font-size: 1.4rem;
     }
 
+    //Subtitulo
     h4 {
       margin-bottom: 1rem;
     }
 
+    //Descripcion
     p {
       margin-bottom: 1rem;
+      font-size: 0.8rem;
       text-align: justify;
+
+      @include media-up(md) {
+        font-size: 1rem;
+      }
     }
 
     .opciones {
       display: grid;
       grid-template-columns: 1fr;
-      margin-top: 1rem;
       gap: 1rem;
+      padding-top: 1rem;
 
       @include media-up(md) {
         grid-template-columns: repeat(3, 1fr);
+        margin-top: 1rem;
+        padding-top: 0rem;
+      }
+
+      h4 {
+        margin: 0;
+      }
+
+      .colores {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        a {
+          margin: 0rem 0.2rem;
+          width: 4rem;
+          height: 4rem;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top;
+          margin: 0.2rem;
+
+          &:first-child {
+            margin-left: 0rem;
+          }
+
+          &:last-child {
+            margin-right: 0rem;
+          }
+        }
       }
 
       label {
@@ -135,14 +183,11 @@
         margin-top: 0.5rem;
         padding: 0.5rem;
         width: 100%;
-
-        @include media-up(md) {
-          width: 80%;
-        }
       }
     }
 
     .botones {
+      grid-column: span 2;
       margin-top: 1rem;
       display: grid;
       grid-template-columns: 1fr;
@@ -161,9 +206,12 @@
   }
 
   .product-others {
-    grid-column: span 2;
     padding: 1rem;
     width: 100%;
+
+    @include media-up(md) {
+      grid-column: span 2;
+    }
 
     h3 {
       text-align: center;

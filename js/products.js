@@ -1,4 +1,5 @@
 // import { mostrarCarrito, carrito1 } from "./miCarrito.js";
+import { slider } from "./slider.js";
 import { Product } from "./Product.js";
 import { mostrarCategorias, ordenarProductos } from "./ordenaryFiltrar.js";
 import { mostrarPaginacion } from "./paginacion.js";
@@ -49,6 +50,88 @@ export function mostrarProductos(productosSel = productos, start = 0, container 
   $(container).children().fadeIn("fast", function () {
     $(".loader-container").hide();
   });
+}
+
+export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
+  const producto = productos.find(producto=> producto.id === id)
+  const talles = Object.keys(producto.stock);
+  const $productCarrito = document.querySelector(".product-carrito");
+  const $carrouselContainer = document.querySelector(".carrousel-container");
+  const $btnComprar = document.querySelector(".botones .boton-principal");
+  const $colores = document.querySelector(".opciones .colores");
+  const $inputTalles = document.getElementById("select-talles");
+  const $inputCantidad = document.getElementById("select-cantidad");
+
+  $productCarrito.querySelector("h2").textContent = `${producto.nombre} ${producto.color}`;
+  $productCarrito.querySelector("h3").textContent = "$"+ producto.precio;
+  $productCarrito.querySelector("p").textContent = producto.descripcion;
+
+
+  //Colores
+  let mismoColor = productos.filter(product => product.nombre === producto.nombre);
+
+  for(let producto of mismoColor){
+    $colores.innerHTML += `<a class="hover" href="producto.html?id=${producto.id}"><img src="${producto.imagen[0]}" alt="${producto.nombre}"></a>`;
+  }
+
+
+  //Talle
+  //Mostrar dinamicamente los talles con stock disponible
+  for(let talle of talles){
+    if(producto.stock[talle] != 0){
+      $inputTalles.innerHTML += `<option value="${talle}">${talle}</option>`
+    }
+  }
+
+  //Añadiendo evento
+  $inputTalles.addEventListener("change", (e)=>{
+    let talleElegido = e.target.value;
+    
+    if(talleElegido != ""){
+      //Cantidad
+      //Mostrando dinamicamente la cantidad disponible
+      $inputTalles.options[0].style.display = "none";
+      $inputCantidad.disabled = false;
+      $inputCantidad.innerHTML = "";
+
+      let cantidad = producto.stock[talleElegido];
+
+      for(let i = 1; i <= cantidad; i++){
+        $inputCantidad.innerHTML += `<option value="${i}">${i}</option>`
+      }
+    }else{
+      $inputCantidad.disabled = true;
+      $inputCantidad.innerHTML = `<option value="">Elige primero el talle</option>`;
+    }
+  })
+
+  //Imagen
+  for(let imagen of producto.imagen){
+    $carrouselContainer.innerHTML += `<div><img src="${imagen}" alt="" ></div>`
+  }
+
+  slider();
+
+  //Click agregar al carrito
+  $btnComprar.addEventListener("click",(e)=>{
+    let talle = $inputTalles.value;
+    let cantidad = $inputCantidad.value;
+    let productoElegido = {...producto}
+    productoElegido.stock = {};
+    productoElegido.stock[talle] = parseInt(cantidad);
+
+    producto.agregarAlCarrito(e, productoElegido);
+    $inputTalles.options[0].style.display = "block";
+    $inputTalles.options[0].selected = true;
+    $inputCantidad.disabled = true;
+    $inputCantidad.innerHTML = `<option value="">Elige primero el talle</option>`;
+  })
+
+  //Productos relacionados
+  const $productosRelacionados = document.querySelector(".products-container");
+  const relacionados = productos.filter(product => product.categoria === producto.categoria && product.id != producto.id);
+
+  mostrarProductos(relacionados, 0, $productosRelacionados)
 }
 
 

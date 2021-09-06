@@ -175,7 +175,7 @@
 
     div:nth-child(2) {
       //Nombre
-      grid-column: 2/4;
+      grid-column: 2/5;
       font-weight: bold;
 
       @include media-up(md) {
