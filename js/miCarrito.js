@@ -37,10 +37,11 @@ export function mostrarCarrito(target){
     $carritoMessage.style.display = "block";
   }
 
+  //Mostrar carrito en pantalla
   carrito1.productos.forEach(producto => {
     $templateCarrito.querySelector("img").src = producto.imagen[0];
     $templateCarrito.querySelector("img").alt = `${producto.nombre}`;
-    $templateCarrito.querySelectorAll(".producto div")[1].innerHTML = `<a href="producto.html?id=${producto.id}">${producto.nombre} ${producto.color}</a>&nbsp; - Talle ${producto.talle}`;
+    $templateCarrito.querySelectorAll(".producto div")[1].innerHTML = `<a href="producto.html?id=${producto.id}">${producto.nombre} ${producto.color} - Talle ${producto.talle}</a>`;
     $templateCarrito.querySelectorAll(".producto div")[2].textContent = `$${producto.precio}`;
     $templateCarrito.querySelector("span").textContent = producto.cantidad;
     $templateCarrito.querySelectorAll(".producto div")[4].textContent = `$${producto.cantidad * producto.precio}`;
@@ -49,9 +50,20 @@ export function mostrarCarrito(target){
     $templateCarrito.querySelectorAll(".boton-cantidad")[1].dataset.id = producto.id;
     $templateCarrito.querySelectorAll(".boton-cantidad")[1].dataset.talle = producto.talle;
 
+    //Según la cantidad disponible, habilitamos o deshabilitamos el boton
+    if(producto.cantidadDisponible === producto.cantidad){
+      $templateCarrito.querySelectorAll(".boton-cantidad")[1].style.opacity = 0.5;
+      $templateCarrito.querySelectorAll(".boton-cantidad")[1].disabled = true;
+      $templateCarrito.querySelectorAll(".boton-cantidad")[1].style.cursor = "default";
+    }else{
+      $templateCarrito.querySelectorAll(".boton-cantidad")[1].style.opacity = 1;
+      $templateCarrito.querySelectorAll(".boton-cantidad")[1].disabled = false;
+      $templateCarrito.querySelectorAll(".boton-cantidad")[1].style.cursor = "pointer";
+    }
+
     const clone = $templateCarrito.cloneNode(true);
 
-    $fragment.appendChild(clone)
+    $fragment.appendChild(clone);
   })
 
   //Reinicio el cuerpo del div contenedor de productos por si hubiera agregado algún producto al carrito, y luego inserto el fragment
@@ -150,9 +162,19 @@ $carritoProductos.addEventListener("click", (e)=>{
   
   //Boton sumar cantidad
   if(e.target.textContent === "+"){
-    producto.cantidad++
-    carrito1.calcularCantidad();
-    mostrarCarrito();
+    if(producto.cantidad < producto.cantidadDisponible){
+      producto.cantidad++
+      carrito1.calcularCantidad();
+      mostrarCarrito();
+    }else if(producto.cantidad - 1 == producto.cantidadDisponible){
+      producto.cantidad++
+      carrito1.calcularCantidad();
+      mostrarCarrito();
+      console.log(e.target)
+      console.log("Ultimo en stock")
+    }else{
+      console.log("No queda stock")
+    }
   }
 })
 

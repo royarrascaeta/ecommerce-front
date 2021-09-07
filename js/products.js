@@ -1,8 +1,6 @@
 // import { mostrarCarrito, carrito1 } from "./miCarrito.js";
 import { slider } from "./slider.js";
 import { Product } from "./Product.js";
-import { mostrarCategorias, ordenarProductos } from "./ordenaryFiltrar.js";
-import { mostrarPaginacion } from "./paginacion.js";
 
 //Creo array vacío para cargar productos
 export const productos = [];
@@ -20,11 +18,12 @@ export function cargarProductos(callback) {
         productos.push(new Product(product.id, product.nombre, product.categoria, product.precio, product.imagen, product.color, product.descripcion, product.stock))
       }
     }
-  }).done(callback)
-    .fail(function () {
-      $(".products-container").append(`
-    <p style="width: 100%; text-align: center;">Error al cargar los productos</p>`)
-    })
+  })
+  .done(callback)
+  .fail(function () {
+    $(".products-container").append(`
+  <p style="width: 100%; text-align: center;">Error al cargar los productos</p>`)
+  })
 }
 
 
@@ -52,6 +51,8 @@ export function mostrarProductos(productosSel = productos, start = 0, container 
   });
 }
 
+
+//Funcion para mostrar los datos de un SOLO producto en el archivo producto.html
 export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   const producto = productos.find(producto=> producto.id === id)
   const talles = Object.keys(producto.stock);
@@ -61,11 +62,24 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   const $colores = document.querySelector(".opciones .colores");
   const $inputTalles = document.getElementById("select-talles");
   const $inputCantidad = document.getElementById("select-cantidad");
+  const $message = document.querySelector(".opciones .message");
+  let cantidadDisponible;
 
+  $colores.innerHTML = "";
+  $inputTalles.innerHTML = `<option value="">Selecciona el talle</option>`;
+  $inputCantidad.innerHTML = `<option value="">Elige primero el talle</option>`;
+
+  //Carrusel de imagenes
+  for(let imagen of producto.imagen){
+    $carrouselContainer.innerHTML += `<div><img src="${imagen}" alt="" ></div>`
+  }
+
+  slider();
+
+  //Nombre, precio y detalle del producto
   $productCarrito.querySelector("h2").textContent = `${producto.nombre} ${producto.color}`;
   $productCarrito.querySelector("h3").textContent = "$"+ producto.precio;
   $productCarrito.querySelector("p").textContent = producto.descripcion;
-
 
   //Colores
   let mismoColor = productos.filter(product => product.nombre === producto.nombre);
@@ -73,7 +87,6 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   for(let producto of mismoColor){
     $colores.innerHTML += `<a class="hover" href="producto.html?id=${producto.id}"><img src="${producto.imagen[0]}" alt="${producto.nombre}"></a>`;
   }
-
 
   //Talle
   //Mostrar dinamicamente los talles con stock disponible
@@ -83,13 +96,15 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
     }
   }
 
-  //Añadiendo evento
+  //Añadiendo evento al select
   $inputTalles.addEventListener("change", (e)=>{
+    e.preventDefault();
+    $($message).hide();
+
     let talleElegido = e.target.value;
-    
+
     if(talleElegido != ""){
-      //Cantidad
-      //Mostrando dinamicamente la cantidad disponible
+      //Cantidad: Mostrando dinámicamente la cantidad disponible
       $inputTalles.options[0].style.display = "none";
       $inputCantidad.disabled = false;
       $inputCantidad.innerHTML = "";
@@ -105,35 +120,52 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
     }
   })
 
-  //Imagen
-  for(let imagen of producto.imagen){
-    $carrouselContainer.innerHTML += `<div><img src="${imagen}" alt="" ></div>`
-  }
-
-  slider();
-
   //Click agregar al carrito
   $btnComprar.addEventListener("click",(e)=>{
+    e.preventDefault();
+
+    //Obtengo valores de los input
     let talle = $inputTalles.value;
     let cantidad = $inputCantidad.value;
+    //Creo una copia del producto de la base de datos, y modifico la propiedad stock para que solo tenga un objeto (con los valores talle y cantidad del input)
     let productoElegido = {...producto}
+    productoElegido.cantidadDisponible = parseInt(productoElegido.stock[talle]);
     productoElegido.stock = {};
     productoElegido.stock[talle] = parseInt(cantidad);
+    
 
-    producto.agregarAlCarrito(e, productoElegido);
-    $inputTalles.options[0].style.display = "block";
-    $inputTalles.options[0].selected = true;
-    $inputCantidad.disabled = true;
-    $inputCantidad.innerHTML = `<option value="">Elige primero el talle</option>`;
+    if($inputTalles.value !== ""){
+      producto.agregarAlCarrito(e, productoElegido);
+      $inputTalles.options[0].style.display = "block";
+      $inputTalles.options[0].selected = true;
+      $inputCantidad.disabled = true;
+      $inputCantidad.innerHTML = `<option value="">Elige primero el talle</option>`;
+    }else{
+      $inputTalles.focus();
+      $($message).fadeIn().delay(2000).fadeOut();
+    }
+
   })
 
   //Productos relacionados
-  const $productosRelacionados = document.querySelector(".products-container");
-  const relacionados = productos.filter(product => product.categoria === producto.categoria && product.id != producto.id);
+  const $relContainer = document.querySelector(".products-container");
+  const productosRel = productos.filter(product => product.categoria === producto.categoria && product.id != producto.id);
 
-  mostrarProductos(relacionados, 0, $productosRelacionados)
+  mostrarProductos(productosRel, 0, $relContainer)
 }
 
+
+//Funcion para reducir cantidad
+export function reducirStock(producto){
+  let id = producto.id;
+  let talle = producto.talle ? producto.talle : Object.keys(producto.stock);
+  let cantidad = producto.cantidad ? producto.cantidad : producto.stock[talle];
+  let productoTarget = productos.find(product => product.id === id);
+
+  console.log(id, talle, cantidad);
+
+  productoTarget.stock[talle] -= cantidad;
+}
 
 // //Función para mostrar los productos en el DOM con Vanilla JS
 // export const mostrarProductos = () =>{

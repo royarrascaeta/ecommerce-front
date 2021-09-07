@@ -1,3 +1,5 @@
+import { reducirStock, mostrarProducto } from "./products.js";
+
 //Clase constructora del carrito y sus métodos
 export class Carrito{
   constructor(){
@@ -18,8 +20,12 @@ export class Carrito{
     if(indice != -1){
       this.productos[indice].cantidad += producto.stock[talle];
     }else{
-      this.productos.push({"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "color": producto.color, "precio": producto.precio, "talle": talle, "cantidad":producto.stock[talle]});
+      this.productos.push({"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "color": producto.color, "precio": producto.precio, "talle": talle, "cantidad":producto.stock[talle], "cantidadDisponible":producto.cantidadDisponible});
     }
+
+    //Reducimos stock y actualizamos la pantalla
+    reducirStock(producto);
+    mostrarProducto(producto.id);
 
     //Ejecuto la función calcularCantidad() para que se actualice el valor de cantidadTotal
     this.calcularCantidad();

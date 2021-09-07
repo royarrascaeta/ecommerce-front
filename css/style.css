@@ -1027,10 +1027,10 @@ footer .container {
     display: grid !important;
     -ms-grid-columns: 2fr 3fr;
     grid-template-columns: 2fr 3fr;
-    -ms-grid-rows: minmax(-webkit-fit-content, 1fr) minmax(-webkit-fit-content, 1fr);
-    -ms-grid-rows: minmax(fit-content, 1fr) minmax(fit-content, 1fr);
-    grid-template-rows: minmax(-webkit-fit-content, 1fr) minmax(-webkit-fit-content, 1fr);
-    grid-template-rows: minmax(fit-content, 1fr) minmax(fit-content, 1fr);
+    -ms-grid-rows: minmax(400px, 1fr) minmax(-webkit-fit-content, 1fr);
+    -ms-grid-rows: minmax(400px, 1fr) minmax(fit-content, 1fr);
+    grid-template-rows: minmax(400px, 1fr) minmax(-webkit-fit-content, 1fr);
+    grid-template-rows: minmax(400px, 1fr) minmax(fit-content, 1fr);
     margin-top: 1rem !important;
   }
   .container-producto > *:nth-child(1) {
@@ -1172,8 +1172,7 @@ footer .container {
 }
 @media screen and (min-width: 768px) {
   .container-producto .product-carrito .opciones {
-    -ms-grid-columns: (1fr)[3];
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
     margin-top: 1rem;
     padding-top: 0rem;
   }
@@ -1186,16 +1185,16 @@ footer .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
 }
 .container-producto .product-carrito .opciones .colores a {
   margin: 0rem 0.2rem;
-  width: 4rem;
-  height: 4rem;
+  max-width: 4rem;
+  max-height: 4rem;
 }
 .container-producto .product-carrito .opciones .colores img {
   width: 100%;
@@ -1220,6 +1219,20 @@ footer .container {
   margin-top: 0.5rem;
   padding: 0.5rem;
   width: 100%;
+}
+.container-producto .product-carrito .opciones .message {
+  text-align: center;
+  font-size: 1rem;
+  display: none;
+  padding: 0.2rem;
+  opacity: 1;
+}
+@media screen and (min-width: 768px) {
+  .container-producto .product-carrito .opciones .message {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    grid-column: 1/4;
+  }
 }
 .container-producto .product-carrito .botones {
   -ms-grid-column-span: 2;

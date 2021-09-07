@@ -1,4 +1,4 @@
-import {productos, cargarProductos, mostrarProductos, mostrarProducto} from "./products.js";
+import {productos, cargarProductos, mostrarProductos, mostrarProducto, reducirStock} from "./products.js";
 import {mobileMenu} from "./mobilemenu.js";
 import {modal} from "./modal.js";
 import {carrito1, mostrarCarrito} from "./miCarrito.js";
@@ -10,24 +10,29 @@ document.addEventListener("DOMContentLoaded", ()=>{
   mobileMenu();
   cargarProductos(function(){
     //Callbacks
+    //Localstorage
+    actualizarLocalStorage();
+
     //Si estamos en la seccion index
     if(document.body.dataset.section === "index"){
       mostrarProductos();
       mostrarCategorias();
       mostrarPaginacion();
       ordenarProductos(productos);
+      modal();
     }
 
     //Si estamos en la seccion producto
     if(document.body.dataset.section === "producto"){
       mostrarProducto()
+      modal();
     }
   })
+});
 
-  if(document.body.dataset.section !== "carrito"){
-    modal();
-  }
 
+//Funcion localStorage
+function actualizarLocalStorage(){
   //Creamos variable en localStorage y actualizamos nuestro carrito tomando los valores almacenados en localStorage
   if(!localStorage.carritoLocal){
     localStorage.setItem("carritoLocal",JSON.stringify(carrito1));
@@ -38,6 +43,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
   carrito1.flagEnvio = carritoLocal.flagEnvio;
   carrito1.envio = carritoLocal.envio;
   carrito1.calcularCantidad();
+
+  //Actualizamos stock de productos
+  carrito1.productos.forEach(product => {
+    console.log(product)
+    reducirStock(product)
+    console.log(productos)
+  })
   
   //Actualizo y muestro el índice indicador de productos en el carrito
   const $carritoIndex = document.querySelectorAll(".carrito-span");
@@ -45,4 +57,4 @@ document.addEventListener("DOMContentLoaded", ()=>{
   
   //Imprimimos en pantalla los datos del carrito
   mostrarCarrito();
-});
+}

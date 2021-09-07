@@ -35,9 +35,9 @@ export class Product{
   agregarAlCarrito(e, producto){
     let $message = $(".message-float");
 
-    //Agregamos el producto al carrito con la cantidad indicada en el input, luego reseteamos el input
+    //Agregamos el producto al carrito
     carrito1.agregarProducto(producto);
-
+    
     //Actualizamos indicador de cantidad en boton flotante del carrito e indicador de cantidad en menú
     indicadorCarrito();
 
