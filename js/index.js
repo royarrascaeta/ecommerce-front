@@ -4,6 +4,7 @@ import {modal} from "./modal.js";
 import {carrito1, mostrarCarrito} from "./miCarrito.js";
 import {mostrarCategorias, ordenarProductos} from "./ordenaryFiltrar.js";
 import {mostrarPaginacion} from "./paginacion.js";
+import { buscador } from "./buscador.js";
 
 //Ejecuto los scripts necesarios a la carga del DOM
 document.addEventListener("DOMContentLoaded", ()=>{
@@ -18,6 +19,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
       mostrarCategorias();
       mostrarPaginacion();
       ordenarProductos(productos);
+      buscador();
       modal();
     }
 
@@ -45,9 +47,7 @@ function actualizarLocalStorage(){
 
   //Actualizamos stock de productos
   carrito1.productos.forEach(product => {
-    console.log(product)
     reducirStock(product)
-    console.log(productos)
   })
   
   //Actualizo y muestro el índice indicador de productos en el carrito

@@ -39,7 +39,14 @@
   <main>
     <div class="container container-shop">
       <h1>Productos Destacados</h1>
+      <h3 class="resultados">Mostrando: Todos los productos</h3>
       <aside class="filters">
+        <h3>Buscar</h3>
+        <div class=buscador>
+          <input type="text" name="buscador" id="buscador" placeholder="Buscar productos">
+          <i class="fas fa-search"></i>
+        </div>
+
         <label for="order">
           <h3>Ordenar</h3>
         </label>
@@ -92,8 +99,10 @@
       <span class="close"><i class="fas fa-times"></i></span>
       <h2>Mi Carrito</h2>
       <div class="message">
-        <p>Aún no tienes productos en tu carrito. <br>Añade productos haciendo click en el botón
-          "Agregar al carrito" junto a cada producto.</p>
+        <p>
+          Aún no tienes productos en tu carrito. <br>Añade productos haciendo click en el botón
+          "Agregar al carrito" junto a cada producto.
+        </p>
         <div>
           <button class="boton-principal hover" id="btn-volver">Seguir comprando</button>
         </div>

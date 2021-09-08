@@ -28,10 +28,17 @@ export function cargarProductos(callback) {
 
 
 //Funcion para mostrar los productos en el DOM con jQuery
-export function mostrarProductos(productosSel = productos, start = 0, container = ".products-container") {
+export function mostrarProductos(productosSel = productos, start = 0, container = ".products-container", titulo = "Mostrando: Todos los productos") {
   //Convierto a número el valor start
   start = parseInt(start);
 
+  //Cambiamos dinámicamente el título
+  const $h3 = document.querySelector("h3.resultados");
+  if($h3){
+    $h3.textContent = titulo;
+  }
+
+  //Vacío el contenedor y luego muestro productos
   $(container).empty().append(`
     <div class="loader-container">
       <img src="assets/loader.svg" alt="">
@@ -161,8 +168,6 @@ export function reducirStock(producto){
   let talle = producto.talle ? producto.talle : Object.keys(producto.stock);
   let cantidad = producto.cantidad ? producto.cantidad : producto.stock[talle];
   let productoTarget = productos.find(product => product.id === id);
-
-  console.log(id, talle, cantidad);
 
   productoTarget.stock[talle] -= cantidad;
 }

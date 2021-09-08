@@ -20,8 +20,8 @@ html {
 
 body {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
   overflow-x: hidden;
   background-color: #fff;
   color: #444;
