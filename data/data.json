@@ -120,11 +120,7 @@
     "color": "Verde",
     "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, quasi. Autem doloremque amet deserunt itaque maiores reiciendis minima fugit, quaerat molestiae! Iste molestias rerum quo aut neque animi quibusdam praesentium?",
     "stock": {
-      "XS": 3,
-      "S": 2,
-      "M": 5,
-      "XL": 2,
-      "XXL": 1
+      "T1": 6
     }
   },
   {

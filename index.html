@@ -21,7 +21,7 @@
     <div class="container">
       <div class="logo">Tienda</div>
       <div class="boton-menu">
-          <i class="fas fa-bars"></i>
+        <i class="fas fa-bars"></i>
       </div>
       <nav class="menu">
         <ul>
@@ -40,19 +40,21 @@
     <div class="container container-shop">
       <h1>Productos Destacados</h1>
       <aside class="filters">
-        <label for="order"><h3>Ordenar</h3></label>
+        <label for="order">
+          <h3>Ordenar</h3>
+        </label>
         <select name="order" id="order">
           <option value="default">Ordenar por:</option>
           <option value="pr-mintomax">Precio: Menor a Mayor</option>
           <option value="pr-maxtomin">Precio: Mayor a Menor</option>
         </select>
-        
+
         <h3 id="btn-categorias">Categorias <i class="fas fa-chevron-down"></i></h3>
         <ul>
           <!-- Acá se insertan dinámicamente las categorías -->
         </ul>
       </aside>
-      
+
       <div class="products-container">
         <div class="loader-container">
           <img src="assets/loader.svg" alt="">
@@ -90,8 +92,8 @@
       <span class="close"><i class="fas fa-times"></i></span>
       <h2>Mi Carrito</h2>
       <div class="message">
-        Aún no tienes productos en tu carrito. <br>Añade productos haciendo click en el botón
-        "Agregar al carrito" junto a cada producto.
+        <p>Aún no tienes productos en tu carrito. <br>Añade productos haciendo click en el botón
+          "Agregar al carrito" junto a cada producto.</p>
         <div>
           <button class="boton-principal hover" id="btn-volver">Seguir comprando</button>
         </div>
@@ -101,13 +103,14 @@
         <div class="carrito-detalle">
           <h3>Detalle de la compra:</h3>
           <div class="carrito-productos">
-          <!-- Acá se insertan dinámicamente los productos del carrito -->
+            <!-- Acá se insertan dinámicamente los productos del carrito -->
           </div>
           <div>
-            <button class="boton-principal-alt hover" id="btn-borrar"><i class="fas fa-trash-alt"></i>Vaciar Carrito</button>
+            <button class="boton-principal-alt hover" id="btn-borrar"><i class="fas fa-trash-alt"></i>Vaciar
+              Carrito</button>
           </div>
         </div>
-        
+
         <div class="carrito-totales">
           <h3>Detalle del Pago:</h3>
           <div>
@@ -128,7 +131,7 @@
             <div>Total:</div>
             <div id="total"></div>
           </div>
-          
+
           <div>
             <button class="boton-principal hover" id="btn-comprar">Finalizar Compra</button>
           </div>
@@ -155,15 +158,16 @@
   </template>
 
   <template id="template-carrito">
-      <div class="producto">
-        <div>
-          <img src="" alt="">
-        </div>
-        <div>Nombre producto</div>
-        <div>$Precio</div>
-        <div><button class="boton-principal boton-cantidad">-</button><span>Cantidad</span> <button class="boton-principal boton-cantidad">+</button></div>
-        <div>Subtotal</div>
+    <div class="producto">
+      <div>
+        <img src="" alt="">
       </div>
+      <div>Nombre producto</div>
+      <div>$Precio</div>
+      <div><button class="boton-principal boton-cantidad">-</button><span>Cantidad</span> <button
+          class="boton-principal boton-cantidad">+</button></div>
+      <div>Subtotal</div>
+    </div>
   </template>
   <!-- /TEMPLATES -->
 

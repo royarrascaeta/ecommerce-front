@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
   mobileMenu();
   cargarProductos(function(){
     //Callbacks
-    //Localstorage
     actualizarLocalStorage();
 
     //Si estamos en la seccion index
