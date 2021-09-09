@@ -32,6 +32,8 @@ export function mostrarProductos(productosSel = productos, start = 0, container 
   //Convierto a número el valor start
   start = parseInt(start);
 
+  console.log(productosSel.length)
+
   //Cambiamos dinámicamente el título
   const $h3 = document.querySelector("h3.resultados");
   if($h3){
@@ -45,6 +47,12 @@ export function mostrarProductos(productosSel = productos, start = 0, container 
     </div>`);
 
   const fragment = document.createDocumentFragment();
+
+  //Si no hay resultados, se muestra un mensaje
+  if(productosSel.length === 0){
+    console.log("Sin resultados");
+    $h3.innerHTML += `<br><br><small>No se encontraron resultados.</small>`
+  }
 
   productosSel.slice(start, start + 8).forEach(producto => {
     fragment.appendChild(producto.mostrarProducto())
