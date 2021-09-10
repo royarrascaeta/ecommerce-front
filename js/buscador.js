@@ -1,5 +1,6 @@
 import { mostrarProductos, productos } from "./products.js";
 import { mostrarPaginacion } from "./paginacion.js";
+import { ordenarProductos } from "./ordenaryFiltrar.js";
 
 export function buscador(){
     const $input = document.getElementById("buscador");
@@ -10,6 +11,7 @@ export function buscador(){
         let resultados = productos.filter(product => (product.nombre).toLowerCase().includes(busqueda) || (product.categoria).toLowerCase().includes(busqueda) || (product.color).toLowerCase().includes(busqueda) || (product.descripcion).toLowerCase().includes(busqueda));
         mostrarProductos(resultados,undefined,undefined,`Mostrando resultados para: "${busqueda}"`);
         mostrarPaginacion(resultados);
+        ordenarProductos(resultados);
     }
 
     $input.addEventListener("keyup", (e)=>{

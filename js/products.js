@@ -32,8 +32,6 @@ export function mostrarProductos(productosSel = productos, start = 0, container 
   //Convierto a número el valor start
   start = parseInt(start);
 
-  console.log(productosSel.length)
-
   //Cambiamos dinámicamente el título
   const $h3 = document.querySelector("h3.resultados");
   if($h3){

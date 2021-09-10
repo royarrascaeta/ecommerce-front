@@ -41,9 +41,6 @@ export class Product{
     //Actualizamos indicador de cantidad en boton flotante del carrito e indicador de cantidad en menú
     indicadorCarrito();
 
-    //Actualizamos mostrar carrito, le pasamos como parámetro el botón
-    mostrarCarrito(e.target);
-
     //Removemos temporalmente el efecto hover del botón y lo deshabilitamos
     $(e.target).removeClass("hover");
     $(e.target).prop("disabled", true);

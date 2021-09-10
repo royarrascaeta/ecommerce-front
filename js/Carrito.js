@@ -4,11 +4,12 @@ import { reducirStock, mostrarProducto } from "./products.js";
 export class Carrito{
   constructor(){
     this.productos = [],
-    this.cantidadTotal = 0;
-    this.envio = 0,
+    this.cantidadTotal = 0,
+    this.flagEnvio = false,
+    this.envio = false,
+    this.totalEnvio = 0,
     this.subTotal = 0,
-    this.total = 0,
-    this.flagEnvio = false;
+    this.total = 0;
   }
 
   agregarProducto(producto){
@@ -54,10 +55,8 @@ export class Carrito{
     this.flagEnvio = true;
 
     //Actualizo la variable carritoLocal en localStorage y le paso todo el objeto
-    localStorage.setItem("carritoLocal",JSON.stringify(this))
+    localStorage.setItem("carritoLocal",JSON.stringify(this));
     
-    // return confirm("¿Desea que le enviemos el producto a domicilio?") ? this.calcularEnvio() : this.envio = 0;
-
     return Swal.fire({
       title: 'Envío',
       text: "¿Desea que le enviemos el producto a domicilio?",
@@ -69,28 +68,28 @@ export class Carrito{
       cancelButtonText: "No, gracias."
     }).then((result) => {
       if (result.isConfirmed) {
-        this.calcularEnvio()
+        this.calcularEnvio();
       }else{
-        this.envio = 0;
+        this.totalEnvio = 0;
       }
     })
   };
   
   calcularEnvio(){
-    if(this.subTotal >= 5000){
+    this.envio = true;
+
+    if(this.subTotal > 5000){
 
       Swal.fire({
         title: 'Envío',
-        text: "Si! Superaste los $5000 y tu envío ahora es GRATIS!",
+        text: "Felicitaciones! Superaste los $5000 y tu envío ahora es GRATIS!",
         icon: undefined,
         confirmButtonText: 'Aceptar',
         confirmButtonColor: '#c04abc'
       })
-
-      // alert("Felicitaciones!\nSu compra supera los $5000 y por ello tenes el envío bonificado!")
-      this.envio = 0;
+      this.totalEnvio = 0;
     }else{
-      this.envio = 650;
+      this.totalEnvio = 650;
     }
 
     //Actualizo la variable carritoLocal en localStorage y le paso todo el objeto
@@ -98,7 +97,7 @@ export class Carrito{
   };
 
   calcularTotal(){
-    this.total = this.subTotal + this.envio;
+    this.total = this.subTotal + this.totalEnvio;
 
     localStorage.setItem("carritoLocal",JSON.stringify(this))
   };
@@ -106,7 +105,8 @@ export class Carrito{
   limpiarCarrito(){
     this.productos = [],
     this.cantidadTotal = 0;
-    this.envio = 0,
+    this.totalEnvio = 0,
+    this.envio = false,
     this.subTotal = 0,
     this.total = 0
     this.flagEnvio = false;

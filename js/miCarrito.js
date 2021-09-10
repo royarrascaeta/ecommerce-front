@@ -1,4 +1,6 @@
 import { Carrito } from "./Carrito.js";
+import { checkout } from "./checkout.js";
+import { actualizarLocalStorage } from "./index.js";
 import { cerrarModal } from "./modal.js";
 
 //Creación de nueva instancia de la clase Carrito
@@ -6,36 +8,61 @@ export const carrito1 = new Carrito();
 
 //Variables del DOM para usar en las funciones de abajo
 const $containerCarrito = document.querySelector(".container-carrito");
-const $carritoTabla = document.querySelector(".carrito-container .carrito-tabla");
 const $carritoMessage = document.querySelector(".carrito-container .message");
+const $carritoTabla = document.querySelector(".carrito-container .carrito-tabla");
 const $carritoProductos = document.querySelector(".carrito-container .carrito-productos");
 const $carritoSubtotal = document.getElementById("subtotal");
 const $btnEnvio = document.getElementById("btn-envio");
 const $totalEnvio = document.getElementById("totalEnvio");
 const $carritoTotal = document.getElementById("total");
 const $btnVolver = document.querySelectorAll("#btn-volver");
-const $btnBorrar = document.querySelector("#btn-borrar");
-const $btnComprar = document.querySelector("#btn-comprar");
-const $fragment = document.createDocumentFragment();
+const $btnBorrar = document.getElementById("btn-borrar");
+const $btnComprar = document.getElementById("btn-comprar");
 const $templateCarrito = document.getElementById("template-carrito").content;
-
+const $fragment = document.createDocumentFragment();
 
 //Creación de función para mostrar el carrito
-export function mostrarCarrito(target){
+export function mostrarCarrito(){
+  //Actualizo mi carrito según el carrito guardado en localStorage
+  actualizarLocalStorage();
+
   //Si no hay productos en el carrito se muestra un mensaje que invita a añadir productos al carrito
   if(carrito1.cantidadTotal > 0){
     if($containerCarrito){
       $containerCarrito.style.justifyContent = "start";
     }
-    $carritoTabla.style.display = "grid";
-    $carritoMessage.style.display = "none";
+      $carritoTabla.style.display = "grid";
+      $carritoMessage.style.display = "none";
   }else{
     if($containerCarrito){
       $containerCarrito.style.justifyContent = "center";
     }
-    $carritoTabla.style.display = "none";
-    $carritoMessage.style.display = "block";
+      $carritoTabla.style.display = "none";
+      $carritoMessage.style.display = "block";
   }
+
+   //Verifico si se ha ejecutado anteriormente la función para calcular envío, si no es así muestro el botón para calcular el envío
+  if(!carrito1.flagEnvio){
+    $btnEnvio.style.display = "block";
+    $totalEnvio.innerHTML = "";
+    $carritoTotal.textContent = "";
+  }else{
+    $btnEnvio.style.display = "none";
+    //Evaluo si se solicitó o no el envío
+    if(carrito1.envio){
+      if(carrito1.subTotal > 5000){
+        carrito1.totalEnvio = 0;
+        $totalEnvio.innerHTML = `<small><del>$650</del></small><b>$${carrito1.totalEnvio}</b>`;
+      }else{
+        carrito1.totalEnvio = 650;
+        $totalEnvio.innerHTML = `<b>$${carrito1.totalEnvio}<b>`;
+      }
+  
+    }else{
+      $totalEnvio.innerHTML = `<b>$${carrito1.totalEnvio}<b>`;
+    }
+  }
+
 
   //Mostrar carrito en pantalla
   carrito1.productos.forEach(producto => {
@@ -73,61 +100,42 @@ export function mostrarCarrito(target){
   //Calculo subtotal y total de productos y lo muestro
   carrito1.calcularSubtotal();
   carrito1.calcularTotal();
-  $carritoSubtotal.textContent = "$"+carrito1.subTotal;
-  $carritoTotal.textContent = "$"+carrito1.total;
+  $carritoSubtotal.innerHTML = `<b>$${carrito1.subTotal}</b>`;
+  $carritoTotal.innerHTML = `<b>$${carrito1.total}</b>`;
 
-  //Verifico si se ha ejecutado anteriormente la función para calcular envío, y en caso que no se haya bonificado (costo 0) vuelvo a generar el botón para que el usuario pueda acceder al beneficio en caso que haya seguido agregando productos
-  if(carrito1.flagEnvio && carrito1.envio !== 0){
-    //El parámetro target indica desde dónde se ejecutó la función, si es distinto de undefined significa que la ejecutó un botón de añadir producto
-    if(target === undefined){
-      $btnEnvio.style.display = "none";
-      $totalEnvio.innerHTML = "$"+carrito1.envio;
-      carrito1.calcularTotal();
-      $carritoTotal.textContent = "$"+carrito1.total;
-    }else{
-      $btnEnvio.style.display = "block";
-      $totalEnvio.innerHTML = "";
-      $carritoTotal.textContent = "";
-    }
-  }else if(carrito1.flagEnvio && carrito1.envio === 0){
-    $btnEnvio.style.display = "none";
-    $totalEnvio.innerHTML = "$"+carrito1.envio;
-    carrito1.calcularTotal();
-    $carritoTotal.textContent = "$"+carrito1.total;
-  }  
+ 
 }
 
 //Función para calcular el envío, ejecuta el método del constructor y luego oculta el botón. Finalmente muestra el total con la suma del subtotal + envío
 export async function calcularEnvio(){
-
   await carrito1.consultaEnvio();
 
-  $btnEnvio.style.display = "none";
-  $totalEnvio.innerHTML = "$"+carrito1.envio;
-
-  //Muestro el total en pantalla
-  carrito1.calcularTotal();
-  $carritoTotal.innerHTML = "$"+carrito1.total;
+  mostrarCarrito();
 }
 
 
 //Función para eliminar los productos del carrito y del LocalStorage
-export function limpiarCarrito(){
-  Swal.fire({
-      title: 'Carrito',
-      text: "¿Desea quitar todos los productos del carrito?",
-      icon: undefined,
-      showCancelButton: true,
-      confirmButtonColor: '#c04abc',
-      cancelButtonColor: '#444',
-      confirmButtonText: 'Si',
-      cancelButtonText: "No"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      carrito1.limpiarCarrito();
-      mostrarCarrito();
-    }
-  })
+export function limpiarCarrito(confirm){
+  if(confirm){
+    Swal.fire({
+        title: 'Carrito',
+        text: "¿Desea quitar todos los productos del carrito?",
+        icon: undefined,
+        showCancelButton: true,
+        confirmButtonColor: '#c04abc',
+        cancelButtonColor: '#444',
+        confirmButtonText: 'Si',
+        cancelButtonText: "No"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        carrito1.limpiarCarrito();
+        mostrarCarrito();
+      }
+    })
+  }else{
+    carrito1.limpiarCarrito();
+    mostrarCarrito();
+  }
 }
 
 //Funcion para actualizar indicador de cantidad en carrito flotante y menu
@@ -145,7 +153,6 @@ $carritoProductos.addEventListener("click", (e)=>{
 
    //Boton restar cantidad
   if(e.target.textContent === "-"){
-   
     if(producto.cantidad > 1){
       producto.cantidad--
       carrito1.calcularCantidad();
@@ -166,33 +173,29 @@ $carritoProductos.addEventListener("click", (e)=>{
       producto.cantidad++
       carrito1.calcularCantidad();
       mostrarCarrito();
-    }else if(producto.cantidad - 1 == producto.cantidadDisponible){
-      producto.cantidad++
-      carrito1.calcularCantidad();
-      mostrarCarrito();
-      console.log(e.target)
-      console.log("Ultimo en stock")
-    }else{
-      console.log("No queda stock")
     }
   }
 })
 
-//Eventos de botones envio, limpiar y volver
-$btnEnvio.addEventListener("click",()=>{
-  calcularEnvio();
-})
+//Eventos de botones envio, limpiar, volver y avanzar
+document.addEventListener("click", (e)=>{
+  if(e.target === $btnEnvio){
+    calcularEnvio();
+  }
 
-$btnBorrar.addEventListener("click",()=>{
-  limpiarCarrito();
-})
+  if(e.target === $btnBorrar){
+    limpiarCarrito(true);
+  }
 
-$btnVolver.forEach(btn=>{
-  btn.addEventListener("click",()=>{
+  if(e.target === $btnVolver[0] || e.target === $btnVolver[1]){
     if(document.body.dataset.section === "carrito" || document.body.dataset.section === "producto"){
       location.href = "index.html";
     }else{
       cerrarModal();
     }
-  })
+  }
+
+  if(e.target === $btnComprar){
+    checkout(e,$carritoTabla,$containerCarrito);
+  }
 })

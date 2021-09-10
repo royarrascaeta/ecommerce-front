@@ -68,29 +68,87 @@
               <div>Subtotal:</div>
               <div id="subtotal"></div>
             </div>
-
             <div>Las compras mayores a $5000 tienen envio gratis!</div>
-
             <div>
               <div>Envio:</div>
               <div>
                 <button class="boton-principal hover" id="btn-envio">Calcular</button><span id="totalEnvio"></span>
               </div>
             </div>
-
             <div>
               <div>Total:</div>
               <div id="total"></div>
             </div>
-
             <div>
-              <button class="boton-principal hover" id="btn-comprar">Finalizar Compra</button>
+              <button class="boton-principal hover" id="btn-comprar">Avanzar al pago</button>
             </div>
-
             <div>
               <button class="boton-principal-alt hover" id="btn-volver">Seguir Comprando</button>
             </div>
+          </div>
 
+          <div class="carrito-cliente">
+            <div>
+              <h3>Datos del cliente:</h3>
+              <div>
+                <label for="nombre">Nombre Completo:</label>
+                <input form="checkout" type="text" name="nombre" placeholder="Escribe tu nombre" value="Homero Simpson" required>
+              </div>
+              <div>
+                <label for="e-mail">E-mail:</label>
+                <input form="checkout" type="email" name="e-mail" placeholder="Escribe tu e-mail" value="soyhomeroelmalo@lossimpson.com" required>
+              </div>
+              <div>
+                <label for="telefono">Teléfono de Contacto:</label>
+                <input form="checkout" type="text" name="telefono" placeholder="Escribe tu número de teléfono" value="764-84377" required>
+              </div>
+              <div>
+                <label for="domicilio">Domicilio:</label>
+                <input form="checkout" type="text" name="domicilio" placeholder="Escribe tu dirección" value="Av. Siempreviva 742" required>
+              </div>
+              <div>
+                <label for="ciudad">Ciudad:</label>
+                <input form="checkout" type="text" name="ciudad" placeholder="Escribe tu ciudad" value="Springfield" required>
+              </div>
+            </div>
+
+            <div>
+              <h3>Datos de la tarjeta:</h3>
+              <div>
+                <label for="tarjeta-numero">Número de la tarjeta:</label>
+                <input form="checkout" type="text" name="tarjeta-numero" placeholder="1234-5678-9000" value="1234-5678-9000" required>
+              </div>
+              <div>
+                <label for="tarjeta-nombre">Nombre del titular:</label>
+                <input form="checkout" type="text" name="tarjeta-nombre" placeholder="Introduce el nombre del titular de la tarjeta" value="Homero Simpson" required>
+              </div>
+              <div>
+                <label for="tarjeta-exp">Fecha de exp:</label>
+                <input form="checkout" type="mail" name="tarjeta-exp" placeholder="MM/AA" value="12/28" required>
+              </div>
+              <div>
+                <label for="tarjeta-cv">CV:</label>
+                <input form="checkout" type="text" name="tarjeta-cv" placeholder="123" value="777" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="carrito-final">
+            <h3>Detalle Final:</h3>
+            <div>
+              <!-- Acá se insertan los productos -->
+            </div>
+            <div>
+              <!-- Acá se insertan los totales-->
+            </div>
+            <div>
+              <form id="checkout">
+                <button type="submit" class="boton-principal hover" id="btn-checkout-comprar">Finalizar Compra</button>
+              </form>
+            </div>
+            <div>
+              <button class="boton-principal-alt hover" id="btn-checkout-volver">Volver</button>
+            </div>
           </div>
         </div>
       </div>

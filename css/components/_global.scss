@@ -21,10 +21,14 @@ html {
 body {
   min-height: 100vh;
   display: grid;
-  grid-template-rows: min-content 1fr min-content;
+  grid-template-rows: 1fr min-content;
   overflow-x: hidden;
   background-color: #fff;
   color: #444;
+
+  @include media-up(md) {
+    grid-template-rows: min-content 1fr min-content;
+  }
   // min-height: -webkit-fill-available;
 }
 
@@ -100,4 +104,34 @@ body {
 .hover:hover {
   cursor: pointer;
   animation: scale 0.3s ease-out 0s infinite alternate;
+}
+
+//Inputs y formularios
+select,
+input {
+  width: 100%;
+  padding: 0.2rem 0.5rem;
+  font-family: $font-principal;
+  font-size: 0.9rem;
+  border: 0.1rem solid lightgray;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  transition: border ease-in 0.5s;
+
+  &:focus,
+  &:focus-visible {
+    border: 0.1rem solid $color-secundario;
+    outline: none;
+    transition: all ease-in 0.5s;
+  }
+}
+
+select {
+  border-radius: 0.3rem 0.3rem 0 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  text-align: left;
 }

@@ -1,3 +1,5 @@
+import { mostrarCarrito } from "./miCarrito.js";
+
 const $modal = document.querySelector(".modal");
 
 export function modal(){
@@ -17,9 +19,15 @@ export function modal(){
 }
 
 export function abrirModal(){
-  $modal.style.display = "flex";
+  mostrarCarrito();
+  $($modal)
+    .css({"opacity":0, "display": "flex"})
+    .animate({opacity: 1},200)
 }
 
 export function cerrarModal(){
-  $modal.style.display = "none";
+  $($modal)
+  .animate({opacity: 0},200, function(){
+    $(this).css("display", "none")
+  })
 }
