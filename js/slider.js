@@ -1,18 +1,18 @@
 //Slider
-export function slider(){
-  const $productGallery = document.querySelector(".product-gallery"),
-  $carrouselContainer = document.querySelector(".carrousel-container");
-  const $flechaIzq = $productGallery.querySelector(".flecha-izq > *");
-  const $flechaDer = $productGallery.querySelector(".flecha-der > *");
+export function slider(sliderContainer){
+  const $sliderContainer = document.querySelector(sliderContainer);
+  const $slides = $sliderContainer.querySelector(".slides");
+  const $flechaIzq = $sliderContainer.querySelector(".flecha-izq > *");
+  const $flechaDer = $sliderContainer.querySelector(".flecha-der > *");
   
   //Aparecer y desaparecer flechas
   $flechaIzq.style.display = "none";
  
-  if($carrouselContainer.querySelectorAll("div").length === 1){
+  if($slides.querySelectorAll("div").length === 1){
     $flechaDer.style.display = "none"
   }
   
-  $carrouselContainer.addEventListener("scroll", (e)=>{
+  $slides.addEventListener("scroll", (e)=>{
     e.target.scrollLeft >= e.target.clientWidth - 15
       ? $flechaDer.style.display = "none"
       : $flechaDer.style.display = "block"
@@ -23,16 +23,16 @@ export function slider(){
   })
   
   //Click flechas
-  $productGallery.addEventListener("click", (e)=>{
+  $sliderContainer.addEventListener("click", (e)=>{
     if(e.target === $flechaIzq){
-      $carrouselContainer.scrollBy({ 
+      $slides.scrollBy({ 
         left: -100,
         behavior: 'smooth' 
       });
     }
   
     if(e.target === $flechaDer){
-      $carrouselContainer.scrollBy({ 
+      $slides.scrollBy({ 
         left: 100,
         behavior: 'smooth' 
       });

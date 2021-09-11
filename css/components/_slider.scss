@@ -1,0 +1,69 @@
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    div {
+      min-width: 100%;
+      padding-top: 75%;
+      position: relative;
+      border: 0.5rem solid white;
+      scroll-snap-align: start;
+    }
+
+    div img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: auto;
+      max-height: 100%;
+      margin: auto;
+      text-align: center;
+    }
+  }
+
+  .flecha-izq,
+  .flecha-der {
+    position: absolute;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+
+    .boton-principal {
+      padding: 0.2rem 0.4rem;
+      border-radius: 50%;
+
+      i {
+        margin: 0;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .flecha-izq {
+    left: 0.5rem;
+  }
+
+  .flecha-der {
+    right: 0.5rem;
+  }
+}

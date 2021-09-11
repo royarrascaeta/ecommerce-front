@@ -46,7 +46,7 @@ export function mostrarCategorias(){
     $li.innerHTML = `${categoria} <span>(${filter.length})</span>`;
 
     $li.addEventListener("click",(e)=>{
-      mostrarProductos(filter,undefined,undefined,`Mostrando: categoría ${categoria}`);
+      mostrarProductos(filter,undefined,undefined,undefined,`Mostrando: categoría ${categoria}`);
       mostrarPaginacion(filter);
       ordenarProductos(filter)
 

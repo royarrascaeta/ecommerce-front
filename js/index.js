@@ -5,6 +5,7 @@ import {carrito1, mostrarCarrito} from "./miCarrito.js";
 import {mostrarCategorias, ordenarProductos} from "./ordenaryFiltrar.js";
 import {mostrarPaginacion} from "./paginacion.js";
 import { buscador } from "./buscador.js";
+import { slider } from "./slider.js";
 
 //Ejecuto los scripts necesarios a la carga del DOM
 document.addEventListener("DOMContentLoaded", ()=>{
@@ -15,6 +16,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     //Si estamos en la seccion index
     if(document.body.dataset.section === "index"){
+      modal();
+      slider(".slider-container");
+      const $contenedorDestacados = document.querySelector(".featured");
+      mostrarProductos(productos, 0, 6, $contenedorDestacados)
+    }
+
+    //Si estamos en la seccion shop
+    if(document.body.dataset.section === "shop"){
       mostrarProductos();
       mostrarCategorias();
       mostrarPaginacion();

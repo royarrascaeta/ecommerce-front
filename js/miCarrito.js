@@ -189,7 +189,7 @@ document.addEventListener("click", (e)=>{
 
   if(e.target === $btnVolver[0] || e.target === $btnVolver[1]){
     if(document.body.dataset.section === "carrito" || document.body.dataset.section === "producto"){
-      location.href = "index.html";
+      location.href = "shop.html";
     }else{
       cerrarModal();
     }

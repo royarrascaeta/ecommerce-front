@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body data-section="index">
+<body data-section="shop">
   <!-- HEADER -->
   <header class="header">
     <div class="container">
@@ -25,8 +25,8 @@
       </div>
       <nav class="menu">
         <ul>
-          <li><a class="activo" href="index.html">Home</a></li>
-          <li><a href="shop.html">Shop</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a class="activo" href="shop.html">Shop</a></li>
           <li><a href="carrito.html">Carrito<span class="carrito-span"></span></a></li>
           <li><a href="#">Contacto</a></li>
         </ul>
@@ -37,26 +37,37 @@
 
   <!-- MAIN -->
   <main>
-    <div class="container container-index">
-      <div class="slider-container">
-        <div class="slides">
-          <div>Hola</div>
-          <div>Div 2</div>
+    <div class="container container-shop">
+      <h3 class="resultados">Mostrando: Todos los productos</h3>
+      <aside class="filters">
+        <h3>Buscar</h3>
+        <div class=buscador>
+          <input type="text" name="buscador" id="buscador" placeholder="Buscar productos">
+          <i class="fas fa-search"></i>
         </div>
-        <div class="flecha-der"><button class="boton-principal hover"><i class="fas fa-chevron-right"></i></button></i>
+
+        <label for="order">
+          <h3>Ordenar</h3>
+        </label>
+        <select name="order" id="order">
+          <option value="default">Ordenar por:</option>
+          <option value="pr-mintomax">Precio: Menor a Mayor</option>
+          <option value="pr-maxtomin">Precio: Mayor a Menor</option>
+        </select>
+
+        <h3 id="btn-categorias">Categorias <i class="fas fa-chevron-down"></i></h3>
+        <ul>
+          <!-- Acá se insertan dinámicamente las categorías -->
+        </ul>
+      </aside>
+
+      <div class="products-container">
+        <div class="loader-container">
+          <img src="assets/loader.svg" alt="">
         </div>
-        <div class="flecha-izq"><button class="boton-principal hover"><i class="fas fa-chevron-left"></i></button></div>
       </div>
-      <h2>Productos Destacados</h2>
-      <div>
-        <div class="featured">
-          <div class="loader-container">
-            <img src="assets/loader.svg" alt="">
-          </div>
-        </div>
-        <div>
-          <button href="shop.html" class="boton-principal hover">Ver más productos</button>
-        </div>
+
+      <div class="pagination">
       </div>
     </div>
 

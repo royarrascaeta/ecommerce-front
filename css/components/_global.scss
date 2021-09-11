@@ -1,3 +1,31 @@
+@mixin products-container($columns: 4) {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  @include media-up(md) {
+    grid-template-columns: repeat($columns, 1fr);
+  }
+
+  .loader-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    background-color: #fff;
+    opacity: 0.5;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 4rem;
+    }
+  }
+}
+
 /*/ //// RESETEO /////*/
 * {
   margin: 0;

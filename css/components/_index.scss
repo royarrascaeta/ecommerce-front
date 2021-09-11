@@ -1,0 +1,26 @@
+.container-index {
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  .slider-container {
+    height: 500px;
+    background-color: red;
+  }
+
+  .featured {
+    @include products-container(6);
+  }
+
+  & > div {
+    & > div:nth-child(2) {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1rem;
+
+      button {
+        grid-column: 6/7;
+      }
+    }
+  }
+}

@@ -28,9 +28,10 @@ export function cargarProductos(callback) {
 
 
 //Funcion para mostrar los productos en el DOM con jQuery
-export function mostrarProductos(productosSel = productos, start = 0, container = ".products-container", titulo = "Mostrando: Todos los productos") {
+export function mostrarProductos(productosSel = productos, start = 0, end = 8, container = ".products-container", titulo = "Mostrando: Todos los productos") {
   //Convierto a número el valor start
   start = parseInt(start);
+  end = parseInt(end);
 
   //Cambiamos dinámicamente el título
   const $h3 = document.querySelector("h3.resultados");
@@ -52,7 +53,7 @@ export function mostrarProductos(productosSel = productos, start = 0, container 
     $h3.innerHTML += `<br><br><small>No se encontraron resultados.</small>`
   }
 
-  productosSel.slice(start, start + 8).forEach(producto => {
+  productosSel.slice(start, start + end).forEach(producto => {
     fragment.appendChild(producto.mostrarProducto())
   })
 
@@ -70,7 +71,7 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   const producto = productos.find(producto=> producto.id === id)
   const talles = Object.keys(producto.stock);
   const $productCarrito = document.querySelector(".product-carrito");
-  const $carrouselContainer = document.querySelector(".carrousel-container");
+  const $slides = document.querySelector(".slides");
   const $btnComprar = document.querySelector(".botones .boton-principal");
   const $colores = document.querySelector(".opciones .colores");
   const $inputTalles = document.getElementById("select-talles");
@@ -84,10 +85,10 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
 
   //Carrusel de imagenes
   for(let imagen of producto.imagen){
-    $carrouselContainer.innerHTML += `<div><img src="${imagen}" alt="" ></div>`
+    $slides.innerHTML += `<div><img src="${imagen}" alt="" ></div>`
   }
 
-  slider();
+  slider(".slider-container");
 
   //Nombre, precio y detalle del producto
   $productCarrito.querySelector("h2").textContent = `${producto.nombre} ${producto.color}`;
@@ -164,7 +165,7 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   const $relContainer = document.querySelector(".products-container");
   const productosRel = productos.filter(product => product.categoria === producto.categoria && product.id != producto.id);
 
-  mostrarProductos(productosRel, 0, $relContainer)
+  mostrarProductos(productosRel, 0, undefined, $relContainer)
 }
 
 
