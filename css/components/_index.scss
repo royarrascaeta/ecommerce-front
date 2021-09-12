@@ -1,11 +1,67 @@
 .container-index {
   h2 {
-    margin-bottom: 1rem;
+    margin: 1rem auto;
+  }
+
+  .boton-principal-alt {
+    margin-top: 1rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    border-color: #fff;
+    text-shadow: 2px 2px 2px #000000;
+    line-height: 1rem;
+    font-size: 1.4rem;
   }
 
   .slider-container {
-    height: 500px;
-    background-color: red;
+    height: 200px;
+
+    @include media-up(md) {
+      height: 400px;
+    }
+
+    .flecha-izq button,
+    .flecha-der button {
+      background: transparent;
+      border: none;
+    }
+
+    .slides {
+      color: #fff;
+      max-width: 95vw;
+
+      @include media-up(md) {
+        max-width: 100%;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+        text-shadow: 2px 2px 2px #000000;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      div:nth-child(1) {
+        background: url("../assets/slides/slide-remeras.jpg") 50% 50% / cover
+          no-repeat;
+      }
+
+      div:nth-child(2) {
+        background: url("../assets/slides/slide-camperas.jpg") 50% 50% / cover
+          no-repeat;
+      }
+
+      div:nth-child(3) {
+        background: url("../assets/slides/slide-camisas.jpg") 50% 50% / cover
+          no-repeat;
+      }
+
+      div:nth-child(4) {
+        background: url("../assets/slides/slide-pantalones.jpg") 50% 50% / cover
+          no-repeat;
+      }
+    }
   }
 
   .featured {
@@ -15,12 +71,74 @@
   & > div {
     & > div:nth-child(2) {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
 
-      button {
-        grid-column: 6/7;
+      @include media-up(md) {
+        grid-template-columns: repeat(6, 1fr);
       }
+
+      a {
+        grid-column: 2/3;
+        margin-top: 1rem;
+
+        @include media-up(md) {
+          grid-column: 6/7;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+
+  section.categorias {
+    display: grid;
+    width: 100%;
+    height: 500px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 0.5rem;
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    div:nth-child(1) {
+      grid-row: span 4;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../assets/category/remeras.jpg") 50% 50% / cover no-repeat;
+    }
+
+    div:nth-child(2) {
+      grid-row: span 2;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../assets/category/pantalones.jpg") 50% 50% / cover no-repeat;
+    }
+
+    div:nth-child(3) {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../assets/category/accesorios.jpg") 50% 50% / cover no-repeat;
+    }
+
+    div:nth-child(4) {
+      grid-column: 3/4;
+      grid-row: span 3;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../assets/category/camisas.jpg") 50% 50% / cover no-repeat;
+    }
+
+    div:nth-child(5) {
+      grid-column: 2/3;
+      grid-row: 3/4;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../assets/category/buzos.jpg") 50% 50% / cover no-repeat;
+    }
+
+    div:nth-child(6) {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../assets/category/camperas.jpg") 50% 50% / cover no-repeat;
     }
   }
 }

@@ -67,7 +67,7 @@ body {
   text-align: center;
   align-self: center;
   margin-top: 0.5rem;
-  padding: 0.2rem 1rem;
+  padding: 0.4rem 1rem;
   font-size: 1.2rem;
   font-weight: bold;
   border: 0.1rem solid $color-secundario;
@@ -75,6 +75,7 @@ body {
   background-color: $color-secundario;
   color: $color-neutro;
   cursor: pointer;
+  line-height: 1rem;
 
   i {
     margin-right: 0.5rem;
@@ -112,8 +113,8 @@ body {
     border-radius: 0.5rem;
     font-weight: normal;
     font-size: 1.2rem;
-    opacity: 0.8;
-    background-color: rgb(255, 228, 74);
+    background-color: $color-secundario;
+    color: #fff;
   }
 
   span::before {
@@ -123,7 +124,7 @@ body {
     bottom: -0.5rem;
     right: 2.5rem;
     width: 0;
-    border-top: 15px solid rgb(255, 228, 74);
+    border-top: 15px solid $color-secundario;
     border-right: 10px solid transparent;
     border-left: 10px solid transparent;
   }

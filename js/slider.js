@@ -1,5 +1,5 @@
 //Slider
-export function slider(sliderContainer){
+export function slider(sliderContainer, autoPlay){
   const $sliderContainer = document.querySelector(sliderContainer);
   const $slides = $sliderContainer.querySelector(".slides");
   const $flechaIzq = $sliderContainer.querySelector(".flecha-izq > *");
@@ -13,7 +13,7 @@ export function slider(sliderContainer){
   }
   
   $slides.addEventListener("scroll", (e)=>{
-    e.target.scrollLeft >= e.target.clientWidth - 15
+    e.target.scrollLeft + e.target.clientWidth >= e.target.scrollWidth - 15
       ? $flechaDer.style.display = "none"
       : $flechaDer.style.display = "block"
     
@@ -25,17 +25,42 @@ export function slider(sliderContainer){
   //Click flechas
   $sliderContainer.addEventListener("click", (e)=>{
     if(e.target === $flechaIzq){
-      $slides.scrollBy({ 
-        left: -100,
-        behavior: 'smooth' 
-      });
+      moveRight();
+      clearInterval(repeat);
     }
-  
+    
     if(e.target === $flechaDer){
-      $slides.scrollBy({ 
+      moveLeft();
+      clearInterval(repeat);
+    }
+  })
+
+  //Autoplay
+  if(autoPlay){
+    var repeat = setInterval(() => {
+      if($slides.scrollLeft + $slides.clientWidth >= $slides.scrollWidth - 15){
+        $slides.scrollTo({
+          left: 100,
+          behavior: 'smooth'
+        })
+      }else{
+        moveLeft();
+      }
+    }, 8000);
+  }
+
+  //Funciones movimiento
+  function moveLeft(){
+    $slides.scrollBy({ 
         left: 100,
         behavior: 'smooth' 
       });
-    }
-  })
+  }
+
+  function moveRight(){
+    $slides.scrollBy({ 
+        left: -100,
+        behavior: 'smooth' 
+      });
+  }
 }

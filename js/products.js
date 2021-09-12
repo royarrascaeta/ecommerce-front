@@ -85,7 +85,7 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
 
   //Carrusel de imagenes
   for(let imagen of producto.imagen){
-    $slides.innerHTML += `<div><img src="${imagen}" alt="" ></div>`
+    $slides.innerHTML += `<div class="image"><img src="${imagen}" alt="" ></div>`
   }
 
   slider(".slider-container");

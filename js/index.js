@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     //Si estamos en la seccion index
     if(document.body.dataset.section === "index"){
       modal();
-      slider(".slider-container");
+      slider(".slider-container",true);
       const $contenedorDestacados = document.querySelector(".featured");
       mostrarProductos(productos, 0, 6, $contenedorDestacados)
     }

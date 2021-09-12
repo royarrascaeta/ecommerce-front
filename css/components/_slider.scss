@@ -20,10 +20,22 @@
 
     div {
       min-width: 100%;
-      padding-top: 75%;
+      padding-top: 0%;
       position: relative;
-      border: 0.5rem solid white;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    div.image {
+      border: 0.5rem solid white;
+      padding-top: 75%;
+    }
+
+    div.text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
     }
 
     div img {
