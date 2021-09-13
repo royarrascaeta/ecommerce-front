@@ -24,20 +24,16 @@ body {
   min-height: 100vh;
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 1fr -webkit-min-content;
-  -ms-grid-rows: 1fr min-content;
-  grid-template-rows: 1fr -webkit-min-content;
-  grid-template-rows: 1fr min-content;
   overflow-x: hidden;
   background-color: #fff;
   color: #444;
 }
 @media screen and (min-width: 768px) {
   body {
-    -ms-grid-rows: -webkit-min-content 1fr -webkit-min-content;
-    -ms-grid-rows: min-content 1fr min-content;
-    grid-template-rows: -webkit-min-content 1fr -webkit-min-content;
-    grid-template-rows: min-content 1fr min-content;
+    -ms-grid-rows: -webkit-min-content min-max(90vh, auto) -webkit-min-content !important;
+    -ms-grid-rows: min-content min-max(90vh, auto) min-content !important;
+    grid-template-rows: -webkit-min-content min-max(90vh, auto) -webkit-min-content !important;
+    grid-template-rows: min-content min-max(90vh, auto) min-content !important;
   }
 }
 
@@ -77,6 +73,12 @@ body {
   background-color: unset;
   color: #c04abc;
   border: 0.1rem solid #c04abc;
+}
+
+.boton-redes {
+  font-size: 2.5rem;
+  cursor: pointer;
+  margin: 0.2rem;
 }
 
 .message {
@@ -196,7 +198,7 @@ label {
     position: sticky;
   }
 }
-.header .container {
+.header .header-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -208,7 +210,7 @@ label {
   padding: 0 2rem;
 }
 @media screen and (min-width: 768px) {
-  .header .container {
+  .header .header-container {
     max-width: 1200px;
     padding: 2rem 4rem;
   }
@@ -368,6 +370,7 @@ main {
 }
 main .container {
   width: 100%;
+  min-height: calc(100vh - 4rem);
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -406,25 +409,87 @@ main h1 {
 
 /* ///// FOOTER ///// */
 footer {
-  background-color: #c04abc;
+  margin-top: 2rem;
+  background-color: #24273a;
   color: #f4ebe8;
 }
-footer .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+footer .footer-container {
+  text-align: center;
+  display: -ms-grid;
+  display: grid;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
+  gap: 2rem;
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
 }
 @media screen and (min-width: 768px) {
-  footer .container {
+  footer .footer-container {
     max-width: 1200px;
-    padding: 2rem 4rem;
+    -ms-grid-columns: (1fr)[3];
+    grid-template-columns: repeat(3, 1fr);
+    -ms-grid-rows: (1fr)[2];
+    grid-template-rows: repeat(2, 1fr);
   }
+  footer .footer-container > *:nth-child(1) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+  }
+  footer .footer-container > *:nth-child(2) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+  }
+  footer .footer-container > *:nth-child(3) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+  }
+  footer .footer-container > *:nth-child(4) {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+  }
+  footer .footer-container > *:nth-child(5) {
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+  }
+  footer .footer-container > *:nth-child(6) {
+    -ms-grid-row: 2;
+    -ms-grid-column: 3;
+  }
+  footer .footer-container div:nth-child(1) {
+    text-align: left;
+    -ms-grid-row-span: 2;
+    grid-row: span 2;
+  }
+  footer .footer-container div:nth-child(2) {
+    -ms-grid-row-span: 2;
+    grid-row: span 2;
+  }
+}
+footer .footer-container h4 {
+  text-align: center;
+  margin: 0.5rem auto;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.2rem solid #c04abc;
+}
+footer .footer-container li {
+  margin-top: 0.5rem;
+}
+footer .footer-container a {
+  color: #f4ebe8;
+}
+footer .firma {
+  background: #2d3047;
+  padding: 1rem;
+  text-align: center;
+}
+footer .firma div {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+footer .firma div a {
+  color: #c04abc;
+  font-weight: bold;
 }
 
 .slider-container {
@@ -1229,8 +1294,8 @@ footer .container {
           align-items: center;
   width: 4rem;
   height: 4rem;
-  background-color: #2d3047;
-  color: #f4ebe8;
+  background-color: #c04abc;
+  color: #fff;
   border-radius: 50%;
   font-size: 1.6rem;
 }
@@ -1266,7 +1331,6 @@ footer .container {
 .carrito-container {
   width: 100%;
   padding: 1rem 0rem;
-  overflow-y: auto;
   border-radius: 0.3rem;
   background-color: white;
   position: relative;

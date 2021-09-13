@@ -18,7 +18,7 @@
 <body data-section="carrito">
   <!-- HEADER -->
   <header class="header">
-    <div class="container">
+    <div class="header-container">
       <div class="logo"><a href="index.html">Tienda</a></div>
       <div class="boton-menu">
         <i class="fas fa-bars"></i>
@@ -28,7 +28,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="shop.html">Shop</a></li>
           <li><a class="activo" href="carrito.html">Carrito<span class="carrito-span"></span></a></li>
-          <li><a href="#">Contacto</a></li>
+          <li><a href="#footer">Contacto</a></li>
         </ul>
       </nav>
     </div>
@@ -92,23 +92,23 @@
               <h3>Datos del cliente:</h3>
               <div>
                 <label for="nombre">Nombre Completo:</label>
-                <input form="checkout" type="text" name="nombre" placeholder="Escribe tu nombre" value="Homero Simpson" required>
+                <input form="form-checkout" type="text" name="nombre" placeholder="Escribe tu nombre" value="Homero Simpson" required>
               </div>
               <div>
                 <label for="e-mail">E-mail:</label>
-                <input form="checkout" type="email" name="e-mail" placeholder="Escribe tu e-mail" value="soyhomeroelmalo@lossimpson.com" required>
+                <input form="form-checkout" type="email" name="e-mail" placeholder="Escribe tu e-mail" value="soyhomeroelmalo@lossimpson.com" required>
               </div>
               <div>
                 <label for="telefono">Teléfono de Contacto:</label>
-                <input form="checkout" type="text" name="telefono" placeholder="Escribe tu número de teléfono" value="764-84377" required>
+                <input form="form-checkout" type="text" name="telefono" placeholder="Escribe tu número de teléfono" value="764-84377" required>
               </div>
               <div>
                 <label for="domicilio">Domicilio:</label>
-                <input form="checkout" type="text" name="domicilio" placeholder="Escribe tu dirección" value="Av. Siempreviva 742" required>
+                <input form="form-checkout" type="text" name="domicilio" placeholder="Escribe tu dirección" value="Av. Siempreviva 742" required>
               </div>
               <div>
                 <label for="ciudad">Ciudad:</label>
-                <input form="checkout" type="text" name="ciudad" placeholder="Escribe tu ciudad" value="Springfield" required>
+                <input form="form-checkout" type="text" name="ciudad" placeholder="Escribe tu ciudad" value="Springfield" required>
               </div>
             </div>
 
@@ -116,19 +116,19 @@
               <h3>Datos de la tarjeta:</h3>
               <div>
                 <label for="tarjeta-numero">Número de la tarjeta:</label>
-                <input form="checkout" type="text" name="tarjeta-numero" placeholder="1234-5678-9000" value="1234-5678-9000" required>
+                <input form="form-checkout" type="text" name="tarjeta-numero" placeholder="1234-5678-9000" value="1234-5678-9000" required>
               </div>
               <div>
                 <label for="tarjeta-nombre">Nombre del titular:</label>
-                <input form="checkout" type="text" name="tarjeta-nombre" placeholder="Introduce el nombre del titular de la tarjeta" value="Homero Simpson" required>
+                <input form="form-checkout" type="text" name="tarjeta-nombre" placeholder="Introduce el nombre del titular de la tarjeta" value="Homero Simpson" required>
               </div>
               <div>
                 <label for="tarjeta-exp">Fecha de exp:</label>
-                <input form="checkout" type="mail" name="tarjeta-exp" placeholder="MM/AA" value="12/28" required>
+                <input form="form-checkout" type="mail" name="tarjeta-exp" placeholder="MM/AA" value="12/28" required>
               </div>
               <div>
                 <label for="tarjeta-cv">CV:</label>
-                <input form="checkout" type="text" name="tarjeta-cv" placeholder="123" value="777" required>
+                <input form="form-checkout" type="text" name="tarjeta-cv" placeholder="123" value="777" required>
               </div>
             </div>
           </div>
@@ -142,8 +142,8 @@
               <!-- Acá se insertan los totales-->
             </div>
             <div>
-              <form id="checkout">
-                <input type="submit" class="boton-principal hover" id="btn-checkout-comprar">Finalizar Compra</input>
+              <form id="form-checkout">
+                <button type="submit" class="boton-principal hover" id="btn-checkout-comprar">Finalizar Compra</button>
               </form>
             </div>
             <div>
@@ -158,9 +158,50 @@
   <!-- /MAIN -->
 
   <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <h5>Desarrollado por Roy Arrascaeta</h5>
+  <footer id="footer">
+    <div class="footer-container">
+      <div>
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><ul><a href="shop.html">Shop/Productos</a>
+            <li><a href="shop.html?category=Buzos">- Buzos</a></li>
+            <li><a href="shop.html?category=Remeras">- Remeras</a></li>
+            <li><a href="shop.html?category=Camperas">- Camperas</a></li>
+            <li><a href="shop.html?category=Pantalones">- Pantalones</a></li>
+            <li><a href="shop.html?category=Camisas">- Camisas</a></li>
+            <li><a href="shop.html?category=Accesorios">- Accesorios</a></li>
+          </ul></li>
+          <li><a href="carrito.html">Carrito</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Horarios y Contacto</h4>
+        <ul>
+          <li>Calle 148 N° 35 - Ciudad - Pais</li>
+          <li>555-5555-5555</li>
+          <li>555-5555-5555</li>
+          <li>Lun. a Vie. 8.00 a 12.00hs - 16.00 a 20.00hs</li>
+          <li>Sab. de 8.00 a 14.00hs</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Redes Sociales</h4>
+        <a class="boton-redes hover"><i class="fab fa-facebook"></i></a>
+        <a class="boton-redes hover"><i class="fab fa-instagram"></i></a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li>Términos y Condiciones</li>
+          <li>Información Fiscal</li>
+        </ul>
+      </div>
+    </div>
+    <div class="firma">
+      <div>
+        Desarrollado por <a target="_blank" href="https://github.com/royarrascaeta">Roy</a>
+      </div>
     </div>
   </footer>
   <!-- /FOOTER -->

@@ -1,18 +1,62 @@
 /* ///// FOOTER ///// */
 footer {
-  background-color: $color-secundario;
+  margin-top: 2rem;
+  background-color: $color-principal-oscuro;
   color: $color-neutro;
 
-  .container {
-    display: flex;
-    align-items: center;
+  .footer-container {
+    text-align: center;
+    display: grid;
     width: 100%;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
+    gap: 2rem;
+    grid-template-columns: 1fr;
 
     @include media-up(md) {
       max-width: 1200px;
-      padding: 2rem 4rem;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+
+      div:nth-child(1) {
+        text-align: left;
+        grid-row: span 2;
+      }
+
+      div:nth-child(2) {
+        grid-row: span 2;
+      }
+    }
+
+    h4 {
+      text-align: center;
+      margin: 0.5rem auto;
+      padding-bottom: 0.5rem;
+      border-bottom: 0.2rem solid $color-secundario;
+    }
+
+    li {
+      margin-top: 0.5rem;
+    }
+
+    a {
+      color: $color-neutro;
+    }
+  }
+
+  .firma {
+    background: $color-principal;
+    padding: 1rem;
+    text-align: center;
+
+    div {
+      margin: 0 auto;
+      max-width: 1200px;
+
+      a {
+        color: $color-secundario;
+        font-weight: bold;
+      }
     }
   }
 }

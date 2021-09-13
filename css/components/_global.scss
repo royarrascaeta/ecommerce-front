@@ -49,15 +49,13 @@ html {
 body {
   min-height: 100vh;
   display: grid;
-  grid-template-rows: 1fr min-content;
   overflow-x: hidden;
   background-color: #fff;
   color: #444;
 
   @include media-up(md) {
-    grid-template-rows: min-content 1fr min-content;
+    grid-template-rows: min-content min-max(90vh, auto) min-content !important;
   }
-  // min-height: -webkit-fill-available;
 }
 
 /* //// BOTONES Y MENSAJES /////*/
@@ -90,6 +88,12 @@ body {
   background-color: unset;
   color: $color-secundario;
   border: 0.1rem solid $color-secundario;
+}
+
+.boton-redes {
+  font-size: 2.5rem;
+  cursor: pointer;
+  margin: 0.2rem;
 }
 
 .message {

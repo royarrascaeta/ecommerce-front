@@ -52,7 +52,7 @@ export function checkout(e, tabla, container){
 
       //Programo botones de finalizar compra o volver
       const $btnCheckoutVolver = document.getElementById("btn-checkout-volver");
-      const $btnCheckoutComprar = document.getElementById("btn-checkout-comprar");
+      const $form = document.getElementById("form-checkout");
 
       document.addEventListener("click", (e)=>{
         if(e.target === $btnCheckoutVolver){
@@ -64,7 +64,7 @@ export function checkout(e, tabla, container){
         }
       });
 
-      $btnCheckoutComprar.addEventListener("click", e=>{
+      $form.addEventListener("submit", e=>{
         e.preventDefault();
 
         let numPedido = Math.ceil(Math.random() * 123456789,0);
