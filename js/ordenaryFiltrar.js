@@ -46,9 +46,11 @@ export function mostrarCategorias(){
     $li.innerHTML = `${categoria} <span>(${filter.length})</span>`;
 
     $li.addEventListener("click",(e)=>{
-      mostrarProductos(filter,undefined,undefined,undefined,`Mostrando: categoría ${categoria}`);
+      localStorage.removeItem("categoryFilter");
+      $($ulCategorias).slideToggle();
+      mostrarProductos(filter,undefined,undefined,undefined,`Mostrando categoría: ${categoria}`);
       mostrarPaginacion(filter);
-      ordenarProductos(filter)
+      ordenarProductos(filter);
 
       //Reseteo el select
       $orderSelect.options[0].selected = true;

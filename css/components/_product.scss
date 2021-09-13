@@ -116,18 +116,6 @@
         padding: 0.5rem;
         width: 100%;
       }
-
-      .message {
-        text-align: center;
-        font-size: 1rem;
-        display: none;
-        padding: 0.2rem;
-        opacity: 1;
-
-        @include media-up(md) {
-          grid-column: 1/4;
-        }
-      }
     }
 
     .botones {

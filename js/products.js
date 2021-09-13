@@ -1,6 +1,7 @@
 // import { mostrarCarrito, carrito1 } from "./miCarrito.js";
 import { slider } from "./slider.js";
 import { Product } from "./Product.js";
+import { mostrarPaginacion } from "./paginacion.js";
 
 //Creo array vacío para cargar productos
 export const productos = [];
@@ -76,7 +77,6 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   const $colores = document.querySelector(".opciones .colores");
   const $inputTalles = document.getElementById("select-talles");
   const $inputCantidad = document.getElementById("select-cantidad");
-  const $message = document.querySelector(".opciones .message");
   let cantidadDisponible;
 
   $colores.innerHTML = "";
@@ -113,7 +113,6 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   //Añadiendo evento al select
   $inputTalles.addEventListener("change", (e)=>{
     e.preventDefault();
-    $($message).hide();
 
     let talleElegido = e.target.value;
 
@@ -147,7 +146,6 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
     productoElegido.stock = {};
     productoElegido.stock[talle] = parseInt(cantidad);
     
-
     if($inputTalles.value !== ""){
       producto.agregarAlCarrito(e, productoElegido);
       $inputTalles.options[0].style.display = "block";
@@ -155,8 +153,16 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
       $inputCantidad.disabled = true;
       $inputCantidad.innerHTML = `<option value="">Elige primero el talle</option>`;
     }else{
+      Swal.fire({
+        title: 'Atención!',
+        text: "Primero debes elegir un talle",
+        icon: undefined,
+        showCancelButton: false,
+        confirmButtonColor: '#c04abc',
+        cancelButtonColor: '#444',
+        confirmButtonText: 'Aceptar',
+      })
       $inputTalles.focus();
-      $($message).fadeIn().delay(2000).fadeOut();
     }
 
   })

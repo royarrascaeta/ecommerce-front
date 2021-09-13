@@ -22,32 +22,93 @@
   h3.resultados {
     width: 100%;
     align-self: center;
+    order: 1;
+    text-align: center;
+    font-size: 1rem;
+    opacity: 0.7;
 
     @include media-up(md) {
       grid-column: 2/3;
+      text-align: left;
+      margin-top: 0.5rem;
     }
   }
 
   .filters {
-    grid-row: 2/5;
-    padding: 0 1rem;
     flex-basis: 15%;
     flex-grow: 0;
     padding-bottom: 1rem;
     border-bottom: 0.1rem solid lightgray;
     align-self: stretch;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
 
     @include media-up(md) {
+      padding: 0 1rem;
+      grid-row: 1/5;
       border-right: 0.1rem solid lightgray;
       border-bottom: unset;
       min-height: fill;
+      grid-template-columns: 1fr;
+      align-content: start;
+      gap: 0rem;
+
+      & > * {
+        grid-column: 1/2 !important;
+      }
+
+      & > :nth-child(1) {
+        grid-row: 1/2 !important;
+      }
+
+      & > :nth-child(2) {
+        grid-row: 2/3 !important;
+      }
+
+      & > :nth-child(3) {
+        grid-row: 3/4 !important;
+      }
+
+      & > :nth-child(4) {
+        grid-row: 4/5 !important;
+      }
+    }
+
+    label {
+      margin: 0;
+    }
+
+    & > :nth-child(1) {
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+
+    & > :nth-child(2) {
+      grid-column: 1/2;
+      grid-row: 2/3;
+    }
+
+    & > :nth-child(3) {
+      grid-column: 2/3;
+      grid-row: 1/2;
+    }
+
+    & > :nth-child(4) {
+      grid-column: 2/3;
+      grid-row: 2/3;
+    }
+
+    & > :nth-child(5) {
+      grid-column: span 2;
     }
 
     h3 {
-      margin: 0.5rem auto;
+      margin-top: 0.5rem;
       text-align: center;
 
       @include media-up(md) {
+        margin: 0.5rem auto;
         pointer-events: none;
       }
 
@@ -79,6 +140,7 @@
     //Categorias
     ul {
       display: none;
+      grid-column: span 2;
 
       @include media-up(md) {
         display: block !important;
@@ -109,6 +171,7 @@
   }
 
   .products-container {
+    order: 1;
     @include products-container(4);
   }
 
@@ -117,6 +180,7 @@
     margin: 1rem auto;
     display: flex;
     justify-content: center;
+    order: 1;
 
     @include media-up(md) {
       grid-column: 2/3;

@@ -1,6 +1,6 @@
 .container-index {
   h2 {
-    margin: 1rem auto;
+    margin: 2rem auto 1rem auto;
   }
 
   .boton-principal-alt {
@@ -40,6 +40,25 @@
         text-shadow: 2px 2px 2px #000000;
         padding: 2rem;
         text-align: center;
+        position: relative;
+        z-index: 0;
+        cursor: pointer;
+
+        & > * {
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: #000;
+          opacity: 0.5;
+        }
       }
 
       div:nth-child(1) {
@@ -94,51 +113,87 @@
     display: grid;
     width: 100%;
     height: 500px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
+
+    @include media-up(md) {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+    }
 
     div {
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      position: relative;
+      z-index: 0;
+      cursor: pointer;
+
+      & > * {
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      &:hover::after {
+        opacity: 0;
+        transition: opacity 0.3s ease-in;
+      }
+    }
+
+    div::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background: #000;
+      opacity: 0.5;
+      transition: opacity 0.3s ease-in;
     }
 
     div:nth-child(1) {
-      grid-row: span 4;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("../assets/category/remeras.jpg") 50% 50% / cover no-repeat;
+      background: url("../assets/category/remeras.jpg") 50% 50% / cover
+        no-repeat;
+      @include media-up(md) {
+        grid-row: span 4;
+      }
     }
 
     div:nth-child(2) {
-      grid-row: span 2;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("../assets/category/pantalones.jpg") 50% 50% / cover no-repeat;
+      background: url("../assets/category/pantalones.jpg") 50% 50% / cover
+        no-repeat;
+      @include media-up(md) {
+        grid-row: span 2;
+      }
     }
 
     div:nth-child(3) {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("../assets/category/accesorios.jpg") 50% 50% / cover no-repeat;
+      background: url("../assets/category/accesorios.jpg") 50% 50% / cover
+        no-repeat;
     }
 
     div:nth-child(4) {
-      grid-column: 3/4;
-      grid-row: span 3;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("../assets/category/camisas.jpg") 50% 50% / cover no-repeat;
+      background: url("../assets/category/camisas.jpg") 50% 50% / cover
+        no-repeat;
+      @include media-up(md) {
+        grid-column: 3/4;
+        grid-row: span 3;
+      }
     }
 
     div:nth-child(5) {
-      grid-column: 2/3;
-      grid-row: 3/4;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("../assets/category/buzos.jpg") 50% 50% / cover no-repeat;
+      background: url("../assets/category/buzos.jpg") 50% 50% / cover no-repeat;
+      @include media-up(md) {
+        grid-column: 2/3;
+        grid-row: 3/4;
+      }
     }
 
     div:nth-child(6) {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("../assets/category/camperas.jpg") 50% 50% / cover no-repeat;
+      background: url("../assets/category/camperas.jpg") 50% 50% / cover
+        no-repeat;
     }
   }
 }

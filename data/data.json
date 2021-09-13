@@ -66,7 +66,7 @@
   {
     "id": 5,
     "nombre": "Jeans Pirlo",
-    "categoria": "Jeans",
+    "categoria": "Pantalones",
     "precio": 3500,
     "imagen":["assets/products/jeans-pirlo.jpeg"],
     "color": "Azul",
@@ -206,7 +206,7 @@
   {
     "id": 14,
     "nombre": "Jeans Taylor",
-    "categoria": "Jeans",
+    "categoria": "Pantalones",
     "precio": 3000,
     "imagen": ["assets/products/jeans-taylor.jpeg"],
     "color": "Gris",
@@ -222,7 +222,7 @@
   {
     "id": 15,
     "nombre": "Jeans Mark",
-    "categoria": "Jeans",
+    "categoria": "Pantalones",
     "precio": 3100,
     "imagen": ["assets/products/jeans-mark.jpeg"],
     "color": "Azul",

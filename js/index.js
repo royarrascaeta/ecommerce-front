@@ -16,20 +16,42 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     //Si estamos en la seccion index
     if(document.body.dataset.section === "index"){
+      if(localStorage.categoryFilter){
+        localStorage.categoryFilter = "";
+      }
       modal();
       slider(".slider-container",true);
       const $contenedorDestacados = document.querySelector(".featured");
-      mostrarProductos(productos, 0, 6, $contenedorDestacados)
+      mostrarProductos(productos, 0, 6, $contenedorDestacados);
+
+      const $btnCategorias = document.querySelectorAll("[data-category]");
+      $btnCategorias.forEach(btn => {
+        btn.addEventListener("click", (e)=>{
+          e.preventDefault();
+          let category = e.target.dataset.category;
+          localStorage.categoryFilter = category;
+          location = "shop.html";
+        })
+      })
     }
 
     //Si estamos en la seccion shop
     if(document.body.dataset.section === "shop"){
-      mostrarProductos();
-      mostrarCategorias();
-      mostrarPaginacion();
-      ordenarProductos(productos);
       buscador();
       modal();
+      mostrarCategorias();
+      //Verifico si hay una colección filtrada en localStorage
+      if(localStorage.categoryFilter){
+        let category = localStorage.categoryFilter;
+        let filter = productos.filter(producto => producto.categoria === category);
+        mostrarProductos(filter, undefined, undefined, undefined, `Mostrando categoria: ${category}`);
+        mostrarPaginacion(filter);
+        ordenarProductos(filter);
+      }else{
+        mostrarProductos();
+        mostrarPaginacion();
+        ordenarProductos(productos);
+      }
     }
 
     //Si estamos en la seccion producto
