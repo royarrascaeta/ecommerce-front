@@ -15,13 +15,13 @@ export class Carrito{
   agregarProducto(producto){
     //Creo una variable y mediante findIndex determino la ubicación del producto elegido, para averiguar si ya existe en el arreglo productos o no
     let talle = Object.keys(producto.stock)[0];
-    let indice = this.productos.findIndex(el=>el.nombre == producto.nombre && el.talle == talle);
+    let indice = this.productos.findIndex(el=>el.nombre == producto.nombre && el.talle == talle && el.id == producto.id);
 
     //Si el producto existe, aumento la propiedad 'cantidad', caso contrario añado el nuevo producto al arreglo
     if(indice != -1){
       this.productos[indice].cantidad += producto.stock[talle];
     }else{
-      this.productos.push({"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "color": producto.color, "precio": producto.precio, "talle": talle, "cantidad":producto.stock[talle], "cantidadDisponible":producto.cantidadDisponible});
+      this.productos.push({"id": producto.id, "nombre": producto.nombre, "imagen": producto.imagen, "color": producto.color, "precio": parseInt(producto.precio), "talle": talle, "cantidad":producto.stock[talle], "cantidadDisponible":producto.cantidadDisponible});
     }
 
     //Reducimos stock y actualizamos la pantalla
