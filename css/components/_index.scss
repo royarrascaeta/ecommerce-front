@@ -11,6 +11,7 @@
     text-shadow: 2px 2px 2px #000000;
     line-height: 1rem;
     font-size: 1.4rem;
+    cursor: pointer;
   }
 
   .slider-container {
@@ -42,11 +43,9 @@
         text-align: center;
         position: relative;
         z-index: 0;
-        cursor: pointer;
 
         & > * {
           z-index: 1;
-          pointer-events: none;
         }
 
         &::after {
@@ -88,6 +87,8 @@
   }
 
   & > div {
+    width: 100%;
+
     & > div:nth-child(2) {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -100,6 +101,7 @@
       a {
         grid-column: 2/3;
         margin-top: 1rem;
+        justify-content: center;
 
         @include media-up(md) {
           grid-column: 6/7;

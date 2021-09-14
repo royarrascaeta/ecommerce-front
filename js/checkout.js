@@ -70,6 +70,7 @@ export function checkout(e, tabla, container){
         let numPedido = Math.ceil(Math.random() * 123456789,0);
 
         $(tabla.children[2]).slideUp("slow");
+        window.scrollTo(0,0);
         $(tabla.children[3]).slideUp("slow", function(){
           document.querySelector(".carrito-container").innerHTML = "";
 
@@ -92,6 +93,7 @@ export function checkout(e, tabla, container){
           })
 
           container.querySelector(".checkout-message div").appendChild($btnLimpiarCarrito);
+
         });
       });
     }

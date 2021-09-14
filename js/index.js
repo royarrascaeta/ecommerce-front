@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     //Si estamos en la seccion producto
     if(document.body.dataset.section === "producto"){
-      mostrarProducto()
+      mostrarProducto();
       modal();
     }
 
@@ -66,6 +66,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
     }
   })
 });
+
+
 
 
 //Funcion localStorage

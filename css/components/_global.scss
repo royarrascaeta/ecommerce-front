@@ -8,22 +8,6 @@
   @include media-up(md) {
     grid-template-columns: repeat($columns, 1fr);
   }
-
-  .loader-container {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    top: 0;
-    background-color: #fff;
-    opacity: 0.5;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    img {
-      width: 4rem;
-    }
-  }
 }
 
 /*/ //// RESETEO /////*/
@@ -55,6 +39,24 @@ body {
 
   @include media-up(md) {
     grid-template-rows: min-content min-max(90vh, auto) min-content !important;
+  }
+}
+
+/* ///// LOADER ///// */
+.loader-container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  background-color: #fff;
+  opacity: 0.5;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+
+  img {
+    width: 4rem;
   }
 }
 

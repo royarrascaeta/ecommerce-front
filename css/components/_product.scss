@@ -151,6 +151,9 @@
 
     .products-container {
       @include products-container;
+      @include media-up(md) {
+        grid-template-columns: repeat(6, 1fr);
+      }
     }
   }
 }

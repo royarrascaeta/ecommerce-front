@@ -67,7 +67,7 @@ export function mostrarProductos(productosSel = productos, start = 0, end = 8, c
 }
 
 
-//Funcion para mostrar los datos de un SOLO producto en el archivo producto.html
+//Funcion para mostrar los datos de un SOLO producto en la sección producto.html
 export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   const producto = productos.find(producto=> producto.id === id)
   const talles = Object.keys(producto.stock);
@@ -77,7 +77,6 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   const $colores = document.querySelector(".opciones .colores");
   const $inputTalles = document.getElementById("select-talles");
   const $inputCantidad = document.getElementById("select-cantidad");
-  let cantidadDisponible;
 
   $colores.innerHTML = "";
   $inputTalles.innerHTML = `<option value="">Selecciona el talle</option>`;
@@ -170,6 +169,12 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   //Productos relacionados
   const $relContainer = document.querySelector(".products-container");
   const productosRel = productos.filter(product => product.categoria === producto.categoria && product.id != producto.id);
+
+  //Si la cantidad de productos relacionados es menor a 6, relleno el array con productos aleatorios
+  while(productosRel.length < 6){
+    let i = Math.round(Math.random() * productos.length)
+    productosRel.push(productos[i])
+  }
 
   mostrarProductos(productosRel, 0, undefined, $relContainer)
 }

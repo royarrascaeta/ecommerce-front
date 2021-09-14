@@ -15,16 +15,10 @@ footer {
 
     @include media-up(md) {
       max-width: 1200px;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
 
       div:nth-child(1) {
         text-align: left;
-        grid-row: span 2;
-      }
-
-      div:nth-child(2) {
-        grid-row: span 2;
       }
     }
 
