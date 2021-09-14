@@ -105,11 +105,17 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   //Mostrar dinamicamente los talles con stock disponible
   for(let talle of talles){
     if(producto.stock[talle] != 0){
-      $inputTalles.innerHTML += `<option value="${talle}">${talle}</option>`
+      $inputTalles.innerHTML += `<option value="${talle}">${talle}</option>`;
+    }else{
+      $inputTalles.innerHTML += `<option value="${talle}" disabled>${talle} -sin stock-</option>`;
     }
   }
 
   //Añadiendo evento al select
+  $inputTalles.addEventListener("click",(e)=>{
+    e.target.style = "animation: none";
+  })
+
   $inputTalles.addEventListener("change", (e)=>{
     e.preventDefault();
 
@@ -145,23 +151,15 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
     productoElegido.stock = {};
     productoElegido.stock[talle] = parseInt(cantidad);
     
-    if($inputTalles.value !== ""){
+    if(talle !== ""){
       producto.agregarAlCarrito(e, productoElegido);
       $inputTalles.options[0].style.display = "block";
       $inputTalles.options[0].selected = true;
       $inputCantidad.disabled = true;
       $inputCantidad.innerHTML = `<option value="">Elige primero el talle</option>`;
     }else{
-      Swal.fire({
-        title: 'Atención!',
-        text: "Primero debes elegir un talle",
-        icon: undefined,
-        showCancelButton: false,
-        confirmButtonColor: '#c04abc',
-        cancelButtonColor: '#444',
-        confirmButtonText: 'Aceptar',
-      })
       $inputTalles.focus();
+      $inputTalles.style = "animation: scale 0.3s ease-out 0s infinite alternate";
     }
 
   })
@@ -172,7 +170,8 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
 
   //Si la cantidad de productos relacionados es menor a 6, relleno el array con productos aleatorios
   while(productosRel.length < 6){
-    let i = Math.round(Math.random() * productos.length - 1)
+    let i = Math.floor(Math.random() * productos.length)
+    console.log(i)
     productosRel.push(productos[i])
   }
 
