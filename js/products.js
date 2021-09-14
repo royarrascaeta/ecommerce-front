@@ -172,7 +172,7 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
 
   //Si la cantidad de productos relacionados es menor a 6, relleno el array con productos aleatorios
   while(productosRel.length < 6){
-    let i = Math.round(Math.random() * productos.length)
+    let i = Math.round(Math.random() * productos.length - 1)
     productosRel.push(productos[i])
   }
 
