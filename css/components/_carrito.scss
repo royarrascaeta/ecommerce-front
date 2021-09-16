@@ -54,9 +54,11 @@
   position: relative;
   text-align: center;
   align-self: center;
+  overflow-y: scroll;
 
   @include media-up(md) {
     padding: 2rem;
+    min-height: 80%;
   }
 
   h2 {
@@ -99,9 +101,13 @@
     }
 
     & > div {
-      padding: 2rem 1rem;
+      padding: 1rem;
       border: 0.1rem solid lightgray;
       border-radius: 0.3rem;
+
+      @include media-up(md) {
+        padding: 2rem 1rem;
+      }
     }
 
     .carrito-detalle {
@@ -320,7 +326,9 @@
 
     @include media-up(md) {
       width: 80%;
-      max-height: 100%;
+      max-height: 95%;
+      padding: 1rem;
+      overflow-y: auto;
     }
   }
 

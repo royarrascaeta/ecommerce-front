@@ -90,7 +90,7 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   slider(".slider-container");
 
   //Nombre, precio y detalle del producto
-  $productCarrito.querySelector("h2").textContent = `${producto.nombre} ${producto.color}`;
+  $productCarrito.querySelector("h1").textContent = `${producto.nombre} ${producto.color}`;
   $productCarrito.querySelector("h3").textContent = "$"+ producto.precio;
   $productCarrito.querySelector("p").textContent = producto.descripcion;
 

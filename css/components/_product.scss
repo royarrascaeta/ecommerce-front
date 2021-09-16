@@ -34,30 +34,31 @@
     flex-direction: column;
 
     //Nombre
-    h2 {
+    h1 {
       margin-bottom: 1rem;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      text-align: left;
     }
 
     //Precio
     h3 {
       opacity: 0.8;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
 
     //Subtitulo
     h4 {
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
     }
 
     //Descripcion
     p {
       margin-bottom: 1rem;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       text-align: justify;
 
       @include media-up(md) {
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
     }
 

@@ -42,6 +42,19 @@ body {
   }
 }
 
+/* ///// TITULOS //// */
+h1 {
+  // font-size: ;
+}
+
+h2 {
+  font-size: 1.3rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
 /* ///// LOADER ///// */
 .loader-container {
   position: absolute;
@@ -68,7 +81,7 @@ body {
   align-self: center;
   margin-top: 0.5rem;
   padding: 0.4rem 1rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   border: 0.1rem solid $color-secundario;
   border-radius: 0.3rem;
@@ -102,7 +115,7 @@ body {
   align-self: center;
   margin-top: 0.5rem;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   opacity: 0.6;
 }
 
@@ -118,7 +131,7 @@ body {
     padding: 0.5rem;
     border-radius: 0.5rem;
     font-weight: normal;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     background-color: $color-secundario;
     color: #fff;
   }

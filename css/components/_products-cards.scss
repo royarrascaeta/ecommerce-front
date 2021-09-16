@@ -1,11 +1,8 @@
 /* ///// PRODUCTS CARDS ///// */
 .product-card {
   display: flex;
-  // height: 140%;
   flex-direction: column;
-  flex-basis: 45%;
-  // margin: 1rem auto;
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
   border-radius: 0.3rem;
   border: 0.05rem solid lightgray;
   box-shadow: 0.05rem 0.05rem 0.4rem 0.05rem lightgray;
@@ -15,10 +12,6 @@
   -webkit-transform: translate(0%);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   overflow: hidden;
-
-  @include media-up(md) {
-    flex-basis: 22% !important;
-  }
 
   &:hover {
     cursor: pointer;
@@ -73,17 +66,13 @@
 
   h3 {
     margin-top: 0.5rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
     opacity: 0.8;
-
-    @include media-up(md) {
-      font-size: 1rem;
-    }
   }
 
   .precio {
     margin: 0.5rem 0;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: bold;
   }
 }

@@ -19,7 +19,8 @@ export function ordenarProductos(products){
       return;
     }
        
-    mostrarProductos(productosOrdenados)
+    mostrarProductos(productosOrdenados);
+    mostrarPaginacion(productosOrdenados);
   })
 }
 

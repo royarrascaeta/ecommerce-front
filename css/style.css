@@ -37,6 +37,15 @@ body {
   }
 }
 
+/* ///// TITULOS //// */
+h2 {
+  font-size: 1.3rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
 /* ///// LOADER ///// */
 .loader-container {
   position: absolute;
@@ -70,7 +79,7 @@ body {
       align-self: center;
   margin-top: 0.5rem;
   padding: 0.4rem 1rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   border: 0.1rem solid #c04abc;
   border-radius: 0.3rem;
@@ -108,7 +117,7 @@ body {
       align-self: center;
   margin-top: 0.5rem;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   opacity: 0.6;
 }
 
@@ -124,7 +133,7 @@ body {
   padding: 0.5rem;
   border-radius: 0.5rem;
   font-weight: normal;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   background-color: #c04abc;
   color: #fff;
 }
@@ -1140,9 +1149,7 @@ footer .firma div a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex-preferred-size: 45%;
-      flex-basis: 45%;
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
   border-radius: 0.3rem;
   border: 0.05rem solid lightgray;
   -webkit-box-shadow: 0.05rem 0.05rem 0.4rem 0.05rem lightgray;
@@ -1156,12 +1163,6 @@ footer .firma div a {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out, -webkit-box-shadow 0.2s ease-in-out;
   overflow: hidden;
-}
-@media screen and (min-width: 768px) {
-  .product-card {
-    -ms-flex-preferred-size: 22% !important;
-        flex-basis: 22% !important;
-  }
 }
 .product-card:hover {
   cursor: pointer;
@@ -1194,7 +1195,7 @@ footer .firma div a {
   bottom: 0;
   right: 0;
   content: "";
-  background: no-repeat center/20% url("../../assets/lupa.svg");
+  background: no-repeat center/20% url("././assets/lupa.svg");
   color: red;
   z-index: 1;
   opacity: 0;
@@ -1221,17 +1222,12 @@ footer .firma div a {
 }
 .product-card h3 {
   margin-top: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   opacity: 0.8;
-}
-@media screen and (min-width: 768px) {
-  .product-card h3 {
-    font-size: 1rem;
-  }
 }
 .product-card .precio {
   margin: 0.5rem 0;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: bold;
 }
 
@@ -1295,10 +1291,12 @@ footer .firma div a {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+  overflow-y: scroll;
 }
 @media screen and (min-width: 768px) {
   .carrito-container {
     padding: 2rem;
+    min-height: 80%;
   }
 }
 .carrito-container h2 {
@@ -1341,9 +1339,14 @@ footer .firma div a {
   margin-bottom: 1rem;
 }
 .carrito-container .carrito-tabla > div {
-  padding: 2rem 1rem;
+  padding: 1rem;
   border: 0.1rem solid lightgray;
   border-radius: 0.3rem;
+}
+@media screen and (min-width: 768px) {
+  .carrito-container .carrito-tabla > div {
+    padding: 2rem 1rem;
+  }
 }
 .carrito-container .carrito-tabla .carrito-detalle .carrito-productos {
   margin-bottom: 1rem;
@@ -1622,7 +1625,9 @@ footer .firma div a {
 @media screen and (min-width: 768px) {
   .modal .carrito-container {
     width: 80%;
-    max-height: 100%;
+    max-height: 95%;
+    padding: 1rem;
+    overflow-y: auto;
   }
 }
 .modal .close {
@@ -1694,25 +1699,26 @@ footer .firma div a {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.container-producto .product-carrito h2 {
+.container-producto .product-carrito h1 {
   margin-bottom: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  text-align: left;
 }
 .container-producto .product-carrito h3 {
   opacity: 0.8;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 .container-producto .product-carrito h4 {
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
 }
 .container-producto .product-carrito p {
   margin-bottom: 1rem;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   text-align: justify;
 }
 @media screen and (min-width: 768px) {
   .container-producto .product-carrito p {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 }
 .container-producto .product-carrito .opciones {
