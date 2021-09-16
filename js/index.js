@@ -21,17 +21,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
       }
       modal();
       slider(".slider-container",true);
-      const $contenedorDestacados = document.querySelector(".featured");
-      mostrarProductos(productos, 0, 6, $contenedorDestacados);
+      mostrarProductos(productos, 0, 6, ".featured");
 
-      const $btnCategorias = document.querySelectorAll("[data-category]");
-      $btnCategorias.forEach(btn => {
-        btn.addEventListener("click", (e)=>{
+      //Botones de categorias
+      document.addEventListener("click", e=>{
+        if(e.target.hasAttribute("data-category")){
           e.preventDefault();
           let category = e.target.dataset.category;
           localStorage.categoryFilter = category;
           location = "shop.html";
-        })
+        }
       })
     }
 
@@ -68,8 +67,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
 });
 
 
-
-
 //Funcion localStorage
 export function actualizarLocalStorage(){
   //Creamos variable en localStorage y actualizamos nuestro carrito tomando los valores almacenados en localStorage
@@ -94,7 +91,4 @@ export function actualizarLocalStorage(){
   //Actualizo y muestro el índice indicador de productos en el carrito
   const $carritoIndex = document.querySelectorAll(".carrito-span");
   $carritoIndex.forEach(span => span.innerHTML = carrito1.cantidadTotal);
-  
-  //Imprimimos en pantalla los datos del carrito
-  // mostrarCarrito();
 }

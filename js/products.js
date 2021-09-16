@@ -1,14 +1,12 @@
 // import { mostrarCarrito, carrito1 } from "./miCarrito.js";
 import { slider } from "./slider.js";
 import { Product } from "./Product.js";
-import { mostrarPaginacion } from "./paginacion.js";
 
 //Creo array vacío para cargar productos
 export const productos = [];
 
-//Función que mediante ajax recoge los productos del archivo data.json y los guarda en la variable productos declarada arriba. Finalmente ejecuta la función mostrarProductos()
+//Función que mediante ajax recoge los productos del archivo data.json y los guarda en la variable productos declarada arriba. Finalmente ejecuta la función mostrarProductos() en el callback.
 const URLJSON = "./data/data.json";
-
 
 export function cargarProductos(callback) {
   $.getJSON(URLJSON, function (respuesta, estado) {
@@ -26,7 +24,6 @@ export function cargarProductos(callback) {
   <p style="width: 100%; text-align: center;">Error al cargar los productos</p>`)
   })
 }
-
 
 //Funcion para mostrar los productos en el DOM con jQuery
 export function mostrarProductos(productosSel = productos, start = 0, end = 8, container = ".products-container", titulo = "Mostrando: Todos los productos") {
@@ -54,10 +51,13 @@ export function mostrarProductos(productosSel = productos, start = 0, end = 8, c
     $h3.innerHTML += `<br><br><small>No se encontraron resultados.</small>`
   }
 
+  //Añado productos al fragmento
   productosSel.slice(start, start + end).forEach(producto => {
     fragment.appendChild(producto.mostrarProducto())
   })
 
+
+  //Inserto el fragment en el contenedor y finalmente muestro los productos
   $(container)
     .append(fragment).children().hide();
 
@@ -86,7 +86,6 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   for(let imagen of producto.imagen){
     $slides.innerHTML += `<div class="image"><img src="${imagen}" alt="" ></div>`
   }
-
   slider(".slider-container");
 
   //Nombre, precio y detalle del producto
@@ -102,7 +101,7 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   }
 
   //Talle
-  //Mostrar dinamicamente los talles con stock disponible
+  //Mostrando dinamicamente los talles con stock disponible
   for(let talle of talles){
     if(producto.stock[talle] != 0){
       $inputTalles.innerHTML += `<option value="${talle}">${talle}</option>`;
@@ -145,6 +144,7 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
     //Obtengo valores de los input
     let talle = $inputTalles.value;
     let cantidad = $inputCantidad.value;
+
     //Creo una copia del producto de la base de datos, y modifico la propiedad stock para que solo tenga un objeto (con los valores talle y cantidad del input)
     let productoElegido = {...producto}
     productoElegido.cantidadDisponible = parseInt(productoElegido.stock[talle]);
@@ -152,7 +152,7 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
     productoElegido.stock[talle] = parseInt(cantidad);
     
     if(talle !== ""){
-      producto.agregarAlCarrito(e, productoElegido);
+      producto.agregarAlCarrito(productoElegido);
       $inputTalles.options[0].style.display = "block";
       $inputTalles.options[0].selected = true;
       $inputCantidad.disabled = true;
@@ -165,17 +165,15 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
   })
 
   //Productos relacionados
-  const $relContainer = document.querySelector(".products-container");
   const productosRel = productos.filter(product => product.categoria === producto.categoria && product.id != producto.id);
 
   //Si la cantidad de productos relacionados es menor a 6, relleno el array con productos aleatorios
   while(productosRel.length < 6){
     let i = Math.floor(Math.random() * productos.length)
-    console.log(i)
     productosRel.push(productos[i])
   }
 
-  mostrarProductos(productosRel, 0, undefined, $relContainer)
+  mostrarProductos(productosRel, 0, undefined)
 }
 
 

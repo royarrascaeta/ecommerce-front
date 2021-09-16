@@ -1,7 +1,7 @@
-import { carrito1, limpiarCarrito } from "./miCarrito.js";
+import { carrito1 } from "./miCarrito.js";
 
 //Función para generar el checkout y finalizar la compra
-export function checkout(e, tabla, container){
+export function checkout(e, tabla){
   e.preventDefault();
 
   //Si se ejecuta desde el modal de carrito, redirige a la sección carrito.
@@ -28,7 +28,6 @@ export function checkout(e, tabla, container){
         $(this).css("display","flex");
         window.scrollTo(0,0);
       });
-      
 
       //Muestro el detalle final
       const $finalProductos = document.querySelectorAll(".carrito-final > div")[0];
@@ -64,40 +63,35 @@ export function checkout(e, tabla, container){
         }
       });
 
+      //Programacion del formulario
       $form.addEventListener("submit", e=>{
         e.preventDefault();
+
+        carrito1.limpiarCarrito(false, false)
 
         let numPedido = Math.ceil(Math.random() * 123456789,0);
 
         $(tabla.children[2]).slideUp("slow");
         window.scrollTo(0,0);
         $(tabla.children[3]).slideUp("slow", function(){
-          document.querySelector(".carrito-container").innerHTML = "";
-
-          container.innerHTML += `
-            <div class="checkout-message">
-              <h2>Su compra se procesó correctamente.</h2>
-              <p>Su número de pedido es: <strong>${numPedido}</strong></p>
-              <div></div>
-            </div>
-          `;
-
-          const $btnLimpiarCarrito = document.createElement("button");
-          $btnLimpiarCarrito.textContent = "Volver";
-          $btnLimpiarCarrito.classList.add("boton-principal","hover");
-          $btnLimpiarCarrito.setAttribute("id","btn-limpiar-carrito");
-          
-          $btnLimpiarCarrito.addEventListener("click", (e)=>{
-            limpiarCarrito();
-            location = "index.html";
-          })
-
-          container.querySelector(".checkout-message div").appendChild($btnLimpiarCarrito);
-
+          $(".carrito-container")
+            .fadeOut()
+            .empty()
+            .hide()
+            .append(`
+              <div class="checkout-message">
+                <h1>Gracias por su compra!</h1>
+                <h2>Su orden se procesó correctamente.</h2>
+                <p>Su número de pedido es: <strong>${numPedido}</strong></p>
+                <p>Recibirá la información correspondiente a través del mail proporcionado.</p>
+                <div>
+                  <a class="boton-principal hover" href="index.html">Volver</a>
+                </div>
+              </div>
+            `)
+            .fadeIn();
         });
       });
     }
   }
-
-  
 }

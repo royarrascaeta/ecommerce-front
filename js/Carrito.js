@@ -1,4 +1,5 @@
 import { reducirStock, mostrarProducto } from "./products.js";
+import { mostrarCarrito } from "./miCarrito.js";
 
 //Clase constructora del carrito y sus métodos
 export class Carrito{
@@ -33,6 +34,12 @@ export class Carrito{
 
     //Creo o actualizo la variable carritoLocal en localStorage y le paso todo el objeto
     localStorage.setItem("carritoLocal",JSON.stringify(this))
+  }
+
+  indicadorCarrito(){
+    $(".carrito-span").each((i, span) => {
+        span.innerHTML = this.cantidadTotal;
+    });
   }
 
   calcularCantidad(){
@@ -102,16 +109,42 @@ export class Carrito{
     localStorage.setItem("carritoLocal",JSON.stringify(this))
   };
 
-  limpiarCarrito(){
-    this.productos = [],
-    this.cantidadTotal = 0;
-    this.totalEnvio = 0,
-    this.envio = false,
-    this.subTotal = 0,
-    this.total = 0
-    this.flagEnvio = false;
+  limpiarCarrito(confirm, reload){
+    if(confirm){
+      Swal.fire({
+          title: 'Carrito',
+          text: "¿Desea quitar todos los productos del carrito?",
+          icon: undefined,
+          showCancelButton: true,
+          confirmButtonColor: '#c04abc',
+          cancelButtonColor: '#444',
+          confirmButtonText: 'Si',
+          cancelButtonText: "No"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          console.log("Confirmacion aceptada")
+          this.productos = [],
+          this.cantidadTotal = 0;
+          this.totalEnvio = 0,
+          this.envio = false,
+          this.subTotal = 0,
+          this.total = 0
+          this.flagEnvio = false;
 
-    localStorage.removeItem("carritoLocal");
-    location.reload();
+          this.indicadorCarrito();
+
+          localStorage.removeItem("carritoLocal");
+
+          mostrarCarrito();
+
+          if(reload){
+            location.reload();
+          }
+        }
+      })
+    }else{
+      this.indicadorCarrito();
+      localStorage.removeItem("carritoLocal");
+    }
   }
 }

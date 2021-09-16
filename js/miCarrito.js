@@ -113,38 +113,6 @@ export async function calcularEnvio(){
   mostrarCarrito();
 }
 
-
-//Función para eliminar los productos del carrito y del LocalStorage
-export function limpiarCarrito(confirm){
-  if(confirm){
-    Swal.fire({
-        title: 'Carrito',
-        text: "¿Desea quitar todos los productos del carrito?",
-        icon: undefined,
-        showCancelButton: true,
-        confirmButtonColor: '#c04abc',
-        cancelButtonColor: '#444',
-        confirmButtonText: 'Si',
-        cancelButtonText: "No"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        carrito1.limpiarCarrito();
-        mostrarCarrito();
-      }
-    })
-  }else{
-    carrito1.limpiarCarrito();
-    mostrarCarrito();
-  }
-}
-
-//Funcion para actualizar indicador de cantidad en carrito flotante y menu
-export function indicadorCarrito(){
-  $(".carrito-span").each((i, span) => {
-      span.innerHTML = carrito1.cantidadTotal;
-  });
-}
-
 //Eventos de botones de aumentar y reducir cantidad
 $carritoProductos.addEventListener("click", (e)=>{
   let id = e.target.dataset.id;
@@ -157,12 +125,12 @@ $carritoProductos.addEventListener("click", (e)=>{
       producto.cantidad--
       carrito1.calcularCantidad();
       mostrarCarrito();
-      indicadorCarrito();
+      carrito1.indicadorCarrito();
     }else{
       carrito1.productos = carrito1.productos.filter(product => product.id != id || product.talle != talle);
       carrito1.calcularCantidad();
       mostrarCarrito();
-      indicadorCarrito();
+      carrito1.indicadorCarrito();
     }
     
   }
@@ -184,11 +152,11 @@ document.addEventListener("click", (e)=>{
   }
 
   if(e.target === $btnBorrar){
-    limpiarCarrito(true);
+    carrito1.limpiarCarrito(true, true);
   }
 
   if(e.target === $btnVolver[0] || e.target === $btnVolver[1]){
-    if(document.body.dataset.section === "carrito" || document.body.dataset.section === "producto"){
+    if(document.body.dataset.section === "carrito"){
       location.href = "shop.html";
     }else{
       cerrarModal();
@@ -196,6 +164,6 @@ document.addEventListener("click", (e)=>{
   }
 
   if(e.target === $btnComprar){
-    checkout(e,$carritoTabla,$containerCarrito);
+    checkout(e,$carritoTabla);
   }
 })
