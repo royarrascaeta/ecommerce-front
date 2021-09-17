@@ -1196,7 +1196,7 @@ footer .firma div a {
   bottom: 0;
   right: 0;
   content: "";
-  background: no-repeat center/20% url("././assets/lupa.svg");
+  background: no-repeat center/20% url("../../assets/lupa.svg");
   color: red;
   z-index: 1;
   opacity: 0;
