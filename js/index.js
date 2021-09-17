@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
       }
       modal();
       slider(".slider-container",true);
-      mostrarProductos(productos, 0, 6, ".featured");
+      mostrarProductos({productosSel: productos, end: 6, container: ".featured"});
 
       //Botones de categorias
       document.addEventListener("click", e=>{
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
       if(localStorage.categoryFilter){
         let category = localStorage.categoryFilter;
         let filter = productos.filter(producto => producto.categoria === category);
-        mostrarProductos(filter, undefined, undefined, undefined, `Mostrando categoria: ${category}`);
+        mostrarProductos({productosSel: filter, titulo: `Mostrando categoria: ${category}`});
         mostrarPaginacion(filter);
         ordenarProductos(filter);
       }else{

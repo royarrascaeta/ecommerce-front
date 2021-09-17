@@ -19,7 +19,7 @@ export function ordenarProductos(products){
       return;
     }
        
-    mostrarProductos(productosOrdenados);
+    mostrarProductos({productosSel:productosOrdenados});
     mostrarPaginacion(productosOrdenados);
   })
 }
@@ -49,9 +49,12 @@ export function mostrarCategorias(){
     $li.addEventListener("click",(e)=>{
       localStorage.removeItem("categoryFilter");
       $($ulCategorias).slideToggle();
-      mostrarProductos(filter,undefined,undefined,undefined,`Mostrando categoría: ${categoria}`);
+      mostrarProductos({productosSel: filter, titulo: `Mostrando categoría: ${categoria}`});
       mostrarPaginacion(filter);
       ordenarProductos(filter);
+
+      //Desplazamiento hacia arriba
+      window.scrollTo(0,0)
 
       //Reseteo el select
       $orderSelect.options[0].selected = true;

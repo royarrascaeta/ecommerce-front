@@ -9,7 +9,7 @@ export function buscador(){
     const buscar = () =>{
         let busqueda = $input.value.toLowerCase();
         let resultados = productos.filter(product => (product.nombre).toLowerCase().includes(busqueda) || (product.categoria).toLowerCase().includes(busqueda) || (product.color).toLowerCase().includes(busqueda) || (product.descripcion).toLowerCase().includes(busqueda));
-        mostrarProductos(resultados,undefined,undefined,undefined,`Mostrando resultados para: "${busqueda}"`);
+        mostrarProductos({productosSel: resultados, titulo: `Mostrando resultados para: "${busqueda}"`});
         mostrarPaginacion(resultados);
         ordenarProductos(resultados);
     }

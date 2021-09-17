@@ -997,9 +997,6 @@ footer .firma div a {
     grid-row: 4/5 !important;
   }
 }
-.container-shop .filters label {
-  margin: 0;
-}
 .container-shop .filters > :nth-child(1) {
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
@@ -1036,7 +1033,11 @@ footer .firma div a {
   -ms-grid-column-span: 2;
   grid-column: span 2;
 }
+.container-shop .filters label {
+  margin: 0;
+}
 .container-shop .filters h3 {
+  font-size: 1rem;
   margin-top: 0.5rem;
   text-align: center;
 }

@@ -25,7 +25,7 @@ export function mostrarPaginacion(products = productos){
       }
 
       $btn.addEventListener("click",(e)=>{
-        mostrarProductos(products, e.target.dataset.start);
+        mostrarProductos({productosSel: products, start: e.target.dataset.start});
 
         //Desplazamiento hacia arriba
         window.scrollTo(0,0)

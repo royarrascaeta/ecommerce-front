@@ -26,7 +26,7 @@ export function cargarProductos(callback) {
 }
 
 //Funcion para mostrar los productos en el DOM con jQuery
-export function mostrarProductos(productosSel = productos, start = 0, end = 8, container = ".products-container", titulo = "Mostrando: Todos los productos") {
+export function mostrarProductos({productosSel = productos, start = 0, end = 8, container = ".products-container", titulo = "Mostrando: Todos los productos"} = {}) {
   //Convierto a número el valor start
   start = parseInt(start);
   end = parseInt(end);
@@ -55,7 +55,6 @@ export function mostrarProductos(productosSel = productos, start = 0, end = 8, c
   productosSel.slice(start, start + end).forEach(producto => {
     fragment.appendChild(producto.mostrarProducto())
   })
-
 
   //Inserto el fragment en el contenedor y finalmente muestro los productos
   $(container)
