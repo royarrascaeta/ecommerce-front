@@ -172,7 +172,7 @@ export function mostrarProducto(id = parseInt(location.search.split("=")[1])){
     productosRel.push(productos[i])
   }
 
-  mostrarProductos(productosRel, 0, undefined)
+  mostrarProductos({productosSel: productosRel})
 }
 
 
