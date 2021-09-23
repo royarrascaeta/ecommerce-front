@@ -47,8 +47,12 @@ export function mostrarCategorias(){
     $li.innerHTML = `${categoria} <span>(${filter.length})</span>`;
 
     $li.addEventListener("click",(e)=>{
+      //Detecto el tamaño de la pantalla para aplicar el slideToggle solo cuando está en mobile
+      if(!window.matchMedia("screen and (min-width: 768px)").matches){
+        $($ulCategorias).slideToggle();
+        $btnCategorias.querySelector("i").classList.toggle("fa-chevron-up")
+      }
       localStorage.removeItem("categoryFilter");
-      $($ulCategorias).slideToggle();
       mostrarProductos({productosSel: filter, titulo: `Mostrando categoría: ${categoria}`});
       mostrarPaginacion(filter);
       ordenarProductos(filter);

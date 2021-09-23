@@ -47,7 +47,6 @@ export function mostrarProductos({productosSel = productos, start = 0, end = 8, 
 
   //Si no hay resultados, se muestra un mensaje
   if(productosSel.length === 0){
-    console.log("Sin resultados");
     $h3.innerHTML += `<br><br><small>No se encontraron resultados.</small>`
   }
 
